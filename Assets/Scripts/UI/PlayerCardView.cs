@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class PlayerCardView : MonoBehaviour
 {
     public PlayerData data;
-
     [SerializeField]private Image selectedImage;
+    [SerializeField] private AudioClip buttonClickSound;
+    
     private Button button;
     private bool isSelected = false;
 
@@ -27,6 +28,7 @@ public class PlayerCardView : MonoBehaviour
    
     void OnClickCard()
     {
+        ServiceLocator.Instance.SoundService.PlaySound(buttonClickSound);
         if (CheckPlayerType())
         {
             if (!isSelected)
