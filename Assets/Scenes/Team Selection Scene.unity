@@ -1040,6 +1040,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 198403597}
+  - component: {fileID: 198403598}
   m_Layer: 0
   m_Name: Service Locator
   m_TagString: Untagged
@@ -1062,6 +1063,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &198403598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198403596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b57e43d64c9e2c444b45ee6eda9ecfc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ServiceLocator
+  teamSelectionService: {fileID: 339678885}
+  gameService: {fileID: 1215376820}
 --- !u!1 &253297012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1602,6 +1617,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 339678884}
+  - component: {fileID: 339678885}
   m_Layer: 0
   m_Name: Team Selection Service
   m_TagString: Untagged
@@ -1624,6 +1640,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &339678885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339678883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17075a269294bc74cb5a9948c3b8a694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TeamSelectionService
+  maxPlayers: 6
+  currentSelectionRole: 0
 --- !u!1 &398126284
 GameObject:
   m_ObjectHideFlags: 0
@@ -4561,6 +4591,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1215376819}
+  - component: {fileID: 1215376820}
   m_Layer: 0
   m_Name: GameService
   m_TagString: Untagged
@@ -4583,6 +4614,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1215376820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215376818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdbef918412f1ab45b966ac01008c7e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameService
 --- !u!1 &1221881539
 GameObject:
   m_ObjectHideFlags: 0
