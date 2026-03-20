@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class TeamSelectionService : MonoBehaviour
@@ -7,7 +8,12 @@ public class TeamSelectionService : MonoBehaviour
 
     private int maxPlayers = 6;
     private int selectedPlayerCount = 0;
-    [SerializeField] List<TeamCardView> team = new List<TeamCardView>();
+   
+
+    [Header("UI")]
+    [SerializeField] List<TeamCardView> TeamPlayerSlots = new List<TeamCardView>();
+    [SerializeField] TextMeshProUGUI SelectedPlayersCounterText;
+
 
     public bool CanSelect(PlayerRole role)
     {
@@ -17,35 +23,37 @@ public class TeamSelectionService : MonoBehaviour
 
     public void AddPlayer(PlayerData player)
     {
-        if (team.Exists(t => t.data != null && t.data == player)) return;
+        if (TeamPlayerSlots.Exists(t => t.data != null && t.data == player)) return;
 
 
-        for (int i = 0; i < team.Count; i++)
+        for (int i = 0; i < TeamPlayerSlots.Count; i++)
         {
-            if (team[i].data == null)
+            if (TeamPlayerSlots[i].data == null)
             {
-                team[i].AddToTeam(player, i + 1);
+                TeamPlayerSlots[i].AddToTeam(player, i + 1);
                 break;
             }
         }
-        selectedPlayerCount = team.Count(t => t.data != null);
+        selectedPlayerCount = TeamPlayerSlots.Count(t => t.data != null);
         Debug.Log("Total Team Players Are: " + selectedPlayerCount);
+        SelectedPlayersCounterText.text = "("+selectedPlayerCount + "/6)";
     }
 
 
     public void RemovePlayer(PlayerData player)
     {
-        for (int i = 0; i < team.Count; i++)
+        for (int i = 0; i < TeamPlayerSlots.Count; i++)
         {
-            if (team[i].data == player)
+            if (TeamPlayerSlots[i].data == player)
             {
-                team[i].RemoveFromTeam(); // you implement this
+                TeamPlayerSlots[i].RemoveFromTeam(); // you implement this
                 break;
             }
         }
 
-        selectedPlayerCount = team.Count(t => t.data != null);
+        selectedPlayerCount = TeamPlayerSlots.Count(t => t.data != null);
         Debug.Log("Total Team Players Are: " + selectedPlayerCount);
+        SelectedPlayersCounterText.text = "(" + selectedPlayerCount + "/6)";
     }
 
 }

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class PlayerCardView : MonoBehaviour
 {
     public PlayerData data;
+
+    [SerializeField]private Image selectedImage;
     private Button button;
     private bool isSelected = false;
 
@@ -56,12 +58,14 @@ public class PlayerCardView : MonoBehaviour
     public void Select()
     {
         isSelected = true;
+        selectedImage.enabled = true;
         transform.localScale = Vector3.one * 1.1f;
     }
 
     public void Deselect()
     {
         isSelected = false;
+        selectedImage.enabled = false;
         transform.localScale = Vector3.one;
     }
 
