@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChatGPT Image Mar 19, 2026, 12_12_03 PM_0
+      name: Gunde Fat Ass
       rect:
         serializedVersion: 2
         x: 104
@@ -121,7 +121,7 @@ TextureImporter:
         width: 904
         height: 940
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d4203e2c2a7b0824f8e00935344986e6
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ChatGPT Image Mar 19, 2026, 12_12_03 PM_0: 8653306093886267360
+      Gunde Fat Ass: 8653306093886267360
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

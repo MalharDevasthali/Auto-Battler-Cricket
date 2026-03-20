@@ -19,4 +19,8 @@ public class PlayerData : ScriptableObject
 
     [Header("Meta")]
     public int rarity;
+
+    [Header("Visuals")]
+    public Sprite cardSprite;
+    public Sprite emptySprite;
 }

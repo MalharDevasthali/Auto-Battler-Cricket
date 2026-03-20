@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edacec406b9978a48beec9e8ca367b6a, type: 3}
-  m_Name: Vedant Batsman
+  m_Name: Malhar Batsman
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  playerName: Vedant The Warrior
+  playerName: Malhar Cool
   role: 0
-  power: 85
-  skill: 70
+  power: 80
+  skill: 80
   rarity: 1
-  cardSprite: {fileID: -7194362516901021868, guid: 5c2a11f33adff7e4dbd5a3c92e33817b, type: 3}
-  emptySprite: {fileID: -818093038039050909, guid: cde73b53b999e1e4c85ec80e8bbf5ab7, type: 3}
+  cardSprite: {fileID: -3118840768736571176, guid: a6fcddef4dc376f449527c09106e5fa8, type: 3}

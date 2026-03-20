@@ -2,15 +2,26 @@ using UnityEngine;
 
 public class GameService : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public enum Innings
     {
-        
+        Batting,
+        Bowling
     }
 
-    // Update is called once per frame
-    void Update()
+    private Innings currentInnings;
+
+    private void Start()
     {
-        
+        currentInnings = Innings.Batting;   
     }
+
+    public Innings GetCurrentInnings()
+    { 
+        return currentInnings; 
+    }
+    public void SetCurrentInnings(Innings currentInnings)
+    {
+        this.currentInnings = currentInnings;
+    }
+
 }
