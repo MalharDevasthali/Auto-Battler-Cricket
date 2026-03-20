@@ -22,5 +22,4 @@ public class PlayerData : ScriptableObject
 
     [Header("Visuals")]
     public Sprite cardSprite;
-    public Sprite emptySprite;
 }

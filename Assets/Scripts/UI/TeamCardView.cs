@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class TeamCardView : MonoBehaviour
 {
     public PlayerData data;
+    [SerializeField] private Sprite emptySlotSprite;
+    
     private Button button;
     private TeamSelectionService teamSelectionService;
 
@@ -23,7 +25,7 @@ public class TeamCardView : MonoBehaviour
     }
     public void RemoveFromTeam()
     {
-        GetComponent<Image>().sprite = data.emptySprite;
+        GetComponent<Image>().sprite = emptySlotSprite;
         data = null;
     }
     
