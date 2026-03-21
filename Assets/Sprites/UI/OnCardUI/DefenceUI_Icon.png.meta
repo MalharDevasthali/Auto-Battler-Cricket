@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9cc266ddfbae1534692a16a075b4dec7
+guid: 2fe9e01a9317ebc41943d26ce4dd478e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4720060179232505333
-    second: Team Selection BGpng_0
+      213: -9058240581927145687
+    second: ChatGPT Image Mar 21, 2026, 10_19_06 PM_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Team Selection BGpng_0
+      name: DefenceUI_Icon
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1505
-        height: 1008
+        x: 107
+        y: 88
+        width: 899
+        height: 835
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5fdbe9d99b5018140800000000000000
-      internalID: 4720060179232505333
+      spriteID: 92f6430fe2aaa4280800000000000000
+      internalID: -9058240581927145687
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 88c83a8674bbeb743b385dbfa23b235f
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Team Selection BGpng_0: 4720060179232505333
+      DefenceUI_Icon: -9058240581927145687
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
