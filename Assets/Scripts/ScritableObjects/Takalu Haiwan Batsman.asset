@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   playerName: Takalu Haiwan
   role: 0
-  power: 85
-  skill: 70
+  BattingPower: 3
+  BowlingPower: 0
+  Defense: 5
+  SpecialAbility: 
   rarity: 2
   cardSprite: {fileID: -8894914691074996779, guid: 3652f11bdf8fb5446a2a93f2dd62e90b, type: 3}

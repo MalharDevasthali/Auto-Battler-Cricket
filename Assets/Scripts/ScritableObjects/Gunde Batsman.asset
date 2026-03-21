@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   playerName: Gunde Fat Ass
   role: 0
-  power: 90
-  skill: 40
+  BattingPower: 4
+  BowlingPower: 0
+  Defense: 1
+  SpecialAbility: 
   rarity: 1
   cardSprite: {fileID: 8653306093886267360, guid: eb156f2c5807bde4e8a09061bb844561, type: 3}

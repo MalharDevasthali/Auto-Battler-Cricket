@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum PlayerRole
@@ -5,6 +6,7 @@ public enum PlayerRole
     Batsman,
     Bowler
 }
+[Serializable]
 
 [CreateAssetMenu(fileName = "New Player", menuName = "ScriptableObject/Player Data")]
 public class PlayerData : ScriptableObject
@@ -14,8 +16,10 @@ public class PlayerData : ScriptableObject
     public PlayerRole role;
 
     [Header("Stats")]
-    public int power;
-    public int skill;
+    public int BattingPower;
+    public int BowlingPower;
+    public int Defense;
+    public string SpecialAbility;
 
     [Header("Meta")]
     public int rarity;

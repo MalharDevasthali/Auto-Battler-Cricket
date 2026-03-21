@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   playerName: Vedant The Warrior
   role: 0
-  power: 85
-  skill: 70
+  BattingPower: 2
+  BowlingPower: 0
+  Defense: 4
+  SpecialAbility: 
   rarity: 1
   cardSprite: {fileID: -7194362516901021868, guid: 5c2a11f33adff7e4dbd5a3c92e33817b, type: 3}
-  emptySprite: {fileID: -818093038039050909, guid: cde73b53b999e1e4c85ec80e8bbf5ab7, type: 3}

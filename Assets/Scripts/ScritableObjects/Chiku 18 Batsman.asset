@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   playerName: Chiku 18
   role: 0
-  power: 90
-  skill: 95
+  BattingPower: 4
+  BowlingPower: 0
+  Defense: 8
+  SpecialAbility: 
   rarity: 4
   cardSprite: {fileID: 7663844910499824348, guid: 66ea6d8c2fa4e214d9c689d7efbb40be, type: 3}

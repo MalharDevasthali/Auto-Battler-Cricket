@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   playerName: Nikku Destroyer
   role: 0
-  power: 90
-  skill: 80
+  BattingPower: 3
+  BowlingPower: 0
+  Defense: 5
+  SpecialAbility: 
   rarity: 3
   cardSprite: {fileID: -4623635416466225990, guid: 462bb1dfcfbc49d45acffcb12424d633, type: 3}

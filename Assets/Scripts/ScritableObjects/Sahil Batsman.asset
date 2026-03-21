@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   playerName: Sahil Kiddo
   role: 0
-  power: 90
-  skill: 50
+  BattingPower: 2
+  BowlingPower: 0
+  Defense: 2
+  SpecialAbility: 
   rarity: 1
   cardSprite: {fileID: -6176050302332693065, guid: 714dca7a76caa25479e42313107e4a87, type: 3}
-  emptySprite: {fileID: -818093038039050909, guid: cde73b53b999e1e4c85ec80e8bbf5ab7, type: 3}
