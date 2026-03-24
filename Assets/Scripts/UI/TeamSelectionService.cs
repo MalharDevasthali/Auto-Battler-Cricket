@@ -12,6 +12,7 @@ public class TeamSelectionService : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] List<TeamCardView> TeamPlayerSlots = new List<TeamCardView>();
+    [SerializeField] List<PlayerCardView> AllPlayers = new List<PlayerCardView>();
     [SerializeField] TextMeshProUGUI SelectedPlayersCounterText;
 
 
@@ -39,14 +40,24 @@ public class TeamSelectionService : MonoBehaviour
         SelectedPlayersCounterText.text = "("+selectedPlayerCount + "/6)";
     }
 
-
-    public void RemovePlayer(PlayerData player)
+    public void DeselectPlayer(PlayerData data)
+    {
+        for (int i = 0; i < AllPlayers.Count; i++)
+        {
+            if (AllPlayers[i].data == data)
+            {
+                AllPlayers[i].Deselect();
+                break;
+            }
+        }
+    }
+    public void RemovePlayer(PlayerData data)
     {
         for (int i = 0; i < TeamPlayerSlots.Count; i++)
         {
-            if (TeamPlayerSlots[i].data == player)
+            if (TeamPlayerSlots[i].data == data)
             {
-                TeamPlayerSlots[i].RemoveFromTeam(); // you implement this
+                TeamPlayerSlots[i].RemoveFromTeam();
                 break;
             }
         }

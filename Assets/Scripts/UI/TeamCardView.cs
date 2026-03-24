@@ -10,9 +10,12 @@ public class TeamCardView : MonoBehaviour
     private Button button;
     private TeamSelectionService teamSelectionService;
 
+    [SerializeField] private AudioClip buttonClickSound;
+
     void Awake()
     {
         button = GetComponent<Button>();
+        button.onClick.AddListener(OnClickCard);
     }
     private void Start()
     {
@@ -28,5 +31,13 @@ public class TeamCardView : MonoBehaviour
         GetComponent<Image>().sprite = emptySlotSprite;
         data = null;
     }
-    
+
+
+    void OnClickCard()
+    {
+        ServiceLocator.Instance.SoundService.PlaySound(buttonClickSound);
+        teamSelectionService.DeselectPlayer(data);
+        teamSelectionService.RemovePlayer(data);
+    }
+
 }

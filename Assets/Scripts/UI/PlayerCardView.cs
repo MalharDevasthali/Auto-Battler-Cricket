@@ -86,7 +86,7 @@ public class PlayerCardView : MonoBehaviour
                     || data.role == PlayerRole.Bowler && ServiceLocator.Instance.GameService.GetCurrentInnings() == GameService.Innings.Bowling;
     }
 
-    public void Select()
+    private void Select()
     {
         isSelected = true;
         selectedImage.enabled = true;
