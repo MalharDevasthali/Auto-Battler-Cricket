@@ -1,13 +1,22 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-
-
 public class PlayerCardView : MonoBehaviour
 {
     public PlayerData data;
+
+    [Header("UI Elements")]
     [SerializeField]private Image selectedImage;
+    [SerializeField] private Image playerImage;
+    [SerializeField] private TextMeshProUGUI battingPowerText;
+    [SerializeField] private TextMeshProUGUI bowlingPowerText;
+    [SerializeField] private TextMeshProUGUI defenceText;
+    [SerializeField] private RectTransform BattingPowerUI;
+    [SerializeField] private RectTransform BowlingPowerUI;
+
+
     [SerializeField] private AudioClip buttonClickSound;
     
     private Button button;
@@ -24,8 +33,28 @@ public class PlayerCardView : MonoBehaviour
     private void Start()
     {
         teamSelectionService = ServiceLocator.Instance.TeamSelectionService;
+        InitilizeCard();
     }
-   
+
+    private void InitilizeCard()
+    {
+        playerImage.sprite = data.cardSprite;
+        battingPowerText.text = data.BattingPower.ToString();
+        bowlingPowerText.text = data.BowlingPower.ToString();
+        defenceText.text = data.Defense.ToString();
+        
+        if(data.role == PlayerRole.Batsman) 
+        { 
+            BattingPowerUI.gameObject.SetActive(true);
+            BowlingPowerUI.gameObject.SetActive(false);
+        }
+        else
+        {
+            BattingPowerUI.gameObject.SetActive(false);
+            BowlingPowerUI.gameObject.SetActive(true);
+        }
+    }
+
     void OnClickCard()
     {
         ServiceLocator.Instance.SoundService.PlaySound(buttonClickSound);
