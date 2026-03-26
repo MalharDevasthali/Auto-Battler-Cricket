@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edacec406b9978a48beec9e8ca367b6a, type: 3}
   m_Name: Vedant Batsman
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  playerName: Vedant The Warrior
+  playerName: Warrior Vedant
   role: 0
   BattingPower: 2
   BowlingPower: 0
   Defense: 4
-  SpecialAbility: 
+  SpecialAbility: Adds +1<sprite=2>after scoring 4 runs<br>Adds +1<sprite=0>after
+    scoring 6 runs
   rarity: 1
   cardSprite: {fileID: -7194362516901021868, guid: 5c2a11f33adff7e4dbd5a3c92e33817b, type: 3}

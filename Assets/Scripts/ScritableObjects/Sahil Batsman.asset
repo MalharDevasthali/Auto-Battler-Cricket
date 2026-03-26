@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edacec406b9978a48beec9e8ca367b6a, type: 3}
   m_Name: Sahil Batsman
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  playerName: Sahil Kiddo
+  playerName: Short Sahil
   role: 0
   BattingPower: 2
   BowlingPower: 0
   Defense: 2
-  SpecialAbility: 
+  SpecialAbility: Gets chance to bat again with 1/1 stats.
   rarity: 1
   cardSprite: {fileID: -6176050302332693065, guid: 714dca7a76caa25479e42313107e4a87, type: 3}
