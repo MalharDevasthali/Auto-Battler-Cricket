@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TeamCardView : MonoBehaviour
+public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
     public PlayerData data;
 
@@ -22,6 +22,7 @@ public class TeamCardView : MonoBehaviour
 
     private Button button;
     private TeamSelectionService teamSelectionService;
+    private UIService uiService;
 
  
     void Awake()
@@ -32,6 +33,7 @@ public class TeamCardView : MonoBehaviour
     private void Start()
     {
         teamSelectionService = ServiceLocator.Instance.TeamSelectionService;
+        uiService = ServiceLocator.Instance.UIService;
     }
     public void AddToTeam(PlayerData data, int playingOrder)
     {
@@ -75,6 +77,19 @@ public class TeamCardView : MonoBehaviour
         ServiceLocator.Instance.SoundService.PlaySound(buttonClickSound);
         teamSelectionService.DeselectPlayer(data);
         teamSelectionService.RemovePlayer(data);
+    }
+
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if(data ==null) return;
+        uiService.ShowPlayerStats(data);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (data == null) return;
+        uiService.HidePlayerStats();
     }
 
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PlayerCardView : MonoBehaviour
+public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public PlayerData data;
 
@@ -23,6 +23,7 @@ public class PlayerCardView : MonoBehaviour
     private bool isSelected = false;
 
     private TeamSelectionService teamSelectionService;
+    private UIService uiService;
 
     void Awake()
     {
@@ -33,6 +34,7 @@ public class PlayerCardView : MonoBehaviour
     private void Start()
     {
         teamSelectionService = ServiceLocator.Instance.TeamSelectionService;
+        uiService = ServiceLocator.Instance.UIService;
         InitilizeCard();
     }
 
@@ -100,4 +102,16 @@ public class PlayerCardView : MonoBehaviour
         transform.localScale = Vector3.one;
     }
 
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (data == null) return;
+        uiService.ShowPlayerStats(data);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (data == null) return;
+        uiService.HidePlayerStats();
+    }
 }
