@@ -8,10 +8,12 @@ public class ServiceLocator : MonoSingleton<ServiceLocator>
     [SerializeField] private TeamSelectionService teamSelectionService;
     [SerializeField] private GameService gameService;
     [SerializeField] private SoundService soundService;
+    [SerializeField] private UIService uiService;
 
     public TeamSelectionService TeamSelectionService => teamSelectionService;
     public GameService GameService => gameService;
     public SoundService SoundService => soundService;
+    public UIService UIService => uiService;
 
     protected override void Awake()
     {
