@@ -8,6 +8,7 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
     public PlayerData data;
 
     [Header("UI Elements")]
+    [SerializeField] private TeamSelectionController teamSelectionService;
     [SerializeField] private Sprite emptySlotSprite;
     [SerializeField] private TextMeshProUGUI battingPowerText;
     [SerializeField] private TextMeshProUGUI bowlingPowerText;
@@ -21,7 +22,7 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
 
 
     private Button button;
-    private TeamSelectionService teamSelectionService;
+  
     private UIService uiService;
 
  
@@ -32,7 +33,6 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
     }
     private void Start()
     {
-        teamSelectionService = ServiceLocator.Instance.TeamSelectionService;
         uiService = ServiceLocator.Instance.UIService;
     }
     public void AddToTeam(PlayerData data, int playingOrder)

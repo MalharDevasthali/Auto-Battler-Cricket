@@ -19,7 +19,7 @@ public class UIService : MonoBehaviour
     [SerializeField] private RectTransform battingPowerUI;
     [SerializeField] private RectTransform bowlingPowerUI;
 
-
+   
     public void ShowPlayerStats(PlayerData data)
     {
         InitializeCard(data);

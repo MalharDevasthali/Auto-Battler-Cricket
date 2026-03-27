@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.WSA;
 
-public class TeamSelectionService : MonoBehaviour
+public class TeamSelectionController : MonoBehaviour
 {
 
     private int maxPlayers = 6;

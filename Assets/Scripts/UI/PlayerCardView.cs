@@ -8,7 +8,8 @@ public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public PlayerData data;
 
     [Header("UI Elements")]
-    [SerializeField]private Image selectedImage;
+    [SerializeField] private TeamSelectionController teamSelectionService;
+    [SerializeField] private Image selectedImage;
     [SerializeField] private Image playerImage;
     [SerializeField] private TextMeshProUGUI battingPowerText;
     [SerializeField] private TextMeshProUGUI bowlingPowerText;
@@ -22,7 +23,7 @@ public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     private Button button;
     private bool isSelected = false;
 
-    private TeamSelectionService teamSelectionService;
+   
     private UIService uiService;
 
     void Awake()
@@ -33,7 +34,6 @@ public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     }
     private void Start()
     {
-        teamSelectionService = ServiceLocator.Instance.TeamSelectionService;
         uiService = ServiceLocator.Instance.UIService;
         InitilizeCard();
     }
