@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edacec406b9978a48beec9e8ca367b6a, type: 3}
   m_Name: Nikku Batsman
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  playerName: Nikku Destroyer
+  playerName: Destroyer Nikku
   role: 0
-  BattingPower: 3
+  BattingPower: 2
   BowlingPower: 0
-  Defense: 5
-  SpecialAbility: 
+  Defense: 4
+  SpecialAbility: +2<sprite=0>to self for every ball faced
   rarity: 3
   cardSprite: {fileID: -4623635416466225990, guid: 462bb1dfcfbc49d45acffcb12424d633, type: 3}
