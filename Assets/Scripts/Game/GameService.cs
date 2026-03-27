@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameService : MonoBehaviour
@@ -22,6 +23,19 @@ public class GameService : MonoBehaviour
     public void SetCurrentInnings(Innings currentInnings)
     {
         this.currentInnings = currentInnings;
+    }
+
+    private List<PlayerData> selectedTeam = new List<PlayerData>();
+    [SerializeField] private int TeamSize = 6;
+
+    public void AddPlayerData(PlayerData playerData)
+    {
+        selectedTeam.Add(playerData);        
+    }
+
+    public void RemovePlayerData(PlayerData playerData)
+    {
+        selectedTeam.Remove(playerData);
     }
 
 }

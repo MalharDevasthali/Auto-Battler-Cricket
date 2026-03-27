@@ -38,10 +38,18 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
     public void AddToTeam(PlayerData data, int playingOrder)
     {
         this.data = data;
+        ServiceLocator.Instance.GameService.AddPlayerData(this.data);
         GetComponent<Image>().sprite = data.cardSprite;
-
         LoadUIForCard(data);
-
+    }
+    public void RemoveFromTeam()
+    {
+        GetComponent<Image>().sprite = emptySlotSprite;
+        BattingPowerUI.gameObject.SetActive(false);
+        BowlingPowerUI.gameObject.SetActive(false);
+        DefenceUI.gameObject.SetActive(false);
+        ServiceLocator.Instance.GameService.RemovePlayerData(this.data);
+        data = null;
     }
 
     private void LoadUIForCard(PlayerData data)
@@ -62,23 +70,12 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
         }
     }
 
-    public void RemoveFromTeam()
-    {
-        GetComponent<Image>().sprite = emptySlotSprite;
-        BattingPowerUI.gameObject.SetActive(false );
-        BowlingPowerUI.gameObject.SetActive(false);
-        DefenceUI.gameObject.SetActive(false );
-        data = null;
-    }
-
-
-    void OnClickCard()
+    private void OnClickCard()
     {
         ServiceLocator.Instance.SoundService.PlaySound(buttonClickSound);
         teamSelectionService.DeselectPlayer(data);
         teamSelectionService.RemovePlayer(data);
     }
-
 
     public void OnPointerEnter(PointerEventData eventData)
     {
