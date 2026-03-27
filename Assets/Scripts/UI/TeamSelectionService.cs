@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.WSA;
 
 public class TeamSelectionService : MonoBehaviour
 {
@@ -14,8 +17,12 @@ public class TeamSelectionService : MonoBehaviour
     [SerializeField] List<TeamCardView> TeamPlayerSlots = new List<TeamCardView>();
     [SerializeField] List<PlayerCardView> AllPlayers = new List<PlayerCardView>();
     [SerializeField] TextMeshProUGUI SelectedPlayersCounterText;
+    [SerializeField] Button startBattleButton;
 
-
+    private void Awake()
+    {
+        startBattleButton.onClick.AddListener(OnStartBattleButtonClick);
+    }
     public bool CanSelect(PlayerRole role)
     {
 
@@ -65,6 +72,13 @@ public class TeamSelectionService : MonoBehaviour
         selectedPlayerCount = TeamPlayerSlots.Count(t => t.data != null);
         Debug.Log("Total Team Players Are: " + selectedPlayerCount);
         SelectedPlayersCounterText.text = "(" + selectedPlayerCount + "/6)";
+    }
+
+    private void OnStartBattleButtonClick()
+    {
+        if (selectedPlayerCount == 6)
+            SceneManager.LoadScene(1);
+            
     }
 
 }
