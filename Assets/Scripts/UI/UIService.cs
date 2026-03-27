@@ -6,8 +6,6 @@ public class UIService : MonoBehaviour
 {
     [Header("Player Details UI")]
     [SerializeField] private RectTransform playerDetailsParentObject; 
-
-    [Header("UI References")]
     [SerializeField] private Image playerImage;
     [SerializeField] private TextMeshProUGUI playerNameText;
     [SerializeField] private TextMeshProUGUI playerDetailsText;
@@ -34,7 +32,7 @@ public class UIService : MonoBehaviour
 
     private void InitializeCard(PlayerData data)
     {
-        playerImage.sprite = data.cardSprite;
+        playerImage.sprite = data.playerSprite;
 
         playerNameText.text = data.playerName;
         playerDetailsText.text = data.SpecialAbility;

@@ -25,5 +25,5 @@ public class PlayerData : ScriptableObject
     public int rarity;
 
     [Header("Visuals")]
-    public Sprite cardSprite;
+    public Sprite playerSprite;
 }

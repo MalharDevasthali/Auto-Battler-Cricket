@@ -19,4 +19,4 @@ MonoBehaviour:
   Defense: 4
   SpecialAbility: +2<sprite=0>to self for every ball faced
   rarity: 3
-  cardSprite: {fileID: -4623635416466225990, guid: 462bb1dfcfbc49d45acffcb12424d633, type: 3}
+  playerSprite: {fileID: -4623635416466225990, guid: 462bb1dfcfbc49d45acffcb12424d633, type: 3}

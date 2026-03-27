@@ -19,4 +19,4 @@ MonoBehaviour:
   Defense: 8
   SpecialAbility: 
   rarity: 4
-  cardSprite: {fileID: -7147751235429508644, guid: 0f6ea2b2523cda84ab4caad8f25a6f65, type: 3}
+  playerSprite: {fileID: -7147751235429508644, guid: 0f6ea2b2523cda84ab4caad8f25a6f65, type: 3}

@@ -19,4 +19,4 @@ MonoBehaviour:
   Defense: 1
   SpecialAbility: ' -1<sprite=1>from bowler, when comes to bat'
   rarity: 1
-  cardSprite: {fileID: 8653306093886267360, guid: eb156f2c5807bde4e8a09061bb844561, type: 3}
+  playerSprite: {fileID: 8653306093886267360, guid: eb156f2c5807bde4e8a09061bb844561, type: 3}

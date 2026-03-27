@@ -19,4 +19,4 @@ MonoBehaviour:
   Defense: 2
   SpecialAbility: Gets chance to bat again with 1/1 stats.
   rarity: 1
-  cardSprite: {fileID: -6176050302332693065, guid: 714dca7a76caa25479e42313107e4a87, type: 3}
+  playerSprite: {fileID: -6176050302332693065, guid: 714dca7a76caa25479e42313107e4a87, type: 3}

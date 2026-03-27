@@ -39,7 +39,7 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
     {
         this.data = data;
         ServiceLocator.Instance.GameService.AddPlayerData(this.data);
-        GetComponent<Image>().sprite = data.cardSprite;
+        GetComponent<Image>().sprite = data.playerSprite;
         LoadUIForCard(data);
     }
     public void RemoveFromTeam()

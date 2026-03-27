@@ -698,6 +698,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 537023751}
+  - component: {fileID: 537023752}
   m_Layer: 5
   m_Name: Team UI Holder
   m_TagString: Untagged
@@ -726,6 +727,25 @@ RectTransform:
   m_AnchoredPosition: {x: 500, y: 0}
   m_SizeDelta: {x: 600, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &537023752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537023750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54d734c694d6da4597fab92b223a2ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TeamUIHolder
+  playerLineUpList:
+  - {fileID: 5255870767036032023}
+  - {fileID: 1967651221}
+  - {fileID: 1777170394}
+  - {fileID: 1104306217}
+  - {fileID: 871827140}
+  - {fileID: 1498983877}
 --- !u!1 &551583465
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,7 +996,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchorMin.x
@@ -984,7 +1004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1024,11 +1044,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -550
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1052,7 +1072,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6600934961971217645, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1064,6 +1084,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
   m_PrefabInstance: {fileID: 871827138}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &871827140 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6122273201655827188, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
+  m_PrefabInstance: {fileID: 871827138}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d6a97d2a254244596163790df34e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLineupView
 --- !u!1 &997480527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,7 +1328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1305,7 +1336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1345,11 +1376,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -450
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1373,7 +1404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6600934961971217645, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1385,6 +1416,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
   m_PrefabInstance: {fileID: 1104306215}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1104306217 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6122273201655827188, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
+  m_PrefabInstance: {fileID: 1104306215}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d6a97d2a254244596163790df34e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLineupView
 --- !u!1 &1351460695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,7 +1528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1494,7 +1536,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1534,11 +1576,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -250
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1562,7 +1604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6600934961971217645, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1574,6 +1616,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
   m_PrefabInstance: {fileID: 1498983875}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1498983877 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6122273201655827188, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
+  m_PrefabInstance: {fileID: 1498983875}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d6a97d2a254244596163790df34e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLineupView
 --- !u!1 &1675038216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,7 +1656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57e43d64c9e2c444b45ee6eda9ecfc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ServiceLocator
-  teamSelectionService: {fileID: 0}
   gameService: {fileID: 1013799519}
   soundService: {fileID: 870251832}
   uiService: {fileID: 210793888}
@@ -1776,7 +1828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1784,7 +1836,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1824,11 +1876,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -350
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1852,7 +1904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6600934961971217645, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1864,6 +1916,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
   m_PrefabInstance: {fileID: 1777170392}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1777170394 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6122273201655827188, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
+  m_PrefabInstance: {fileID: 1777170392}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d6a97d2a254244596163790df34e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLineupView
 --- !u!1 &1896710443
 GameObject:
   m_ObjectHideFlags: 0
@@ -2015,7 +2078,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchorMin.x
@@ -2023,7 +2086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2063,11 +2126,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -250
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2091,7 +2154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6600934961971217645, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2103,6 +2166,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2713435518698513869, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
   m_PrefabInstance: {fileID: 1967651219}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1967651221 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6122273201655827188, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
+  m_PrefabInstance: {fileID: 1967651219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d6a97d2a254244596163790df34e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLineupView
 --- !u!1001 &5255870767036032022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2204,6 +2278,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
+--- !u!114 &5255870767036032023 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6122273201655827188, guid: 9939337a154873648930a4bed8e8db5b, type: 3}
+  m_PrefabInstance: {fileID: 5255870767036032022}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d6a97d2a254244596163790df34e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLineupView
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

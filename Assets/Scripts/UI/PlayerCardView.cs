@@ -40,7 +40,7 @@ public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private void InitilizeCard()
     {
-        playerImage.sprite = data.cardSprite;
+        playerImage.sprite = data.playerSprite;
         battingPowerText.text = data.BattingPower.ToString();
         bowlingPowerText.text = data.BowlingPower.ToString();
         defenceText.text = data.Defense.ToString();

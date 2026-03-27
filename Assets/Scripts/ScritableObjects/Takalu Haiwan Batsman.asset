@@ -19,4 +19,4 @@ MonoBehaviour:
   Defense: 5
   SpecialAbility: +1<sprite=2>for every 4 runs scored
   rarity: 2
-  cardSprite: {fileID: -8894914691074996779, guid: 3652f11bdf8fb5446a2a93f2dd62e90b, type: 3}
+  playerSprite: {fileID: -8894914691074996779, guid: 3652f11bdf8fb5446a2a93f2dd62e90b, type: 3}

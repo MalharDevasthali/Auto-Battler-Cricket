@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameService : MonoBehaviour
+public  class GameService : MonoBehaviour
 {
     public enum Innings
     {
@@ -10,6 +10,7 @@ public class GameService : MonoBehaviour
     }
 
     private Innings currentInnings;
+    private static List<PlayerData> selectedTeam = new List<PlayerData>();
 
     private void Start()
     {
@@ -24,10 +25,6 @@ public class GameService : MonoBehaviour
     {
         this.currentInnings = currentInnings;
     }
-
-    private List<PlayerData> selectedTeam = new List<PlayerData>();
-    [SerializeField] private int TeamSize = 6;
-
     public void AddPlayerData(PlayerData playerData)
     {
         selectedTeam.Add(playerData);        
@@ -36,6 +33,11 @@ public class GameService : MonoBehaviour
     public void RemovePlayerData(PlayerData playerData)
     {
         selectedTeam.Remove(playerData);
+    }
+
+    public List<PlayerData> GetSelectedTeam()
+    {
+        return selectedTeam;
     }
 
 }
