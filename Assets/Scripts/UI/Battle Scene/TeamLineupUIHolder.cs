@@ -23,8 +23,13 @@ public class TeamLineupUIHolder : MonoBehaviour
 
         for (int i = 0; i < playerLineUpList.Count; i++)
         {
-            playerLineUpList[i].SetPlayerData(selectedTeamData[i]);
-            playerLineUpList[i].LoadUI();
+            if (playerLineUpList[i].GetData() == null)
+            {
+                playerLineUpList[i].SetPlayerData(selectedTeamData[i]);
+                playerLineUpList[i].LoadUI();
+            }
+            else
+                Debug.Log("Player Data Already Exists");
         }
 
     }

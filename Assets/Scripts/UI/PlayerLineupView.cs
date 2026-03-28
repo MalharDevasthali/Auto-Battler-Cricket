@@ -18,7 +18,7 @@ public class PlayerLineupView : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private UIService uiService;
     private PlayerData data;
 
-    private void Awake()
+    private void Start()
     {
         uiService = ServiceLocator.Instance.UIService;
     }
@@ -53,4 +53,6 @@ public class PlayerLineupView : MonoBehaviour, IPointerEnterHandler, IPointerExi
         defenceText.text = data.Defense.ToString();
 
     }
+
+    public PlayerData GetData() { return data; }    
 }
