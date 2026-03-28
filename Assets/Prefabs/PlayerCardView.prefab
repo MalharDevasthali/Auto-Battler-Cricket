@@ -563,6 +563,7 @@ GameObject:
   - component: {fileID: 1377340030787441575}
   - component: {fileID: 8018884790779654171}
   - component: {fileID: 4650972304147545846}
+  - component: {fileID: 4433928424690969153}
   m_Layer: 5
   m_Name: PlayerCardView
   m_TagString: Untagged
@@ -688,6 +689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCard
   data: {fileID: 11400000, guid: 6950db482b08fde40ab4fb78bfe737d0, type: 2}
+  teamSelectionService: {fileID: 0}
   selectedImage: {fileID: 9194611895480340588}
   playerImage: {fileID: 1377340030787441575}
   battingPowerText: {fileID: 3882388062043683212}
@@ -696,6 +698,18 @@ MonoBehaviour:
   BattingPowerUI: {fileID: 880088694804664001}
   BowlingPowerUI: {fileID: 6993837206135161186}
   buttonClickSound: {fileID: 8300000, guid: ad98d5262a8ef794d9afb32bda7a9004, type: 3}
+--- !u!225 &4433928424690969153
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5563491588235127851}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6455142587018516638
 GameObject:
   m_ObjectHideFlags: 0

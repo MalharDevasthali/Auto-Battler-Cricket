@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public PlayerData data;
 
@@ -23,14 +23,26 @@ public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     private Button button;
     private bool isSelected = false;
 
-   
+
+    private GameObject dragObject;
+    private RectTransform dragRect;
+    private Canvas canvas;
+    private CanvasGroup canvasGroup;
+
+
+
     private UIService uiService;
 
     void Awake()
     {
         button = GetComponent<Button>();
+        canvasGroup = GetComponent<CanvasGroup>();
 
-        button.onClick.AddListener(OnClickCard);
+        if (canvasGroup == null)
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
+
+        canvas = GetComponentInParent<Canvas>();
+        //  button.onClick.AddListener(OnClickCard);
     }
     private void Start()
     {
@@ -113,5 +125,52 @@ public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         if (data == null) return;
         uiService.HidePlayerStats();
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        dragObject = new GameObject("DragImage", typeof(RectTransform), typeof(Image));
+        dragObject.transform.SetParent(canvas.transform, false);
+
+    
+        Image img = dragObject.GetComponent<Image>();
+        img.sprite = playerImage.sprite;
+        img.raycastTarget = false; // IMPORTANT
+
+        // Match size
+        dragRect = dragObject.GetComponent<RectTransform>();
+        dragRect.sizeDelta = playerImage.rectTransform.sizeDelta;
+
+        // Set position at mouse
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvas.transform as RectTransform,
+            eventData.position,
+            eventData.pressEventCamera,
+            out Vector2 pos
+        );
+
+        dragRect.anchoredPosition = pos;
+
+        // Bring to front
+        dragRect.SetAsLastSibling();
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (dragRect == null) return;
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvas.transform as RectTransform,
+            eventData.position,
+            eventData.pressEventCamera,
+            out Vector2 pos
+        );
+
+        dragRect.anchoredPosition = pos;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        Destroy(dragObject);
     }
 }
