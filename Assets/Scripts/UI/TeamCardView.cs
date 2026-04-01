@@ -51,7 +51,7 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
         BattingPowerUI.gameObject.SetActive(false);
         BowlingPowerUI.gameObject.SetActive(false);
         DefenceUI.gameObject.SetActive(false);
-        ServiceLocator.Instance.GameService.RemovePlayerData(this.data);
+        ServiceLocator.Instance.GameService.RemovePlayerData(this.data,playingOrder);
         data = null;
     }
 

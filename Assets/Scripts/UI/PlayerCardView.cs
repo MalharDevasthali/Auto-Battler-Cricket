@@ -90,6 +90,8 @@ public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        ServiceLocator.Instance.SoundService.PlaySound(buttonClickSound);
+        
         dragObject = new GameObject("DragImage", typeof(RectTransform), typeof(Image));
         dragObject.transform.SetParent(canvas.transform, false);
 
@@ -98,11 +100,11 @@ public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         img.sprite = playerImage.sprite;
         img.raycastTarget = false; // IMPORTANT
 
-        // Match size
+
         dragRect = dragObject.GetComponent<RectTransform>();
         dragRect.sizeDelta = playerImage.rectTransform.sizeDelta;
 
-        // Set position at mouse
+
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             canvas.transform as RectTransform,
             eventData.position,
@@ -111,8 +113,6 @@ public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         );
 
         dragRect.anchoredPosition = pos;
-
-        // Bring to front
         dragRect.SetAsLastSibling();
     }
 
@@ -132,19 +132,17 @@ public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        // Step 1: Detect UI under pointer
         if (eventData.pointerEnter != null)
         {
             TeamCardView teamCard = eventData.pointerEnter.GetComponent<TeamCardView>();
 
             if (teamCard != null)
             {
-                // Step 2: Assign data
                 teamSelectionController.AddPlayer(this.data,teamCard.slotIndex);
             }
         }
 
-
+        ServiceLocator.Instance.SoundService.PlaySound(buttonClickSound);
         Destroy(dragObject);
     }
 }
