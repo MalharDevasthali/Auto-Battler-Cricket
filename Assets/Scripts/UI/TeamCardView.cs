@@ -24,10 +24,10 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
 
 
     private Button button;
-  
     private UIService uiService;
+    private int playingOrder;
 
- 
+
     void Awake()
     {
         button = GetComponent<Button>();
@@ -40,7 +40,8 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
     public void AddToTeam(PlayerData data, int playingOrder)
     {
         this.data = data;
-        ServiceLocator.Instance.GameService.AddPlayerData(this.data);
+        this.playingOrder = playingOrder;
+        ServiceLocator.Instance.GameService.AddPlayerData(this.data, playingOrder);
         GetComponent<Image>().sprite = data.playerSprite;
         LoadUIForCard(data);
     }

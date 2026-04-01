@@ -25,9 +25,9 @@ public  class GameService : MonoBehaviour
     {
         this.currentInnings = currentInnings;
     }
-    public void AddPlayerData(PlayerData playerData)
+    public void AddPlayerData(PlayerData playerData,int playingOrder)
     {
-        selectedTeam.Add(playerData);        
+        selectedTeam.Insert(playingOrder, playerData);        
     }
 
     public void RemovePlayerData(PlayerData playerData)
