@@ -149,6 +149,31 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Destroy(dragObject);
+        if (eventData.pointerEnter != null)
+        {
+            TeamCardView targetCard = eventData.pointerEnter.GetComponentInParent<TeamCardView>();
+
+            if (targetCard != null && targetCard != this)
+            {
+                // Move  if target is empty
+                if (targetCard.data == null && this.data != null)
+                {
+                    PlayerData tempPlayerData = this.data;
+                    teamSelectionController.RemovePlayer(data);
+                    teamSelectionController.AddPlayer(tempPlayerData, targetCard.slotIndex);
+            
+                }
+                //Swap if both have data
+                if (targetCard.data != null && this.data != null)
+                {
+                    teamSelectionController.SwapPlayers(this.slotIndex, targetCard.slotIndex);       
+                }
+            }
+        }
+
+        if (dragObject != null)
+        {
+            Destroy(dragObject);
+        }
     }
 }

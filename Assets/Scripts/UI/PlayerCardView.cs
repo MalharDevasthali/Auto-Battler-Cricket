@@ -40,7 +40,7 @@ public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
 
         canvas = GetComponentInParent<Canvas>();
-        //  button.onClick.AddListener(OnClickCard);
+ 
     }
     private void Start()
     {
