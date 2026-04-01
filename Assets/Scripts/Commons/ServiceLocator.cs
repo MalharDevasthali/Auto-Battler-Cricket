@@ -9,7 +9,6 @@ public class ServiceLocator : MonoSingleton<ServiceLocator>
     [SerializeField] private SoundService soundService;
     [SerializeField] private UIService uiService;
 
-
     public GameService GameService => gameService;
     public SoundService SoundService => soundService;
     public UIService UIService => uiService;

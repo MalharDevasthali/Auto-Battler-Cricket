@@ -8,7 +8,7 @@ public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public PlayerData data;
 
     [Header("UI Elements")]
-    [SerializeField] private TeamSelectionController teamSelectionService;
+    [SerializeField] private TeamSelectionController teamSelectionController;
     [SerializeField] private Image selectedImage;
     [SerializeField] private Image playerImage;
     [SerializeField] private TextMeshProUGUI battingPowerText;
@@ -21,8 +21,6 @@ public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [SerializeField] private AudioClip buttonClickSound;
     
     private Button button;
-    private bool isSelected = false;
-
 
     private GameObject dragObject;
     private RectTransform dragRect;
@@ -69,49 +67,12 @@ public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
     }
 
-    void OnClickCard()
-    {
-        ServiceLocator.Instance.SoundService.PlaySound(buttonClickSound);
-        if (CheckPlayerType())
-        {
-            if (!isSelected)
-            {
-                if (teamSelectionService.CanSelect(data.role))
-                {
-                    Select();
-                    teamSelectionService.AddPlayer(this.data);
-                }
-            }
-            else
-            {
-                Deselect();
-                teamSelectionService.RemovePlayer(this.data);
-            }
-        }
-        else
-        {
-            Debug.Log("Current Inning is: " + ServiceLocator.Instance.GameService.GetCurrentInnings() + " Please Select Appropriate Player");
-        }
-    }
+  
 
     private bool CheckPlayerType()
     {
         return data.role == PlayerRole.Batsman && ServiceLocator.Instance.GameService.GetCurrentInnings() == GameService.Innings.Batting
                     || data.role == PlayerRole.Bowler && ServiceLocator.Instance.GameService.GetCurrentInnings() == GameService.Innings.Bowling;
-    }
-
-    private void Select()
-    {
-        isSelected = true;
-        selectedImage.enabled = true;
-        transform.localScale = Vector3.one * 1.1f;
-    }
-
-    public void Deselect()
-    {
-        isSelected = false;
-        selectedImage.enabled = false;
-        transform.localScale = Vector3.one;
     }
 
 
@@ -171,6 +132,19 @@ public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        // Step 1: Detect UI under pointer
+        if (eventData.pointerEnter != null)
+        {
+            TeamCardView teamCard = eventData.pointerEnter.GetComponent<TeamCardView>();
+
+            if (teamCard != null)
+            {
+                // Step 2: Assign data
+                teamSelectionController.AddPlayer(this.data,teamCard.slotIndex);
+            }
+        }
+
+
         Destroy(dragObject);
     }
 }

@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,9 +7,10 @@ using UnityEngine.UI;
 public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
     public PlayerData data;
+    public int slotIndex;
 
     [Header("UI Elements")]
-    [SerializeField] private TeamSelectionController teamSelectionService;
+    [SerializeField] private TeamSelectionController teamSelectionController;
     [SerializeField] private Sprite emptySlotSprite;
     [SerializeField] private TextMeshProUGUI battingPowerText;
     [SerializeField] private TextMeshProUGUI bowlingPowerText;
@@ -73,8 +75,7 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
     private void OnClickCard()
     {
         ServiceLocator.Instance.SoundService.PlaySound(buttonClickSound);
-        teamSelectionService.DeselectPlayer(data);
-        teamSelectionService.RemovePlayer(data);
+        teamSelectionController.RemovePlayer(data);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
