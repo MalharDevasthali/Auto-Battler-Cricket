@@ -11,6 +11,7 @@ public class BattleController : MonoBehaviour
     [Header("References")]
     [SerializeField] private PlayerData bowler; // assign in inspector
     [SerializeField] private TeamLineupUIHolder lineupHolder; // assign in inspector
+    private UIService uiService;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI scoreText; // total score UI
@@ -25,6 +26,7 @@ public class BattleController : MonoBehaviour
 
     [Header("Simulation")]
     [SerializeField] private float ballDelay = 1.0f; // seconds between balls
+    [SerializeField] private float newBatsmanDelay = 1.0f; // extra delay when new batsman comes in
 
     private List<PlayerLineupView> batsmen = new List<PlayerLineupView>();
     private int totalRuns = 0;
@@ -32,41 +34,48 @@ public class BattleController : MonoBehaviour
 
     private void Start()
     {
-        if (bowler == null)
-        {
-            Debug.LogError("BattleController: Bowler is not assigned in inspector");
-            return;
-        }
-
-        if (lineupHolder == null)
-        {
-            Debug.LogError("BattleController: TeamLineupUIHolder is not assigned in inspector");
-            return;
-        }
-
+        uiService = ServiceLocator.Instance.UIService;
+ 
         batsmen = lineupHolder.GetPlayerLineupList();
         UpdateScoreUI();
         LoadBowlerUI();
     }
     public async void StartOver()
     {
+       
         startMatchButton.enabled = false;
 
         ResetMatch();
 
         int currentBatsmanIndex = 0;
         int currentDefense = GetDefenseForBatsman(currentBatsmanIndex);
+        var batsmanView = batsmen[currentBatsmanIndex];
+        var batsmanData = batsmanView.GetData();
+        
+        PlayerDataDuringMatch runtimeData = new PlayerDataDuringMatch(batsmanData, currentDefense);
+        ServiceLocator.Instance.UIService.UpdateUIDuringMatch(runtimeData);
+        
+        await Task.Delay((int)(ballDelay * 1000));
 
         for (int ball = 1; ball <= 6; ball++)
         {
+           
             if (currentBatsmanIndex >= batsmen.Count) break;
 
             ballText?.SetText($"Ball {ball}/6");
 
-            var batsmanView = batsmen[currentBatsmanIndex];
-            var batsmanData = batsmanView.GetData();
+            batsmanView = batsmen[currentBatsmanIndex];
+            batsmanData = batsmanView.GetData();
 
+            runtimeData = new PlayerDataDuringMatch(batsmanData, currentDefense);
+           
+            runtimeData.UpdatePlayerDataDuringMatch(currentDefense, batsmanData.BattingPower, batsmanData.BowlingPower);  
+            ServiceLocator.Instance.UIService.UpdateUIDuringMatch(runtimeData);
+            
             PlayBall(batsmanView, batsmanData, ref currentDefense);
+
+            runtimeData.UpdatePlayerDataDuringMatch(currentDefense, batsmanData.BattingPower, batsmanData.BowlingPower);
+            ServiceLocator.Instance.UIService.UpdateUIDuringMatch(runtimeData);
 
             if (currentDefense <= 0)
             {
@@ -75,6 +84,11 @@ public class BattleController : MonoBehaviour
                 currentBatsmanIndex++;
                 if (currentBatsmanIndex < batsmen.Count)
                     currentDefense = GetDefenseForBatsman(currentBatsmanIndex);
+
+                // extra delay to show new batsman's stats before next ball
+                if (currentBatsmanIndex < batsmen.Count)
+                    await Task.Delay((int)(newBatsmanDelay * 1000));
+
             }
 
             await Task.Delay((int)(ballDelay * 1000));
@@ -101,7 +115,7 @@ public class BattleController : MonoBehaviour
     private void PlayBall(PlayerLineupView view, PlayerData data, ref int runtimeDefense)
     {
         Debug.Log($"Ball: {data.playerName} faces the bowler.");
-        runtimeDefense = ApplyBowlerToDefense(runtimeDefense);
+        runtimeDefense = UpdateDefence(runtimeDefense);
         view.UpdateDefense(runtimeDefense);
         int runs = data.BattingPower;
         totalRuns += runs;
@@ -109,9 +123,9 @@ public class BattleController : MonoBehaviour
         UpdateScoreUI();
     }
 
-    private int ApplyBowlerToDefense(int defense)
+    private int UpdateDefence(int defense)
     {
-        return  defense - bowler.BowlingPower;
+        return Mathf.Max(0, defense - bowler.BowlingPower);
     }
 
     private void HandleBatsmanOut(PlayerLineupView view, PlayerData data)
@@ -134,5 +148,5 @@ public class BattleController : MonoBehaviour
         if (scoreText != null)
             scoreText.SetText($"Score: {totalRuns}/{wickets}");
     }
-
 }
+

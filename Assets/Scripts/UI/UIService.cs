@@ -1,6 +1,6 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class UIService : MonoBehaviour
 {
@@ -27,6 +27,19 @@ public class UIService : MonoBehaviour
     public void HidePlayerStats()
     {
         playerDetailsParentObject.gameObject.SetActive(false);
+    }
+
+    public void UpdateUIDuringMatch(PlayerDataDuringMatch data)
+    {
+        playerImage.sprite = data.playerSprite;
+        playerNameText.text = data.playerName;
+        playerDetailsText.text = data.SpecialAbility;
+        battingPowerText.text = data.BattingPower.ToString();
+        bowlingPowerText.text = data.BowlingPower.ToString();
+        defenceText.text = data.Defense.ToString();
+
+        playerDetailsParentObject.gameObject.SetActive(true);
+
     }
 
 

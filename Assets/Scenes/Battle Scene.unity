@@ -2362,7 +2362,8 @@ MonoBehaviour:
   bowlerDetailsText: {fileID: 7084899290903555726}
   bowlerBowlingPowerText: {fileID: 6926316951904970356}
   startMatchButton: {fileID: 1139552630}
-  ballDelay: 1
+  ballDelay: 2
+  newBatsmanDelay: 2
 --- !u!1 &1650669216
 GameObject:
   m_ObjectHideFlags: 0
