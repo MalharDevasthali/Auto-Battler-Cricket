@@ -17,6 +17,10 @@ public class TeamSelectionController : MonoBehaviour
     [SerializeField] TextMeshProUGUI SelectedPlayersCounterText;
     [SerializeField] Button startBattleButton;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip buttonClickSound;
+
+
     private void Awake()
     {
         startBattleButton.onClick.AddListener(OnStartBattleButtonClick);
@@ -65,6 +69,7 @@ public class TeamSelectionController : MonoBehaviour
 
     private void OnStartBattleButtonClick()
     {
+        ServiceLocator.Instance.SoundService.PlaySound(buttonClickSound);
         if (selectedPlayerCount == 6)
             SceneManager.LoadScene(1);
             

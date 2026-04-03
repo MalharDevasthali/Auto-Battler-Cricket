@@ -22,6 +22,7 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
 
     [Header("Sounds")]
     [SerializeField] private AudioClip buttonClickSound;
+    [SerializeField] private AudioClip cardSwipeSound;
 
 
     private Button button;
@@ -149,6 +150,7 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        ServiceLocator.Instance.SoundService.PlaySound(cardSwipeSound);
         if (eventData.pointerEnter != null)
         {
             TeamCardView targetCard = eventData.pointerEnter.GetComponentInParent<TeamCardView>();

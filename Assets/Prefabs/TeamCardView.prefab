@@ -1112,6 +1112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TeamCardView
   data: {fileID: 0}
+  slotIndex: 0
+  teamSelectionController: {fileID: 0}
   emptySlotSprite: {fileID: -818093038039050909, guid: cde73b53b999e1e4c85ec80e8bbf5ab7, type: 3}
   battingPowerText: {fileID: 4388714813158705398}
   bowlingPowerText: {fileID: 4877823452505218614}
@@ -1120,3 +1122,4 @@ MonoBehaviour:
   BowlingPowerUI: {fileID: 9197422798798663220}
   DefenceUI: {fileID: 4869520573685198915}
   buttonClickSound: {fileID: 8300000, guid: ad98d5262a8ef794d9afb32bda7a9004, type: 3}
+  cardSwipeSound: {fileID: 8300000, guid: fde8367c01f81e14793c951f23900c23, type: 3}
