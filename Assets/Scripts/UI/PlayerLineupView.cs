@@ -54,5 +54,19 @@ public class PlayerLineupView : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     }
 
-    public PlayerData GetData() { return data; }    
+    public PlayerData GetData() { return data; }
+
+    // Added helper methods for runtime UI updates from BattleController
+    public void UpdateDefense(int newDefense)
+    {
+        if (defenceText != null)
+            defenceText.text = newDefense.ToString();
+    }
+
+    public void MarkOut()
+    {
+        if (defenceText != null)
+            defenceText.text = "OUT";
+    }
+
 }

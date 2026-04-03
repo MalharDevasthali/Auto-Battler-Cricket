@@ -16,7 +16,7 @@ MonoBehaviour:
   role: 0
   BattingPower: 2
   BowlingPower: 0
-  Defense: 4
+  Defense: 5
   SpecialAbility: +2<sprite=0>to self for every ball faced
   rarity: 3
   playerSprite: {fileID: -4623635416466225990, guid: 462bb1dfcfbc49d45acffcb12424d633, type: 3}

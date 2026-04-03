@@ -19,4 +19,4 @@ MonoBehaviour:
   Defense: 0
   SpecialAbility: +1<sprite=1>after taking wicket
   rarity: 1
-  playerSprite: {fileID: -7194362516901021868, guid: 5c2a11f33adff7e4dbd5a3c92e33817b, type: 3}
+  playerSprite: {fileID: 21300000, guid: 3b07ecc775c84ce418616156fc20dbdb, type: 3}

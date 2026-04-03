@@ -7,6 +7,9 @@ public class TeamLineupUIHolder : MonoBehaviour
 {
     [SerializeField] private List<PlayerLineupView> playerLineUpList = new List<PlayerLineupView>();
 
+    // Expose for BattleController
+    public List<PlayerLineupView> GetPlayerLineupList() => playerLineUpList;
+
 
     private void Start()
     {
@@ -31,6 +34,17 @@ public class TeamLineupUIHolder : MonoBehaviour
             else
                 Debug.Log("Player Data Already Exists");
         }
-
     }
+
+    public void ResetTeamLineUp()
+    {
+        for (int i = 0; i < playerLineUpList.Count; i++)
+        {
+            
+           playerLineUpList[i].LoadUI();
+          
+        }
+    }
+
+
 }
