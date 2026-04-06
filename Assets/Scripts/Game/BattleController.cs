@@ -56,9 +56,8 @@ public class BattleController : MonoBehaviour
 
         int currentBatsmanIndex = 0;
         int currentDefense = GetDefenseForBatsman(currentBatsmanIndex);
-        var batsmanView = batsmen[currentBatsmanIndex];
-        var batsmanData = batsmanView.GetData();
-        
+        PlayerLineupView batsmanView = batsmen[currentBatsmanIndex];
+        PlayerData batsmanData = batsmanView.GetData();
         PlayerDataDuringMatch runtimeData = new PlayerDataDuringMatch(batsmanData, currentDefense);
 
         for (int ball = 1; ball <= 6; ball++)
@@ -66,11 +65,7 @@ public class BattleController : MonoBehaviour
            
             if (currentBatsmanIndex >= batsmen.Count) break;
 
-            batsmanView = batsmen[currentBatsmanIndex];
-            batsmanData = batsmanView.GetData();
-
-            runtimeData = new PlayerDataDuringMatch(batsmanData, currentDefense);
-           
+          
             runtimeData.UpdatePlayerDataDuringMatch(currentDefense, batsmanData.BattingPower, batsmanData.BowlingPower);
             LoadBatsmanUI(runtimeData);
             batsmanView.UpdateDefense(currentDefense);
@@ -87,11 +82,12 @@ public class BattleController : MonoBehaviour
             if (currentDefense <= 0)
             {
                 wickets++;
+                UpdateScoreUI();
                 HandleBatsmanOut(batsmanView, batsmanData);
                 currentBatsmanIndex++;
                 if (currentBatsmanIndex < batsmen.Count)
                 {
-                    currentDefense = GetDefenseForBatsman(currentBatsmanIndex);
+                    BringNewPlayer(currentBatsmanIndex, out currentDefense, out batsmanView, out batsmanData, out runtimeData);
                 }
                 await Task.Delay((int)(ballDelay * 1000));
             }
@@ -100,6 +96,14 @@ public class BattleController : MonoBehaviour
         Debug.Log($"Over finished. Total Runs: {totalRuns}, Wickets: {wickets}");
         
         startMatchButton.enabled = true;
+    }
+
+    private void BringNewPlayer(int currentBatsmanIndex, out int currentDefense, out PlayerLineupView batsmanView, out PlayerData batsmanData, out PlayerDataDuringMatch runtimeData)
+    {
+        currentDefense = GetDefenseForBatsman(currentBatsmanIndex);
+        batsmanView = batsmen[currentBatsmanIndex];
+        batsmanData = batsmanView.GetData();
+        runtimeData = new PlayerDataDuringMatch(batsmanData, currentDefense);
     }
 
     private void ResetMatch()
