@@ -62,30 +62,23 @@ public class BattleController : MonoBehaviour
 
         for (int ball = 1; ball <= 6; ball++)
         {
-           
             if (currentBatsmanIndex >= batsmen.Count) break;
 
-          
-            runtimeData.UpdatePlayerDataDuringMatch(currentDefense, batsmanData.BattingPower, batsmanData.BowlingPower);
-            LoadBatsmanUI(runtimeData);
-            batsmanView.UpdateDefense(currentDefense);
-            
+            UpdateUIDuringBattle(currentDefense, batsmanView, batsmanData, runtimeData);
             await Task.Delay((int)(ballDelay * 1000));
-            
-            ballText?.SetText($"Ball {ball}/6");
-            PlayBall(batsmanView, batsmanData, ref currentDefense);
-
-            runtimeData.UpdatePlayerDataDuringMatch(currentDefense, batsmanData.BattingPower, batsmanData.BowlingPower);
-            LoadBatsmanUI(runtimeData);
-            batsmanView.UpdateDefense(currentDefense);
+           
+            PlayBall(ball, batsmanView, batsmanData, ref currentDefense);
+            UpdateUIDuringBattle(currentDefense, batsmanView, batsmanData, runtimeData);
 
             if (currentDefense <= 0)
             {
                 wickets++;
+                currentBatsmanIndex++;
+               
                 UpdateScoreUI();
                 HandleBatsmanOut(batsmanView, batsmanData);
-                currentBatsmanIndex++;
-                if (currentBatsmanIndex < batsmen.Count)
+                
+                if (currentBatsmanIndex < batsmen.Count) // In case of All Batsman Out scenario
                 {
                     BringNewPlayer(currentBatsmanIndex, out currentDefense, out batsmanView, out batsmanData, out runtimeData);
                 }
@@ -96,6 +89,13 @@ public class BattleController : MonoBehaviour
         Debug.Log($"Over finished. Total Runs: {totalRuns}, Wickets: {wickets}");
         
         startMatchButton.enabled = true;
+    }
+
+    private void UpdateUIDuringBattle(int currentDefense, PlayerLineupView batsmanView, PlayerData batsmanData, PlayerDataDuringMatch runtimeData)
+    {
+        runtimeData.UpdatePlayerDataDuringMatch(currentDefense, batsmanData.BattingPower, batsmanData.BowlingPower);
+        LoadBatsmanUI(runtimeData);
+        batsmanView.UpdateDefense(currentDefense);
     }
 
     private void BringNewPlayer(int currentBatsmanIndex, out int currentDefense, out PlayerLineupView batsmanView, out PlayerData batsmanData, out PlayerDataDuringMatch runtimeData)
@@ -121,8 +121,9 @@ public class BattleController : MonoBehaviour
     {
         return batsmen[index].GetData().Defense;
     }
-    private void PlayBall(PlayerLineupView view, PlayerData data, ref int runtimeDefense)
+    private void PlayBall(int ball,PlayerLineupView view, PlayerData data, ref int runtimeDefense)
     {
+        ballText?.SetText($"Ball {ball}/6");
         Debug.Log($"{data.playerName} faces the bowler.");
         runtimeDefense = UpdateDefence(runtimeDefense);
         view.UpdateDefense(runtimeDefense);
