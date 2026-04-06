@@ -8,7 +8,7 @@ public class UIService : MonoBehaviour
     [SerializeField] private RectTransform playerDetailsParentObject; 
     [SerializeField] private Image playerImage;
     [SerializeField] private TextMeshProUGUI playerNameText;
-    [SerializeField] private TextMeshProUGUI playerDetailsText;
+    [SerializeField] private TextMeshProUGUI playerAbilityText;
 
     [SerializeField] private TextMeshProUGUI battingPowerText;
     [SerializeField] private TextMeshProUGUI bowlingPowerText;
@@ -33,7 +33,7 @@ public class UIService : MonoBehaviour
     {
         playerImage.sprite = data.playerSprite;
         playerNameText.text = data.playerName;
-        playerDetailsText.text = data.SpecialAbility;
+        playerAbilityText.text = data.SpecialAbility;
         battingPowerText.text = data.BattingPower.ToString();
         bowlingPowerText.text = data.BowlingPower.ToString();
         defenceText.text = data.Defense.ToString();
@@ -46,9 +46,8 @@ public class UIService : MonoBehaviour
     private void InitializeCard(PlayerData data)
     {
         playerImage.sprite = data.playerSprite;
-
         playerNameText.text = data.playerName;
-        playerDetailsText.text = data.SpecialAbility;
+        playerAbilityText.text = data.SpecialAbility;
         battingPowerText.text = data.BattingPower.ToString();
         bowlingPowerText.text = data.BowlingPower.ToString();
         defenceText.text = data.Defense.ToString();
