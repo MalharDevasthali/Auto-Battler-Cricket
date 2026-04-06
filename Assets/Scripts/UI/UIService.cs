@@ -28,21 +28,6 @@ public class UIService : MonoBehaviour
     {
         playerDetailsParentObject.gameObject.SetActive(false);
     }
-
-    public void UpdateUIDuringMatch(PlayerDataDuringMatch data)
-    {
-        playerImage.sprite = data.playerSprite;
-        playerNameText.text = data.playerName;
-        playerAbilityText.text = data.SpecialAbility;
-        battingPowerText.text = data.BattingPower.ToString();
-        bowlingPowerText.text = data.BowlingPower.ToString();
-        defenceText.text = data.Defense.ToString();
-
-        playerDetailsParentObject.gameObject.SetActive(true);
-
-    }
-
-
     private void InitializeCard(PlayerData data)
     {
         playerImage.sprite = data.playerSprite;

@@ -4,8 +4,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 
-// Simple battle simulation controller for 6 balls
-// Assign a bowler via inspector (PlayerData ScriptableObject)
+
 public class BattleController : MonoBehaviour
 {
     [Header("References")]
@@ -16,17 +15,24 @@ public class BattleController : MonoBehaviour
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI scoreText; // total score UI
     [SerializeField] private TextMeshProUGUI ballText; // current ball UI (e.g., "Ball 1/6")
+    [SerializeField] private Button startMatchButton;
 
     [Header("Bowler UI")]
     [SerializeField] private Image bowlerImage;
-    [SerializeField] private TMPro.TextMeshProUGUI bowlerNameText;
-    [SerializeField] private TMPro.TextMeshProUGUI bowlerDetailsText;
-    [SerializeField] private TMPro.TextMeshProUGUI bowlerBowlingPowerText;
-    [SerializeField] private Button startMatchButton;
+    [SerializeField] private TextMeshProUGUI bowlerNameText;
+    [SerializeField] private TextMeshProUGUI bowlerAbilityText;
+    [SerializeField] private TextMeshProUGUI bowlerBowlingPowerText;
+   
+
+    [Header("Batsman UI")]
+    [SerializeField] private Image batsmanImage;
+    [SerializeField] private TextMeshProUGUI batsmanNameText;
+    [SerializeField] private TextMeshProUGUI batsmanAbilityText;
+    [SerializeField] private TextMeshProUGUI battingPowerText;
+    [SerializeField] private TextMeshProUGUI defenceText;
 
     [Header("Simulation")]
     [SerializeField] private float ballDelay = 1.0f; // seconds between balls
-    [SerializeField] private float newBatsmanDelay = 1.0f; // extra delay when new batsman comes in
 
     private List<PlayerLineupView> batsmen = new List<PlayerLineupView>();
     private int totalRuns = 0;
@@ -39,6 +45,7 @@ public class BattleController : MonoBehaviour
         batsmen = lineupHolder.GetPlayerLineupList();
         UpdateScoreUI();
         LoadBowlerUI();
+        LoadBatsmanUI(batsmen[0].GetData());
     }
     public async void StartOver()
     {
@@ -53,8 +60,7 @@ public class BattleController : MonoBehaviour
         var batsmanData = batsmanView.GetData();
         
         PlayerDataDuringMatch runtimeData = new PlayerDataDuringMatch(batsmanData, currentDefense);
-        ServiceLocator.Instance.UIService.UpdateUIDuringMatch(runtimeData);
-        
+  
         await Task.Delay((int)(ballDelay * 1000));
 
         for (int ball = 1; ball <= 6; ball++)
@@ -69,13 +75,13 @@ public class BattleController : MonoBehaviour
 
             runtimeData = new PlayerDataDuringMatch(batsmanData, currentDefense);
            
-            runtimeData.UpdatePlayerDataDuringMatch(currentDefense, batsmanData.BattingPower, batsmanData.BowlingPower);  
-            ServiceLocator.Instance.UIService.UpdateUIDuringMatch(runtimeData);
-            
+            runtimeData.UpdatePlayerDataDuringMatch(currentDefense, batsmanData.BattingPower, batsmanData.BowlingPower);
+            LoadBatsmanUI(runtimeData);
+
             PlayBall(batsmanView, batsmanData, ref currentDefense);
 
             runtimeData.UpdatePlayerDataDuringMatch(currentDefense, batsmanData.BattingPower, batsmanData.BowlingPower);
-            ServiceLocator.Instance.UIService.UpdateUIDuringMatch(runtimeData);
+            LoadBatsmanUI(runtimeData);
 
             if (currentDefense <= 0)
             {
@@ -87,7 +93,7 @@ public class BattleController : MonoBehaviour
 
                 // extra delay to show new batsman's stats before next ball
                 if (currentBatsmanIndex < batsmen.Count)
-                    await Task.Delay((int)(newBatsmanDelay * 1000));
+                    await Task.Delay((int)(ballDelay * 1000));
 
             }
 
@@ -138,9 +144,29 @@ public class BattleController : MonoBehaviour
     {   
           bowlerImage.sprite = bowler.playerSprite;
           bowlerNameText.SetText(bowler.playerName);
-          bowlerDetailsText.SetText(bowler.SpecialAbility);
+          bowlerAbilityText.SetText(bowler.SpecialAbility);
           bowlerBowlingPowerText.SetText(bowler.BowlingPower.ToString());
+    }
 
+    private void LoadBatsmanUI(PlayerDataDuringMatch data)
+    {
+        if (data == null) return;
+
+       batsmanImage.sprite = data.playerSprite;
+       batsmanNameText.SetText(data.playerName);
+       batsmanAbilityText.SetText(data.SpecialAbility);
+       battingPowerText.SetText(data.BattingPower.ToString());
+       defenceText.SetText(data.Defense.ToString());
+    }
+    private void LoadBatsmanUI(PlayerData data)
+    {
+        if (data == null) return;
+
+        batsmanImage.sprite = data.playerSprite;
+        batsmanNameText.SetText(data.playerName);
+        batsmanAbilityText.SetText(data.SpecialAbility);
+        battingPowerText.SetText(data.BattingPower.ToString());
+        defenceText.SetText(data.Defense.ToString());
     }
 
     private void UpdateScoreUI()
