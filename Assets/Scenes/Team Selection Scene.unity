@@ -7856,7 +7856,7 @@ MonoBehaviour:
   playerDetailsParentObject: {fileID: 8278013962428168288}
   playerImage: {fileID: 6723500159759300007}
   playerNameText: {fileID: 1173645491}
-  playerDetailsText: {fileID: 1236425144381506048}
+  playerAbilityText: {fileID: 1236425144381506048}
   battingPowerText: {fileID: 3519440862137121916}
   bowlingPowerText: {fileID: 3252479380066145551}
   defenceText: {fileID: 1963261384851221503}
