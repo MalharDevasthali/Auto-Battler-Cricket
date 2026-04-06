@@ -83,7 +83,7 @@ public class BattleController : MonoBehaviour
                 await Task.Delay((int)(ballDelay * 1000));
 
              
-                if (currentBatsmanIndex < batsmen.Count) // In case of All Batsman Out scenario
+                if (currentBatsmanIndex < batsmen.Count && ball < 6) // In case of All Batsman Out scenario or over end
                 {
                     batsmanView.SetCurrentPlayerIndicator(false);
                     BringNewPlayer(currentBatsmanIndex, out currentDefense, out batsmanView, out batsmanData, out runtimeData);
