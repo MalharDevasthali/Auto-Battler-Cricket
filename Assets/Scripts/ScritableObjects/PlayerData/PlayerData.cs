@@ -20,6 +20,7 @@ public class PlayerData : ScriptableObject
     public int BowlingPower;
     public int Defense;
     public string SpecialAbility;
+    public PlayerAbility playerAbility;
 
     [Header("Meta")]
     public int rarity;
