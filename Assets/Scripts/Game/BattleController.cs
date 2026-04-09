@@ -64,16 +64,17 @@ public class BattleController : MonoBehaviour
         for (int ball = 1; ball <= 6; ball++)
         {
             if (currentBatsmanIndex >= batsmen.Count) break;
+            if (this == null) break;
 
             UpdateUIDuringBattle(currentDefense, batsmanView, batsmanData, runtimeData);
             await Task.Delay((int)(ballDelay * 1000));
            
             PlayBall(ball, batsmanView, batsmanData, ref currentDefense);
+           
             UpdateUIDuringBattle(currentDefense, batsmanView, batsmanData, runtimeData);
 
             if (currentDefense <= 0)
-            {
-                
+            {  
                 wickets++;
                 currentBatsmanIndex++;
                
@@ -83,7 +84,7 @@ public class BattleController : MonoBehaviour
                 await Task.Delay((int)(ballDelay * 1000));
 
              
-                if (currentBatsmanIndex < batsmen.Count && ball < 6) // In case of All Batsman Out scenario or over end
+                if (currentBatsmanIndex < batsmen.Count && ball < 6) 
                 {
                     batsmanView.SetCurrentPlayerIndicator(false);
                     BringNewPlayer(currentBatsmanIndex, out currentDefense, out batsmanView, out batsmanData, out runtimeData);
@@ -122,6 +123,7 @@ public class BattleController : MonoBehaviour
         lineupHolder.ResetTeamLineUp();
         LoadBowlerUI();
         LoadBatsmanUI(batsmen[0].GetData(),batsmen[0]);
+    
     }
 
     private int GetDefenseForBatsman(int index)
@@ -135,9 +137,10 @@ public class BattleController : MonoBehaviour
         runtimeDefense = UpdateDefence(runtimeDefense);
         view.UpdateDefense(runtimeDefense);
      
-
+        
         int runs = data.BattingPower;
-        totalRuns += runs;
+        if (runtimeDefense > 0)
+            totalRuns += runs;
         Debug.Log($"{data.playerName} scores {runs} runs.");
         UpdateScoreUI();
     }
