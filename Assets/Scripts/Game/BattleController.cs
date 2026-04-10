@@ -62,6 +62,7 @@ public class BattleController : MonoBehaviour
         PlayerLineupView batsmanView = batsmen[currentBatsmanIndex];
         PlayerData batsmanData = batsmanView.GetData();
         PlayerDataDuringMatch runtimeData = new PlayerDataDuringMatch(batsmanData);
+        runtimeData.runTimeAbility?.Init();
 
       
         for (int ball = 1; ball <= 6; ball++)
@@ -83,7 +84,7 @@ public class BattleController : MonoBehaviour
                
                 UpdateScoreUI();
                 HandleBatsmanOut(batsmanView, runtimeData);
-               
+                runtimeData.runTimeAbility.EventUnSubscribe();
                 await Task.Delay((int)(ballDelay * 1000));
 
              
@@ -139,7 +140,7 @@ public class BattleController : MonoBehaviour
         if (data.Defense > 0)
         {
             totalRuns += runs;
-            //HandleRuns(data,runs);
+            OnRunsScored(data,runs);
         }
         Debug.Log($"{data.playerName} scores {runs} runs.");
         UpdateScoreUI();
@@ -150,10 +151,10 @@ public class BattleController : MonoBehaviour
         return Mathf.Max(0, defense - bowler.BowlingPower);
     }
 
-    private void HandleBatsmanOut(PlayerLineupView view, PlayerDataDuringMatch data)
+    private void HandleBatsmanOut(PlayerLineupView view, PlayerDataDuringMatch batsmanWhoGotOut)
     {
-        Debug.Log($"{data.playerName} is OUT");
-      //  HandleWicket(data);
+        Debug.Log($"{batsmanWhoGotOut.playerName} is OUT");
+        OnWhicketFallen(batsmanWhoGotOut);
         view.MarkOut();
         defenceText.SetText(defenceText.text = "OUT");
     }
@@ -192,14 +193,14 @@ public class BattleController : MonoBehaviour
             scoreText.SetText($"Score: {totalRuns}/{wickets}");
     }
 
-    void HandleRuns(PlayerDataDuringMatch player, int runs)
+    private void OnRunsScored(PlayerDataDuringMatch player, int runs)
     {
         eventService.RaiseRunsScored(player, runs);
     }
 
-    void HandleWicket(PlayerDataDuringMatch player)
+    private void OnWhicketFallen(PlayerDataDuringMatch batsmanWhoGotOut)
     {
-        eventService.RaiseWicketFallen(player);
+        eventService.RaiseWicketFallen(batsmanWhoGotOut);
     }
 }
 

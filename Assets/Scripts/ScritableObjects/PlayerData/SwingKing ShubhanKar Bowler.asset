@@ -15,8 +15,9 @@ MonoBehaviour:
   playerName: SwingKing ShubhanKar
   role: 1
   BattingPower: 0
-  BowlingPower: 2
+  BowlingPower: 1
   Defense: 0
   SpecialAbility: +1<sprite=1>after taking wicket
+  playerAbility: {fileID: 0}
   rarity: 1
   playerSprite: {fileID: 21300000, guid: 3b07ecc775c84ce418616156fc20dbdb, type: 3}

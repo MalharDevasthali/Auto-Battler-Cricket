@@ -10,6 +10,7 @@ public class PlayerDataDuringMatch
     public int Defense;
     public string SpecialAbility;
     public PlayerRole role;
+    public PlayerAbility runTimeAbility;
 
 
     public void UpdatePlayerDataDuringMatch(int runtimeDefense, int runtimeBattingPower, int runtimeBowlingPower)
@@ -24,6 +25,7 @@ public class PlayerDataDuringMatch
         playerSprite = playerData.playerSprite;
         SpecialAbility = playerData.SpecialAbility;
         role = playerData.role;
+        runTimeAbility = playerData.playerAbility;
 
         BattingPower = playerData.BattingPower;
         Defense = playerData.Defense;
