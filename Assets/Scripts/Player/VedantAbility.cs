@@ -5,11 +5,13 @@ public class VedantAbility : PlayerAbility
 {
     public override void OnRunsScored(PlayerDataDuringMatch player, int runs)
     {
+        if (player != owner) return;
+
         if (runs == 4)
         {
-            player.Defense += 1;
+            owner.Defense += 1;
         }
     }
 
-    public override void OnWicketTaken(PlayerDataDuringMatch player) { }
+    public override void OnWicketFallen(PlayerDataDuringMatch player) { }
 }

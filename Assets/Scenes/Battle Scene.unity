@@ -1512,6 +1512,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685325732}
   m_CullTransparentMesh: 1
+--- !u!1 &764818025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 764818026}
+  - component: {fileID: 764818027}
+  m_Layer: 0
+  m_Name: EventService
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &764818026
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764818025}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1675038218}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &764818027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764818025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2232740a53cf44d4c90f6de96c052832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EventService
 --- !u!1 &781995614
 GameObject:
   m_ObjectHideFlags: 0
@@ -3085,7 +3129,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1625139855}
         m_TargetAssemblyTypeName: BattleController, Assembly-CSharp
-        m_MethodName: StartOver
+        m_MethodName: StartMatch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4452,6 +4496,7 @@ MonoBehaviour:
   gameService: {fileID: 1013799519}
   soundService: {fileID: 870251832}
   uiService: {fileID: 210793888}
+  eventService: {fileID: 764818027}
 --- !u!4 &1675038218
 Transform:
   m_ObjectHideFlags: 0
@@ -4468,6 +4513,7 @@ Transform:
   - {fileID: 1013799520}
   - {fileID: 210793889}
   - {fileID: 870251833}
+  - {fileID: 764818026}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1755453797

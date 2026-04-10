@@ -43,7 +43,6 @@ public class TeamLineupUIHolder : MonoBehaviour
             
            playerLineUpList[i].LoadUI();
            playerLineUpList[i].SetCurrentPlayerIndicator(false);
-
         }
     }
 
