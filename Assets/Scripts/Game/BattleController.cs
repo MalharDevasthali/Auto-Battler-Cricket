@@ -32,6 +32,12 @@ public class BattleController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI battingPowerText;
     [SerializeField] private TextMeshProUGUI defenceText;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip hitSound;
+    [SerializeField] private AudioClip wicketSound;
+    [SerializeField] private AudioClip ballBowledSound;
+    [SerializeField] private AudioClip crowdCheeringSound;
+
     [Header("Simulation")]
     [SerializeField] private float ballDelay = 1.0f; // seconds between balls
 
@@ -72,33 +78,57 @@ public class BattleController : MonoBehaviour
 
             UpdateUIDuringBattle(batsmanView, runtimeData);
             await Task.Delay((int)(ballDelay * 1000));
-           
+
+
+            ServiceLocator.Instance.SoundService.PlaySound(ballBowledSound);
+            await Task.Delay(1000); // Short delay after ball is bowled
+
             PlayBall(ball, batsmanView, runtimeData);
            
             UpdateUIDuringBattle(batsmanView, runtimeData);
 
             if (runtimeData.Defense <= 0)
-            {  
+            {
+                await playWicketSound();
+
                 wickets++;
                 currentBatsmanIndex++;
-               
+
                 UpdateScoreUI();
                 HandleBatsmanOut(batsmanView, runtimeData);
                 runtimeData.runTimeAbility.EventUnSubscribe();
                 await Task.Delay((int)(ballDelay * 1000));
 
-             
-                if (currentBatsmanIndex < batsmen.Count && ball < 6) 
+
+                if (currentBatsmanIndex < batsmen.Count && ball < 6)
                 {
                     batsmanView.SetCurrentPlayerIndicator(false);
-                    BringNewPlayer(currentBatsmanIndex , out batsmanView, out batsmanData, out runtimeData);
+                    BringNewPlayer(currentBatsmanIndex, out batsmanView, out batsmanData, out runtimeData);
                 }
+            }
+            else
+            {
+                await playBallHitSound();
             }
         }
 
         Debug.Log($"Over finished. Total Runs: {totalRuns}, Wickets: {wickets}");
         
         startMatchButton.enabled = true;
+    }
+
+    private async Task playBallHitSound()
+    {
+        ServiceLocator.Instance.SoundService.PlaySound(hitSound);
+        await Task.Delay(100);
+        ServiceLocator.Instance.SoundService.PlaySound(crowdCheeringSound,0.5f);
+    }
+
+    private async Task playWicketSound()
+    {
+        ServiceLocator.Instance.SoundService.PlaySound(wicketSound);
+        await Task.Delay(100);
+        ServiceLocator.Instance.SoundService.PlaySound(crowdCheeringSound);
     }
 
     private void UpdateUIDuringBattle( PlayerLineupView batsmanView, PlayerDataDuringMatch runtimeData)
@@ -128,7 +158,7 @@ public class BattleController : MonoBehaviour
         LoadBatsmanUI(batsmen[0].GetData(),batsmen[0]);
     
     }
-    private void PlayBall(int ball,PlayerLineupView view, PlayerDataDuringMatch data)
+    private  void PlayBall(int ball,PlayerLineupView view, PlayerDataDuringMatch data)
     {
         ballText?.SetText($"Ball {ball}/6");
         Debug.Log($"{data.playerName} faces the bowler.");
@@ -141,7 +171,6 @@ public class BattleController : MonoBehaviour
         {
             totalRuns += runsOnThisBall;
             data.SetRunsScored(runsOnThisBall);
-            
             OnRunsScored(data,data.playerRunsDuringMatch);
         }
         Debug.Log($"{data.playerName} scores {runsOnThisBall} runs.");

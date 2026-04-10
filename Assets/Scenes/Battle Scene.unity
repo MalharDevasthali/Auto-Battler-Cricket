@@ -4604,6 +4604,10 @@ MonoBehaviour:
   batsmanAbilityText: {fileID: 2111716020}
   battingPowerText: {fileID: 442789704}
   defenceText: {fileID: 1180411072}
+  hitSound: {fileID: 8300000, guid: 0f6de4328baded04f8b7df9ce6076c29, type: 3}
+  wicketSound: {fileID: 8300000, guid: 3f2109ac363eb44448dcc772f7e98066, type: 3}
+  ballBowledSound: {fileID: 8300000, guid: 374611356f8aa37499560b1b3c1cd921, type: 3}
+  crowdCheeringSound: {fileID: 8300000, guid: b30902880ce3b0543adcd60db187375f, type: 3}
   ballDelay: 2
 --- !u!1 &1650669216
 GameObject:
