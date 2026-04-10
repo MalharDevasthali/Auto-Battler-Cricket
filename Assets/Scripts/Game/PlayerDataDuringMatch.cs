@@ -12,13 +12,21 @@ public class PlayerDataDuringMatch
     public PlayerRole role;
     public PlayerAbility runTimeAbility;
 
+   public int playerRunsDuringMatch;
+
 
     public void UpdatePlayerDataDuringMatch(int runtimeDefense, int runtimeBattingPower, int runtimeBowlingPower)
     {
         BattingPower = runtimeBattingPower;
         BowlingPower = runtimeBowlingPower;
-        Defense = runtimeDefense;
+        Defense = runtimeDefense;   
     }
+
+    public void SetRunsScored(int runs)
+    {
+        playerRunsDuringMatch += runs;
+    }
+
     public PlayerDataDuringMatch(PlayerData playerData)
     {
         playerName = playerData.playerName;

@@ -136,13 +136,15 @@ public class BattleController : MonoBehaviour
         view.UpdateDefense(data.Defense);
      
         
-        int runs = data.BattingPower;
+        int runsOnThisBall = data.BattingPower;
         if (data.Defense > 0)
         {
-            totalRuns += runs;
-            OnRunsScored(data,runs);
+            totalRuns += runsOnThisBall;
+            data.SetRunsScored(runsOnThisBall);
+            
+            OnRunsScored(data,data.playerRunsDuringMatch);
         }
-        Debug.Log($"{data.playerName} scores {runs} runs.");
+        Debug.Log($"{data.playerName} scores {runsOnThisBall} runs.");
         UpdateScoreUI();
     }
 

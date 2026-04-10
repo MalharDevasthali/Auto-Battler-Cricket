@@ -6,8 +6,8 @@ using UnityEngine;
 public class TeamLineupUIHolder : MonoBehaviour
 {
     [SerializeField] private List<PlayerLineupView> playerLineUpList = new List<PlayerLineupView>();
+    [SerializeField] private List<PlayerData> placeHolderTeam = new List<PlayerData>();
 
-    // Expose for BattleController
     public List<PlayerLineupView> GetPlayerLineupList() => playerLineUpList;
 
 
@@ -17,9 +17,24 @@ public class TeamLineupUIHolder : MonoBehaviour
         InitilizeTeamLineUp();
     }
 
+    public void PopulatePlayers()
+    {
+        for (int i = 0; i < playerLineUpList.Count; i++)
+        {
+            if (playerLineUpList[i].GetData() == null)
+            {
+                playerLineUpList[i].SetPlayerData(placeHolderTeam[i]);
+                playerLineUpList[i].LoadUI();
+            }
+            else
+                Debug.Log("Player Data Already Exists");
+        }
+    }
+
     private void InitilizeTeamLineUp()
     {
         List<PlayerData> selectedTeamData = ServiceLocator.Instance.GameService.GetSelectedTeam();
+        if (selectedTeamData == null) return;
 
         Debug.Log("Selected Team Data List Count:"+selectedTeamData.Count);
         Debug.Log("PlayerLineup List Count:" + playerLineUpList.Count);
