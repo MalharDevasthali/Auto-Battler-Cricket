@@ -61,7 +61,7 @@ public class BattleController : MonoBehaviour
             if (currentBatsmanIndex >= batsmen.Count) break;
             if (this == null) break;
 
-            battleView.UpdateDuringBattle(batsmanView, runtimeData);
+            battleView.UpdateUIDuringBattle(batsmanView, runtimeData);
             await Task.Delay((int)(ballDelay * 1000));
 
 
@@ -70,7 +70,7 @@ public class BattleController : MonoBehaviour
 
             PlayBall(ball, batsmanView, runtimeData);
            
-            battleView.UpdateDuringBattle(batsmanView, runtimeData);
+            battleView.UpdateUIDuringBattle(batsmanView, runtimeData);
 
             if (runtimeData.Defense <= 0)
             {
@@ -106,26 +106,12 @@ public class BattleController : MonoBehaviour
     {
         battleView.SetPlayInteractable(false);
 
-       
+        if (this == null) return;
         if (currentBall > 6) return;
         if (currentBatsmanIndex >= batsmen.Count) return;
 
-        // INIT ONLY ON FIRST BALL
-        if (currentBall == 1 && runtimeData == null)
-        {
-            ResetMatch();
-
-            currentBatsmanIndex = 0;
-
-            batsmanView = batsmen[currentBatsmanIndex];
-            batsmanData = batsmanView.GetData();
-            runtimeData = new PlayerDataDuringMatch(batsmanData);
-            runtimeData.runTimeAbility?.Init();
-        }
-
-        if (this == null) return;
-
-        battleView.UpdateDuringBattle(batsmanView, runtimeData);
+        SetPlayersData();
+        battleView.UpdateUIDuringBattle(batsmanView, runtimeData);
 
         await Task.Delay((int)(ballDelay * 1000));
 
@@ -135,7 +121,7 @@ public class BattleController : MonoBehaviour
 
         PlayBall(currentBall, batsmanView, runtimeData);
 
-        battleView.UpdateDuringBattle(batsmanView, runtimeData);
+        battleView.UpdateUIDuringBattle(batsmanView, runtimeData);
 
         if (runtimeData.Defense <= 0)
         {
@@ -172,6 +158,22 @@ public class BattleController : MonoBehaviour
 
         battleView.SetPlayInteractable(true);
     }
+
+    private void SetPlayersData()
+    {
+        if (currentBall == 1 && runtimeData == null)
+        {
+            ResetMatch();
+
+            currentBatsmanIndex = 0;
+
+            batsmanView = batsmen[currentBatsmanIndex];
+            batsmanData = batsmanView.GetData();
+            runtimeData = new PlayerDataDuringMatch(batsmanData);
+            runtimeData.runTimeAbility?.Init();
+        }
+    }
+
     private async Task playBallHitSound()
     {
         ServiceLocator.Instance.SoundService.PlaySound(hitSound);

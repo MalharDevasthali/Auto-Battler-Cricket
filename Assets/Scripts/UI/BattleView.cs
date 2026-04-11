@@ -80,7 +80,7 @@ public class BattleView : MonoBehaviour
         defenceText.SetText(data.Defense.ToString());
     }
 
-    public void UpdateDuringBattle(PlayerLineupView batsmanView, PlayerDataDuringMatch runtimeData)
+    public void UpdateUIDuringBattle(PlayerLineupView batsmanView, PlayerDataDuringMatch runtimeData)
     {
         runtimeData.UpdatePlayerDataDuringMatch(runtimeData.Defense, runtimeData.BattingPower, runtimeData.BowlingPower);
         UpdateCurrentBatsman(runtimeData);
