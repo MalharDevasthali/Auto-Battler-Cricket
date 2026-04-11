@@ -13,7 +13,8 @@ public class PlayerLineupView : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [SerializeField] private TextMeshProUGUI playerNameText;
     [SerializeField] private TextMeshProUGUI battingPowerText;
     [SerializeField] private TextMeshProUGUI defenceText;
-    [SerializeField] private Image currentPlayerIndicator;
+    [SerializeField] private TextMeshProUGUI inidivisualRunsText;
+    [SerializeField] private RectTransform whenComesToBatUIHolder;
 
 
     private UIService uiService;
@@ -56,17 +57,23 @@ public class PlayerLineupView : MonoBehaviour, IPointerEnterHandler, IPointerExi
     }
     public void SetCurrentPlayerIndicator(bool isActive)
     {
-        if (currentPlayerIndicator != null)
-            currentPlayerIndicator.gameObject.SetActive(isActive);
+        if (whenComesToBatUIHolder != null)
+            whenComesToBatUIHolder.gameObject.SetActive(isActive);
     }
 
     public PlayerData GetData() { return data; }
 
-    // Added helper methods for runtime UI updates from BattleController
+    
     public void UpdateDefense(int newDefense)
     {
         if (defenceText != null)
             defenceText.text = newDefense.ToString();
+    }
+
+    public void UpdateIndivisualRuns(int newIndivisualRuns)
+    {
+        if(inidivisualRunsText != null)
+            inidivisualRunsText.text = newIndivisualRuns.ToString();
     }
 
     public void MarkOut()

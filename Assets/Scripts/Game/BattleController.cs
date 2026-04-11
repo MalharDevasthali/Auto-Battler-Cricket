@@ -102,7 +102,7 @@ public class BattleController : MonoBehaviour
         battleView.SetStartMatchInteractable(true);
     }
 
-    public async void Play()
+    public async void PlayNextBall()
     {
         battleView.SetPlayInteractable(false);
 
@@ -131,7 +131,7 @@ public class BattleController : MonoBehaviour
 
         ServiceLocator.Instance.SoundService.PlaySound(ballBowledSound);
 
-        await Task.Delay(1000);
+        await Task.Delay((int)(ballDelay * 1000));
 
         PlayBall(currentBall, batsmanView, runtimeData);
 
@@ -211,6 +211,7 @@ public class BattleController : MonoBehaviour
         Debug.Log($"{data.playerName} faces the bowler.");
         data.Defense = UpdateDefence(data.Defense);
         view.UpdateDefense(data.Defense);
+      
      
         
         int runsOnThisBall = data.BattingPower;
@@ -219,6 +220,7 @@ public class BattleController : MonoBehaviour
             totalRuns += runsOnThisBall;
             data.SetRunsScored(runsOnThisBall);
             OnRunsScored(data,data.playerRunsDuringMatch);
+            view.UpdateIndivisualRuns(data.playerRunsDuringMatch);
         }
         Debug.Log($"{data.playerName} scores {runsOnThisBall} runs.");
         battleView.UpdateScore(totalRuns, wickets);
