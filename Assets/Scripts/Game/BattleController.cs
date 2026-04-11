@@ -213,9 +213,8 @@ public class BattleController : MonoBehaviour
         Debug.Log($"{data.playerName} faces the bowler.");
         data.Defense = UpdateDefence(data.Defense);
         view.UpdateDefense(data.Defense);
-      
-     
-        
+        battleView.IncomingDamageTextEffect(bowler.BowlingPower.ToString());
+
         int runsOnThisBall = data.BattingPower;
         if (data.Defense > 0)
         {

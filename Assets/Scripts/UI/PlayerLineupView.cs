@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class PlayerLineupView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -75,6 +76,7 @@ public class PlayerLineupView : MonoBehaviour, IPointerEnterHandler, IPointerExi
         if(inidivisualRunsText != null)
             inidivisualRunsText.text = newIndivisualRuns.ToString();
     }
+   
 
     public void MarkOut()
     {

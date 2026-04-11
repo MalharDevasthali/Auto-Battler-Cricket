@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +23,7 @@ public class BattleView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI batsmanAbilityText;
     [SerializeField] private TextMeshProUGUI battingPowerText;
     [SerializeField] private TextMeshProUGUI defenceText;
+    [SerializeField] private TextMeshProUGUI damageTakenTextEffect;
 
     public void SetStartMatchInteractable(bool isEnabled)
     {
@@ -95,5 +97,38 @@ public class BattleView : MonoBehaviour
 
         if (defenceText != null)
             defenceText.SetText("OUT");
+    }
+
+    public void IncomingDamageTextEffect(string value)
+    {
+
+        float duration = 0.8f;
+        float moveY = 50f;
+
+        damageTakenTextEffect.text = "-"+value;
+
+        RectTransform rect = damageTakenTextEffect.rectTransform;
+
+        Vector2 startPos = rect.anchoredPosition;
+        Vector2 endPos = startPos + new Vector2(0, moveY);
+
+        Color startColor = damageTakenTextEffect.color;
+
+        startColor.a = 1f;
+        damageTakenTextEffect.color = startColor;
+
+        Sequence seq = DOTween.Sequence();
+
+        seq.Join(rect.DOAnchorPos(endPos, duration).SetEase(Ease.OutQuad));
+        damageTakenTextEffect.DOColor(new Color(damageTakenTextEffect.color.r, damageTakenTextEffect.color.g, damageTakenTextEffect.color.b, 0f), duration);
+
+        seq.OnComplete(() =>
+        {
+            rect.anchoredPosition = startPos;
+
+            Color c = damageTakenTextEffect.color;
+            c.a = 0f;
+            damageTakenTextEffect.color = c;
+        });
     }
 }
