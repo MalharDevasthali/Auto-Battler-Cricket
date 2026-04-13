@@ -70,6 +70,11 @@ public class PlayerLineupView : MonoBehaviour, IPointerEnterHandler, IPointerExi
         if (defenceText != null)
             defenceText.text = newDefense.ToString();
     }
+    public void UpdateBattingPower(int newBattingPower)
+    {
+        if(battingPowerText != null)
+            battingPowerText.text = newBattingPower.ToString();
+    }
 
     public void UpdateIndivisualRuns(int newIndivisualRuns)
     {

@@ -5,6 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/Vedant Ability")]
 public class VedantAbility : PlayerAbility
 {
+
+    public int defenceBoostAfterAbility = 1;
+    public int battingPowerBoostAfterAbility = 1;
+
     private EventService eventService;
 
     private BattleView battleView;
@@ -28,17 +32,29 @@ public class VedantAbility : PlayerAbility
     private async void OnRunsScored(PlayerDataDuringMatch player, int runs)
     {
         Debug.Log("Vedant Runs: " + runs);
-        if ( runs % 4 == 0)
+        if ( runs >= 4)
         {
             await Task.Delay(2000);
-            Debug.Log("Vedant Ability Got Triggered,Runs: "+runs);
-            player.Defense += 1;
+            Debug.Log("Vedant Defence Ability Got Triggered,Runs: "+runs);
+            player.Defense += defenceBoostAfterAbility;
             player.UpdatePlayerDataDuringMatch(player.Defense, player.BattingPower, player.BowlingPower);
-            battleView.DefenseGainedTextEffect(1.ToString());
-           // await Task.Delay(500);
+            battleView.DefenseGainedTextEffect(defenceBoostAfterAbility.ToString());
+
             playerLineupView.UpdateDefense(player.Defense);
             battleView.UpdateCurrentBatsman(player);
         }
-         await Task.Delay(0);
+
+        if (runs >= 6)
+        {
+            await Task.Delay(2000);
+            Debug.Log("Vedant Batting Power Ability Got Triggered,Runs: " + runs);
+            player.BattingPower += battingPowerBoostAfterAbility;
+            player.UpdatePlayerDataDuringMatch(player.Defense, player.BattingPower, player.BowlingPower);
+            battleView.BattingPowerGainedTextEffect(battingPowerBoostAfterAbility.ToString());
+
+            playerLineupView.UpdateBattingPower(player.BattingPower);
+            battleView.UpdateCurrentBatsman(player);
+        }
+        await Task.Delay(0);
     }
 }
