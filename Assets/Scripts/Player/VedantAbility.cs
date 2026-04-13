@@ -14,6 +14,8 @@ public class VedantAbility : PlayerAbility
     private BattleView battleView;
     private PlayerLineupView playerLineupView;
 
+    private int lastProcessRuns = 0;
+
     public override void Init(BattleView battleView, PlayerLineupView playerLineupView)
     {
         eventService = ServiceLocator.Instance.EventService;
@@ -32,7 +34,7 @@ public class VedantAbility : PlayerAbility
     private async void OnRunsScored(PlayerDataDuringMatch player, int runs)
     {
         Debug.Log("Vedant Runs: " + runs);
-        if ( runs >= 4)
+        if (lastProcessRuns < 4 && runs >= 4)
         {
             await Task.Delay(2000);
             Debug.Log("Vedant Defence Ability Got Triggered,Runs: "+runs);
@@ -44,7 +46,7 @@ public class VedantAbility : PlayerAbility
             battleView.UpdateCurrentBatsman(player);
         }
 
-        if (runs >= 6)
+        if (lastProcessRuns < 6 && runs >= 6)
         {
             await Task.Delay(2000);
             Debug.Log("Vedant Batting Power Ability Got Triggered,Runs: " + runs);
@@ -55,6 +57,7 @@ public class VedantAbility : PlayerAbility
             playerLineupView.UpdateBattingPower(player.BattingPower);
             battleView.UpdateCurrentBatsman(player);
         }
+        lastProcessRuns = runs;
         await Task.Delay(0);
     }
 }

@@ -105,105 +105,46 @@ public class BattleView : MonoBehaviour
     public void DefenceReducedTextEffect(string value)
     {
 
-        float duration = 0.8f;
-        float moveY = 50f;
+        //float duration = 0.8f;
+        //float moveY = 50f;
 
-        defenceText.text = "-"+value;
+        //defenceText.text = "-"+value;
 
-        RectTransform rect = defenceText.rectTransform;
+        //RectTransform rect = defenceText.rectTransform;
 
-        Vector2 startPos = rect.anchoredPosition;
-        Vector2 endPos = startPos + new Vector2(0, moveY);
+        //Vector2 startPos = rect.anchoredPosition;
+        //Vector2 endPos = startPos + new Vector2(0, moveY);
 
-        Color startColor = defenceText.color;
-        Color damageColor = new Color(1f, 0.1f, 0.1f);
+        //Color startColor = defenceText.color;
+        //Color damageColor = new Color(1f, 0.1f, 0.1f);
 
-        startColor.a = 1f;
-        defenceText.color = damageColor;
+        //startColor.a = 1f;
+        //defenceText.color = damageColor;
 
-        Sequence seq = DOTween.Sequence();
+        //Sequence seq = DOTween.Sequence();
 
-        seq.Join(rect.DOAnchorPos(endPos, duration).SetEase(Ease.OutQuad));
-        defenceText.DOColor(new Color(defenceText.color.r, defenceText.color.g, defenceText.color.b, 0f), duration);
+        //seq.Join(rect.DOAnchorPos(endPos, duration).SetEase(Ease.OutQuad));
+        //defenceText.DOColor(new Color(defenceText.color.r, defenceText.color.g, defenceText.color.b, 0f), duration);
 
-        seq.OnComplete(() =>
-        {
-            rect.anchoredPosition = startPos;
+        //seq.OnComplete(() =>
+        //{
+        //    rect.anchoredPosition = startPos;
 
-            Color c = defenceText.color;
-            c.a = 0f;
-            defenceText.color = c;
-        });
+        //    Color c = defenceText.color;
+        //    c.a = 0f;
+        //    defenceText.color = c;
+        //});
+        PlayFloatingTextEffect(defenceTextEffects, value, false, new Color(1f, 0.1f, 0.1f));
     }
 
     public void DefenseGainedTextEffect(string value)
     {
-
-        float duration = 0.8f;
-        float moveY = 50f;
-
-        defenceText.text = "+" + value;
-
-        RectTransform rect = defenceText.rectTransform;
-
-        Vector2 startPos = rect.anchoredPosition;
-        Vector2 endPos = startPos + new Vector2(0, moveY);
-
-        Color startColor = defenceText.color;
-        Color damageColor = new Color(1f, 0.84f, 0f);
-
-
-        startColor.a = 1f;
-        defenceText.color = damageColor;
-
-        Sequence seq = DOTween.Sequence();
-
-        seq.Join(rect.DOAnchorPos(endPos, duration).SetEase(Ease.OutQuad));
-        defenceText.DOColor(new Color(defenceText.color.r, defenceText.color.g, defenceText.color.b, 0f), duration);
-
-        seq.OnComplete(() =>
-        {
-            rect.anchoredPosition = startPos;
-
-            Color c = defenceText.color;
-            c.a = 0f;
-            defenceText.color = c;
-        });
+        PlayFloatingTextEffect(defenceTextEffects, value, true, new Color(0.95f, 0.75f, 0.2f));
     }
 
     public void BattingPowerGainedTextEffect(string value)
     {
-
-        float duration = 0.8f;
-        float moveY = 50f;
-
-        battingPowerTextEffects.text = "+" + value;
-
-        RectTransform rect = battingPowerTextEffects.rectTransform;
-
-        Vector2 startPos = rect.anchoredPosition;
-        Vector2 endPos = startPos + new Vector2(0, moveY);
-
-        Color startColor = battingPowerTextEffects.color;
-        Color damageColor = new Color(1f, 0.84f, 0f);
-
-
-        startColor.a = 1f;
-        battingPowerTextEffects.color = damageColor;
-
-        Sequence seq = DOTween.Sequence();
-
-        seq.Join(rect.DOAnchorPos(endPos, duration).SetEase(Ease.OutQuad));
-        battingPowerTextEffects.DOColor(new Color(battingPowerTextEffects.color.r, battingPowerTextEffects.color.g, battingPowerTextEffects.color.b, 0f), duration);
-
-        seq.OnComplete(() =>
-        {
-            rect.anchoredPosition = startPos;
-
-            Color c = battingPowerTextEffects.color;
-            c.a = 0f;
-            battingPowerTextEffects.color = c;
-        });
+        PlayFloatingTextEffect(battingPowerTextEffects, value, true, new Color(0.95f, 0.75f, 0.2f));
     }
 
     private void PlayFloatingTextEffect(TMPro.TMP_Text textComp, string value, bool isPositive, Color color)
@@ -218,6 +159,7 @@ public class BattleView : MonoBehaviour
         Vector2 startPos = rect.anchoredPosition;
         Vector2 endPos = startPos + new Vector2(0, moveY);
 
+        color.a = 1f;
         textComp.color = color;
 
         Sequence seq = DOTween.Sequence();
