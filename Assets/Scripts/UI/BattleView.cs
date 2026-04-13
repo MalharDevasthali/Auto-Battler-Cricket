@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +16,7 @@ public class BattleView : MonoBehaviour
     [SerializeField] private Image bowlerImage;
     [SerializeField] private TextMeshProUGUI bowlerNameText;
     [SerializeField] private TextMeshProUGUI bowlerAbilityText;
-    [SerializeField] private TextMeshProUGUI bowlerBowlingPowerText;
+    [SerializeField] private TextMeshProUGUI bowlingPowerText;
 
     [Header("Batsman UI")]
     [SerializeField] private Image batsmanImage;
@@ -27,6 +28,10 @@ public class BattleView : MonoBehaviour
     [Header("UI Text Effects")]
     [SerializeField] private TextMeshProUGUI defenceTextEffects;
     [SerializeField] private TextMeshProUGUI battingPowerTextEffects;
+    [SerializeField] private TextMeshProUGUI bowlingPowerTextEffects;
+
+    private Color textEffectGainColor = new Color(0.95f, 0.75f, 0.2f);
+    private Color textEffectReduceColor = new Color(1f, 0.1f, 0.1f);
 
     public void SetStartMatchInteractable(bool isEnabled)
     {
@@ -59,7 +64,7 @@ public class BattleView : MonoBehaviour
         bowlerImage.sprite = bowler.playerSprite;
         bowlerNameText.SetText(bowler.playerName);
         bowlerAbilityText.SetText(bowler.SpecialAbility);
-        bowlerBowlingPowerText.SetText(bowler.BowlingPower.ToString());
+        bowlingPowerText.SetText(bowler.BowlingPower.ToString());
     }
 
     public void LoadBatsman(PlayerData data, PlayerLineupView batsmanView)
@@ -85,6 +90,16 @@ public class BattleView : MonoBehaviour
         defenceText.SetText(data.Defense.ToString());
     }
 
+    public void UpdateCurrentBowler(PlayerDataDuringMatch data)
+    {
+        if (data == null) return;
+
+        bowlerImage.sprite = data.playerSprite;
+        bowlerNameText.SetText(data.playerName);
+        bowlerAbilityText.SetText(data.SpecialAbility);
+        bowlingPowerText.SetText(data.BattingPower.ToString());
+    }
+
     public void UpdateUIDuringBattle(PlayerLineupView batsmanView, PlayerDataDuringMatch runtimeData)
     {
         runtimeData.UpdatePlayerDataDuringMatch(runtimeData.Defense, runtimeData.BattingPower, runtimeData.BowlingPower);
@@ -104,48 +119,36 @@ public class BattleView : MonoBehaviour
 
     public void DefenceReducedTextEffect(string value)
     {
-
-        //float duration = 0.8f;
-        //float moveY = 50f;
-
-        //defenceText.text = "-"+value;
-
-        //RectTransform rect = defenceText.rectTransform;
-
-        //Vector2 startPos = rect.anchoredPosition;
-        //Vector2 endPos = startPos + new Vector2(0, moveY);
-
-        //Color startColor = defenceText.color;
-        //Color damageColor = new Color(1f, 0.1f, 0.1f);
-
-        //startColor.a = 1f;
-        //defenceText.color = damageColor;
-
-        //Sequence seq = DOTween.Sequence();
-
-        //seq.Join(rect.DOAnchorPos(endPos, duration).SetEase(Ease.OutQuad));
-        //defenceText.DOColor(new Color(defenceText.color.r, defenceText.color.g, defenceText.color.b, 0f), duration);
-
-        //seq.OnComplete(() =>
-        //{
-        //    rect.anchoredPosition = startPos;
-
-        //    Color c = defenceText.color;
-        //    c.a = 0f;
-        //    defenceText.color = c;
-        //});
-        PlayFloatingTextEffect(defenceTextEffects, value, false, new Color(1f, 0.1f, 0.1f));
+        PlayFloatingTextEffect(defenceTextEffects, value, false, textEffectReduceColor);
     }
 
+    public void BattingPowerReducedTextEffect(string value)
+    {
+        PlayFloatingTextEffect(battingPowerTextEffects, value, true, textEffectReduceColor);
+    }
+
+    public void BowlingPowerReducedTextEffect(string value)
+    {
+        PlayFloatingTextEffect(bowlingPowerTextEffects, value, false, textEffectReduceColor);
+    }
+
+   
     public void DefenseGainedTextEffect(string value)
     {
-        PlayFloatingTextEffect(defenceTextEffects, value, true, new Color(0.95f, 0.75f, 0.2f));
+        PlayFloatingTextEffect(defenceTextEffects, value, true, textEffectGainColor);
     }
 
     public void BattingPowerGainedTextEffect(string value)
     {
-        PlayFloatingTextEffect(battingPowerTextEffects, value, true, new Color(0.95f, 0.75f, 0.2f));
+        PlayFloatingTextEffect(battingPowerTextEffects, value, true, textEffectGainColor);
     }
+
+    public void BowlingPowerGainedTextEffect(string value)
+    {
+        PlayFloatingTextEffect(bowlingPowerTextEffects, value, true, textEffectGainColor);
+    }
+
+
 
     private void PlayFloatingTextEffect(TMPro.TMP_Text textComp, string value, bool isPositive, Color color)
     {

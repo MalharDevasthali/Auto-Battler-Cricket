@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   playerName: Warrior Vedant
   role: 0
-  BattingPower: 3
+  BattingPower: 2
   BowlingPower: 0
-  Defense: 6
-  SpecialAbility: +1<sprite=2>after scoring 4 runs<br>+1<sprite=0>after scoring 6
-    runs
+  Defense: 5
+  SpecialAbility: +1<sprite=2>  after scoring 4 runs<br>+1<sprite=0>after scoring
+    6 runs
   playerAbility: {fileID: 11400000, guid: edba1c8602bec3d469b35b273b3bd707, type: 2}
   rarity: 1
   playerSprite: {fileID: -7194362516901021868, guid: 5c2a11f33adff7e4dbd5a3c92e33817b, type: 3}

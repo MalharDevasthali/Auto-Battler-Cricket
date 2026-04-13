@@ -13,7 +13,6 @@ public class PlayerDataDuringMatch
     public PlayerAbility runTimeAbility;
     public int playerRunsDuringMatch;
 
-
     public void UpdatePlayerDataDuringMatch(int runtimeDefense, int runtimeBattingPower, int runtimeBowlingPower)
     {
         BattingPower = runtimeBattingPower;
