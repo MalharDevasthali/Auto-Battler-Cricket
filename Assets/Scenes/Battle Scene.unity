@@ -1400,7 +1400,7 @@ MonoBehaviour:
   scoreText: {fileID: 1434916496}
   ballText: {fileID: 1465667583}
   startMatchButton: {fileID: 1139552630}
-  playButton: {fileID: 0}
+  playButton: {fileID: 661903284}
   bowlerImage: {fileID: 9087518348741213927}
   bowlerNameText: {fileID: 3284430896548256128}
   bowlerAbilityText: {fileID: 7084899290903555726}

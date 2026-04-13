@@ -11,8 +11,7 @@ public class PlayerDataDuringMatch
     public string SpecialAbility;
     public PlayerRole role;
     public PlayerAbility runTimeAbility;
-
-   public int playerRunsDuringMatch;
+    public int playerRunsDuringMatch;
 
 
     public void UpdatePlayerDataDuringMatch(int runtimeDefense, int runtimeBattingPower, int runtimeBowlingPower)
@@ -22,7 +21,7 @@ public class PlayerDataDuringMatch
         Defense = runtimeDefense;   
     }
 
-    public void SetRunsScored(int runs)
+    public void SetIndivisualRunsScored(int runs)
     {
         playerRunsDuringMatch += runs;
     }
@@ -39,4 +38,5 @@ public class PlayerDataDuringMatch
         Defense = playerData.Defense;
         BowlingPower= playerData.BowlingPower;
     }
+
 }
