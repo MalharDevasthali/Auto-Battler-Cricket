@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edacec406b9978a48beec9e8ca367b6a, type: 3}
   m_Name: Gunde Batsman
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
+  playerID: 2
   playerName: Fat Ass Gunde
   role: 0
   BattingPower: 4

@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edacec406b9978a48beec9e8ca367b6a, type: 3}
   m_Name: Malhar Batsman
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
+  playerID: 3
   playerName: Mysterious Malhar
   role: 0
   BattingPower: 2
   BowlingPower: 0
   Defense: 3
   SpecialAbility: +1<sprite=2>to next upcoming batsman for every ball played
+  playerAbility: {fileID: 0}
   rarity: 1
   playerSprite: {fileID: -3118840768736571176, guid: a6fcddef4dc376f449527c09106e5fa8, type: 3}

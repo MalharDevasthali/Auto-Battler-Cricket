@@ -3,6 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerDataDuringMatch
 {
+    public int playerID;
     public string playerName;
     public Sprite playerSprite;
     public int BattingPower;
@@ -27,6 +28,7 @@ public class PlayerDataDuringMatch
 
     public PlayerDataDuringMatch(PlayerData playerData)
     {
+        playerID = playerData.playerID;
         playerName = playerData.playerName;
         playerSprite = playerData.playerSprite;
         SpecialAbility = playerData.SpecialAbility;

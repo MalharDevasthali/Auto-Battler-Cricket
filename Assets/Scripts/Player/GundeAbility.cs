@@ -14,19 +14,16 @@ public class GundeAbility : PlayerAbility
 
         this.battleView = battleView;
         this.playerLineupView = playerLineupView;
-
-
         Debug.Log("Gunde Ability Got Subscribed");
     }
-    public override void EventUnSubscribe()
-    {
-   
-        Debug.Log("Gunde Ability Got Unsubscribed");
-    }
+
     public override void ProcessAbility(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall, bool wicketFallen)
     {
         Debug.Log("Processing Gunde Ability - Runs: " + runsOnCurrentBall);
-        OnComesToBat(batsmanData, bowlerData);
+        if (batsmanData.playerName == "Fat Ass Gunde")
+        {
+            OnComesToBat(batsmanData, bowlerData);
+        }
     }
 
     private void OnComesToBat(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData)

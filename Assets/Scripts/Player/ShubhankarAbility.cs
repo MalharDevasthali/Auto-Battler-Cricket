@@ -19,11 +19,7 @@ public class ShubhankarAbility : PlayerAbility
     
         Debug.Log("Shubhankar Ability Got Subscribed");
     }
-    public override void EventUnSubscribe()
-    {
-    
-        Debug.Log("Shubhankar Ability Got Unsubscribed");
-    }
+ 
 
     public override void ProcessAbility(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall, bool wicketFallen)
     {

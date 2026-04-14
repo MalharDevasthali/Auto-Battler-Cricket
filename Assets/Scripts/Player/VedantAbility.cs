@@ -19,24 +19,18 @@ public class VedantAbility : PlayerAbility
      
         this.battleView = battleView;
         this.playerLineupView = playerLineupView;
-
         Debug.Log("Vedant Ability Got Subscribed");
     }
-    public override void EventUnSubscribe()
-    {
-
-        Debug.Log("Vedant Ability Got Unsubscribed");
-    }
-
+  
     public override void ProcessAbility(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall, bool wicketFallen)
     {
-        Debug.Log("Processing Vedant Ability - Runs: " + runsOnCurrentBall);
-        if (lastProcessRuns < 4 && runsOnCurrentBall >= 4)
+      
+        if (lastProcessRuns < 4 && batsmanData.playerRunsDuringMatch >= 4)
         {
             FourRunsOrMore(batsmanData,bowlerData,runsOnCurrentBall);
         }
 
-        if (lastProcessRuns < 6 && runsOnCurrentBall >= 6)
+        if (lastProcessRuns < 6 && batsmanData.playerRunsDuringMatch >= 6)
         {
             SixRunsOrMore(batsmanData, bowlerData, runsOnCurrentBall);
         }
@@ -45,7 +39,7 @@ public class VedantAbility : PlayerAbility
 
     private void  FourRunsOrMore(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall)
     {
-        Debug.Log("Vedant Defence Ability Got Triggered,Runs: " + runsOnCurrentBall);
+        Debug.Log("Vedant Defence Ability Got Triggered,Runs: " + batsmanData.playerRunsDuringMatch);
         batsmanData.Defense += defenceBoostAfterAbility;
         batsmanData.UpdatePlayerDataDuringMatch(batsmanData.Defense, batsmanData.BattingPower, batsmanData.BowlingPower);
         battleView.DefenseGainedTextEffect(defenceBoostAfterAbility.ToString());
@@ -57,7 +51,7 @@ public class VedantAbility : PlayerAbility
 
     private void SixRunsOrMore(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall)
     {
-        Debug.Log("Vedant Batting Power Ability Got Triggered,Runs: " + runsOnCurrentBall);
+        Debug.Log("Vedant Batting Power Ability Got Triggered,Runs: " + batsmanData.playerRunsDuringMatch);
         batsmanData.BattingPower += battingPowerBoostAfterAbility;
         batsmanData.UpdatePlayerDataDuringMatch(batsmanData.Defense, batsmanData.BattingPower, batsmanData.BowlingPower);
         battleView.BattingPowerGainedTextEffect(battingPowerBoostAfterAbility.ToString());

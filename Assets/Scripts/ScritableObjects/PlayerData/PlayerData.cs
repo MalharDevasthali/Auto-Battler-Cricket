@@ -12,6 +12,7 @@ public enum PlayerRole
 public class PlayerData : ScriptableObject
 {
     [Header("Basic Info")]
+    [HideInInspector]public int playerID;
     public string playerName;
     public PlayerRole role;
 

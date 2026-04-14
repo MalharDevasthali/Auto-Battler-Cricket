@@ -84,8 +84,6 @@ public class BattleController : MonoBehaviour
                 battleView.UpdateScore(totalRuns, wickets);
                 UpdateUIAfterWicket(batsmanView, currentBatsmanDataDuringMatch);
 
-                currentBatsmanDataDuringMatch.playerAbilityDuringMatch?.EventUnSubscribe();
-
                 await Task.Delay((int)(ballDelay * 1000));
 
                 if (currentBatsmanIndex < batsmen.Count && currentBall < 6)
@@ -152,8 +150,6 @@ public class BattleController : MonoBehaviour
 
         battleView.UpdateScore(totalRuns, wickets);
         UpdateUIAfterWicket(batsmanView, currentBatsmanDataDuringMatch);
-
-        currentBatsmanDataDuringMatch.playerAbilityDuringMatch?.EventUnSubscribe();
 
         await Task.Delay((int)(ballDelay * 1000));
 
