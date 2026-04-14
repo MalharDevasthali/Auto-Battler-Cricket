@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/Shubhankar Ability")]
 public class ShubhankarAbility : PlayerAbility
 {
-    private EventService eventService;
+    private AbilityQueueSystem eventService;
 
     private BattleView battleView;
     private PlayerLineupView playerLineupView;
@@ -12,25 +12,30 @@ public class ShubhankarAbility : PlayerAbility
 
     public override void Init(BattleView battleView, PlayerLineupView playerLineupView)
     {
-        eventService = ServiceLocator.Instance.EventService;
+     
         this.battleView = battleView;
         this.playerLineupView = playerLineupView;
 
-        eventService.OnWicketFallen += OnWicketFallen;
+    
         Debug.Log("Shubhankar Ability Got Subscribed");
     }
     public override void EventUnSubscribe()
     {
-        eventService.OnWicketFallen -= OnWicketFallen;
+    
         Debug.Log("Shubhankar Ability Got Unsubscribed");
     }
 
-    public override void ProcessAbility(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall)
+    public override void ProcessAbility(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall, bool wicketFallen)
     {
         Debug.Log("Processing Shubhankar Ability - Runs: " + runsOnCurrentBall);
+
+        if (wicketFallen == true)
+        {
+            OnWicketFallen(batsmanData, bowlerData);
+        }
     }
 
-    private void OnWicketFallen(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData,float abilityDelay)
+    private void OnWicketFallen(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData )
     {
         bowlerData.BowlingPower = bowlerData.BowlingPower + 1;
 

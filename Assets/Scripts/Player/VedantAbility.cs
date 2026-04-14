@@ -9,8 +9,6 @@ public class VedantAbility : PlayerAbility
     public int defenceBoostAfterAbility = 1;
     public int battingPowerBoostAfterAbility = 1;
 
-    private EventService eventService;
-
     private BattleView battleView;
     private PlayerLineupView playerLineupView;
 
@@ -18,50 +16,53 @@ public class VedantAbility : PlayerAbility
 
     public override void Init(BattleView battleView, PlayerLineupView playerLineupView)
     {
-        eventService = ServiceLocator.Instance.EventService;
+     
         this.battleView = battleView;
         this.playerLineupView = playerLineupView;
 
-        eventService.OnRunsScored += OnRunsScored;
         Debug.Log("Vedant Ability Got Subscribed");
     }
     public override void EventUnSubscribe()
     {
-        eventService.OnRunsScored -= OnRunsScored;
+
         Debug.Log("Vedant Ability Got Unsubscribed");
     }
 
-    public override void ProcessAbility(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall)
+    public override void ProcessAbility(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall, bool wicketFallen)
     {
         Debug.Log("Processing Vedant Ability - Runs: " + runsOnCurrentBall);
         if (lastProcessRuns < 4 && runsOnCurrentBall >= 4)
         {
-          
-            Debug.Log("Vedant Defence Ability Got Triggered,Runs: " + runsOnCurrentBall);
-            batsmanData.Defense += defenceBoostAfterAbility;
-            batsmanData.UpdatePlayerDataDuringMatch(batsmanData.Defense, batsmanData.BattingPower, batsmanData.BowlingPower);
-            battleView.DefenseGainedTextEffect(defenceBoostAfterAbility.ToString());
-
-            playerLineupView.UpdateDefense(batsmanData.Defense);
-            battleView.UpdateUIDuringBattle(playerLineupView, batsmanData, bowlerData);
+            FourRunsOrMore(batsmanData,bowlerData,runsOnCurrentBall);
         }
 
         if (lastProcessRuns < 6 && runsOnCurrentBall >= 6)
         {
-            Debug.Log("Vedant Batting Power Ability Got Triggered,Runs: " + runsOnCurrentBall);
-            batsmanData.BattingPower += battingPowerBoostAfterAbility;
-            batsmanData.UpdatePlayerDataDuringMatch(batsmanData.Defense, batsmanData.BattingPower, batsmanData.BowlingPower);
-            battleView.BattingPowerGainedTextEffect(battingPowerBoostAfterAbility.ToString());
-
-            playerLineupView.UpdateBattingPower(batsmanData.BattingPower);
-            battleView.UpdateUIDuringBattle(playerLineupView, batsmanData, bowlerData);
+            SixRunsOrMore(batsmanData, bowlerData, runsOnCurrentBall);
         }
         lastProcessRuns = runsOnCurrentBall;
     }
 
-    private async void OnRunsScored(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runs,float abilityDelay)
+    private void  FourRunsOrMore(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall)
     {
-       
-        await Task.Delay(0);
+        Debug.Log("Vedant Defence Ability Got Triggered,Runs: " + runsOnCurrentBall);
+        batsmanData.Defense += defenceBoostAfterAbility;
+        batsmanData.UpdatePlayerDataDuringMatch(batsmanData.Defense, batsmanData.BattingPower, batsmanData.BowlingPower);
+        battleView.DefenseGainedTextEffect(defenceBoostAfterAbility.ToString());
+
+        playerLineupView.UpdateDefense(batsmanData.Defense);
+        battleView.UpdateUIDuringBattle(playerLineupView, batsmanData, bowlerData);
+
+    }
+
+    private void SixRunsOrMore(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall)
+    {
+        Debug.Log("Vedant Batting Power Ability Got Triggered,Runs: " + runsOnCurrentBall);
+        batsmanData.BattingPower += battingPowerBoostAfterAbility;
+        batsmanData.UpdatePlayerDataDuringMatch(batsmanData.Defense, batsmanData.BattingPower, batsmanData.BowlingPower);
+        battleView.BattingPowerGainedTextEffect(battingPowerBoostAfterAbility.ToString());
+
+        playerLineupView.UpdateBattingPower(batsmanData.BattingPower);
+        battleView.UpdateUIDuringBattle(playerLineupView, batsmanData, bowlerData);
     }
 }
