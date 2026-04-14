@@ -15,7 +15,7 @@ MonoBehaviour:
   playerID: 1
   playerName: Warrior Vedant
   role: 0
-  BattingPower: 2
+  BattingPower: 3
   BowlingPower: 0
   Defense: 5
   SpecialAbility: +1<sprite=2>  after scoring 4 runs<br>+1<sprite=0>after scoring

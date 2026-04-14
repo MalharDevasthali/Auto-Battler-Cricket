@@ -83,7 +83,7 @@ public class BattleView : MonoBehaviour
         batsmanDataDuringMatch.UpdatePlayerDataDuringMatch(batsmanDataDuringMatch.Defense, batsmanDataDuringMatch.BattingPower, batsmanDataDuringMatch.BowlingPower);
         updateCurrentBatsman(batsmanDataDuringMatch);
         updateCurrentBowler(bowlerDataDuringMatch);
-        batsmanView.UpdateDefense(batsmanDataDuringMatch.Defense);
+        batsmanView.UpdatePlayerView(batsmanDataDuringMatch.Defense,batsmanDataDuringMatch.BattingPower);
         batsmanView.SetCurrentPlayerIndicator(true);
     }
 
@@ -126,7 +126,7 @@ public class BattleView : MonoBehaviour
 
     public void BattingPowerReducedTextEffect(string value)
     {
-        PlayFloatingTextEffect(battingPowerTextEffects, value, true, textEffectReduceColor);
+        PlayFloatingTextEffect(battingPowerTextEffects, value, false, textEffectReduceColor);
     }
 
     public void BowlingPowerReducedTextEffect(string value)

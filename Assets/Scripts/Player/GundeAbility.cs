@@ -7,32 +7,48 @@ public class GundeAbility : PlayerAbility
  
     private BattleView battleView;
     private PlayerLineupView playerLineupView;
+    private AbilityQueueSystem abilityQueueSystem;
 
 
-    public override void Init(BattleView battleView, PlayerLineupView playerLineupView)
+    public override void Init(BattleView battleView, PlayerLineupView playerLineupView, AbilityQueueSystem abilityQueueSystem)
     {
 
         this.battleView = battleView;
         this.playerLineupView = playerLineupView;
-        Debug.Log("Gunde Ability Got Subscribed");
+        this.abilityQueueSystem = abilityQueueSystem;
     }
 
-    public override void ProcessAbility(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall, bool wicketFallen)
+    public override async Task ProcessAbility(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall, bool wicketFallen)
     {
-        Debug.Log("Processing Gunde Ability - Runs: " + runsOnCurrentBall);
-        if (batsmanData.playerName == "Fat Ass Gunde")
+    
+
+        if(batsmanData.playerName == "Fat Ass Gunde")
         {
-           // OnComesToBat(batsmanData, bowlerData);
+            Debug.Log(" Gunde Ability Triggered");
+            await QueueAbilityAsync(() => OnComesToBat(batsmanData, bowlerData));
         }
+ 
     }
 
-    private void OnComesToBat(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData)
+    private Task QueueAbilityAsync(System.Func<Task> abilityAction)
+    {
+        if (abilityQueueSystem == null)
+        {
+            throw new System.InvalidOperationException("AbilityQueueSystem is not assigned.");
+        }
+
+        return abilityQueueSystem.EnqueueAbility(abilityAction);
+    }
+
+
+    private Task OnComesToBat(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData)
     {
         bowlerData.BowlingPower = bowlerData.BowlingPower - 1;
 
         bowlerData.UpdatePlayerDataDuringMatch(bowlerData.Defense, bowlerData.BattingPower, bowlerData.BowlingPower);
         battleView.BowlingPowerReducedTextEffect(1.ToString());
         battleView.UpdateUIDuringBattle(playerLineupView, batsmanData, bowlerData);
+        return Task.CompletedTask;
     }
 
 }

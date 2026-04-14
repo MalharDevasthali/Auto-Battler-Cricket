@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using UnityEngine;
-using static Unity.Collections.Unicode;
 
 [CreateAssetMenu(menuName = "Abilities/Vedant Ability")]
 public class VedantAbility : PlayerAbility
@@ -11,54 +10,64 @@ public class VedantAbility : PlayerAbility
 
     private BattleView battleView;
     private PlayerLineupView playerLineupView;
+    private AbilityQueueSystem abilityQueueSystem;
 
     private int lastProcessRuns = 0;
 
-    public override void Init(BattleView battleView, PlayerLineupView playerLineupView)
+    public override void Init(BattleView battleView, PlayerLineupView playerLineupView, AbilityQueueSystem abilityQueueSystem)
     {
-     
         this.battleView = battleView;
         this.playerLineupView = playerLineupView;
+        this.abilityQueueSystem = abilityQueueSystem;
         Debug.Log("Vedant Ability Got Subscribed");
     }
   
-    public override void ProcessAbility(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall, bool wicketFallen)
+    public override async Task ProcessAbility(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall, bool wicketFallen)
     {
-      
         if (lastProcessRuns < 4 && batsmanData.playerRunsDuringMatch >= 4)
         {
-            FourRunsOrMore(batsmanData,bowlerData,runsOnCurrentBall);
+            await QueueAbilityAsync(() => FourRunsOrMore(batsmanData, bowlerData));
         }
 
         if (lastProcessRuns < 6 && batsmanData.playerRunsDuringMatch >= 6)
         {
-            SixRunsOrMore(batsmanData, bowlerData, runsOnCurrentBall);
+            await QueueAbilityAsync(() => SixRunsOrMore(batsmanData, bowlerData));
         }
+
         lastProcessRuns = batsmanData.playerRunsDuringMatch;
     }
 
-    private async void  FourRunsOrMore(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall)
+    private Task QueueAbilityAsync(System.Func<Task> abilityAction)
     {
-        await Task.Delay(2000);
+        if (abilityQueueSystem == null)
+        {
+            throw new System.InvalidOperationException("AbilityQueueSystem is not assigned.");
+        }
+
+        return abilityQueueSystem.EnqueueAbility(abilityAction);
+    }
+
+    private Task FourRunsOrMore(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData)
+    {
         Debug.Log("Vedant Defence Ability Got Triggered,Runs: " + batsmanData.playerRunsDuringMatch);
         batsmanData.Defense += defenceBoostAfterAbility;
         batsmanData.UpdatePlayerDataDuringMatch(batsmanData.Defense, batsmanData.BattingPower, batsmanData.BowlingPower);
         battleView.DefenseGainedTextEffect(defenceBoostAfterAbility.ToString());
 
-        playerLineupView.UpdateDefense(batsmanData.Defense);
+        playerLineupView.UpdatePlayerView(batsmanData.Defense,batsmanData.BattingPower);
         battleView.UpdateUIDuringBattle(playerLineupView, batsmanData, bowlerData);
-
+        return Task.CompletedTask;
     }
 
-    private async void SixRunsOrMore(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall)
+    private Task SixRunsOrMore(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData)
     {
-        await Task.Delay(2000);
         Debug.Log("Vedant Batting Power Ability Got Triggered,Runs: " + batsmanData.playerRunsDuringMatch);
         batsmanData.BattingPower += battingPowerBoostAfterAbility;
         batsmanData.UpdatePlayerDataDuringMatch(batsmanData.Defense, batsmanData.BattingPower, batsmanData.BowlingPower);
         battleView.BattingPowerGainedTextEffect(battingPowerBoostAfterAbility.ToString());
 
-        playerLineupView.UpdateBattingPower(batsmanData.BattingPower);
+        playerLineupView.UpdatePlayerView(batsmanData.Defense,batsmanData.BattingPower);
         battleView.UpdateUIDuringBattle(playerLineupView, batsmanData, bowlerData);
+        return Task.CompletedTask;
     }
 }

@@ -9,7 +9,7 @@ public class PlayerLineupView : MonoBehaviour, IPointerEnterHandler, IPointerExi
 {
 
     [Header("UI Elements")]
-    
+
     [SerializeField] private Image playerImage;
     [SerializeField] private TextMeshProUGUI playerNameText;
     [SerializeField] private TextMeshProUGUI battingPowerText;
@@ -64,15 +64,13 @@ public class PlayerLineupView : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public PlayerData GetData() { return data; }
 
-    
-    public void UpdateDefense(int newDefense)
+
+    public void UpdatePlayerView(int newDefense , int newBattingPower)
     {
         if (defenceText != null)
             defenceText.text = newDefense.ToString();
-    }
-    public void UpdateBattingPower(int newBattingPower)
-    {
-        if(battingPowerText != null)
+        
+        if (battingPowerText != null)
             battingPowerText.text = newBattingPower.ToString();
     }
 

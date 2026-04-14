@@ -4917,6 +4917,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539542955}
   m_CullTransparentMesh: 1
+--- !u!1 &1569792129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1569792130}
+  - component: {fileID: 1569792131}
+  m_Layer: 0
+  m_Name: AbilityQueueSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1569792130
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569792129}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1569792131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569792129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d58892852fe11144ac7d9a85ace2693, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityQueueSystem
+  delayBetweenAbilities: 2
 --- !u!1 &1577361306
 GameObject:
   m_ObjectHideFlags: 0
@@ -5192,6 +5237,7 @@ MonoBehaviour:
   bowlerData: {fileID: 11400000, guid: 1c8dae28285fda24dbc6cddff149fdc4, type: 2}
   lineupHolder: {fileID: 537023752}
   battleView: {fileID: 584193035}
+  abilityQueueSystem: {fileID: 1569792131}
   hitSound: {fileID: 8300000, guid: 0f6de4328baded04f8b7df9ce6076c29, type: 3}
   wicketSound: {fileID: 8300000, guid: 3f2109ac363eb44448dcc772f7e98066, type: 3}
   ballBowledSound: {fileID: 8300000, guid: 374611356f8aa37499560b1b3c1cd921, type: 3}
@@ -9006,3 +9052,4 @@ SceneRoots:
   - {fileID: 1351460698}
   - {fileID: 1625139854}
   - {fileID: 584193036}
+  - {fileID: 1569792130}
