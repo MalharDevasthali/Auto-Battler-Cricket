@@ -16,16 +16,21 @@ public class ShubhankarAbility : PlayerAbility
         this.battleView = battleView;
         this.playerLineupView = playerLineupView;
 
-        eventService.OnComesToBat += OnWicketFallen;
+        eventService.OnWicketFallen += OnWicketFallen;
         Debug.Log("Shubhankar Ability Got Subscribed");
     }
     public override void EventUnSubscribe()
     {
-        eventService.OnComesToBat -= OnWicketFallen;
+        eventService.OnWicketFallen -= OnWicketFallen;
         Debug.Log("Shubhankar Ability Got Unsubscribed");
     }
 
-    private void OnWicketFallen(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData)
+    public override void ProcessAbility(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall)
+    {
+        Debug.Log("Processing Shubhankar Ability - Runs: " + runsOnCurrentBall);
+    }
+
+    private void OnWicketFallen(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData,float abilityDelay)
     {
         bowlerData.BowlingPower = bowlerData.BowlingPower + 1;
 

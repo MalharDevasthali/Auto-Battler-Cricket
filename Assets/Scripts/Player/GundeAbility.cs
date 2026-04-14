@@ -24,8 +24,11 @@ public class GundeAbility : PlayerAbility
         eventService.OnComesToBat -= OnComesToBat;
         Debug.Log("Gunde Ability Got Unsubscribed");
     }
-
-    private void OnComesToBat(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData)
+    public override void ProcessAbility(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall)
+    {
+        Debug.Log("Processing Gunde Ability - Runs: " + runsOnCurrentBall);
+    }
+    private void OnComesToBat(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, float abilityDelay)
     {
         bowlerData.BowlingPower = bowlerData.BowlingPower - 1;
 

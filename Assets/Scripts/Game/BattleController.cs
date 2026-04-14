@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using static Unity.Collections.Unicode;
 
 
 public class BattleController : MonoBehaviour
@@ -21,17 +22,20 @@ public class BattleController : MonoBehaviour
     [SerializeField] private float ballDelay = 1.0f; // seconds between balls
 
     private List<PlayerLineupView> batsmen = new List<PlayerLineupView>();
+
     private int totalRuns = 0;
     private int wickets = 0;
 
 
     private int currentBatsmanIndex = 0;
     private int currentBall = 1;
+    private int runsOnCurrentBall = 0;
 
     private PlayerLineupView batsmanView;
     private PlayerData batsmanData;
-    private PlayerDataDuringMatch batsmanDataDuringMatch;
-    private PlayerDataDuringMatch bowlerDataDuringMatch;
+    private PlayerDataDuringMatch currentBatsmanDataDuringMatch;
+    private List<PlayerDataDuringMatch> allBatsmanDataDuringMatch = new List<PlayerDataDuringMatch>(6);
+    private PlayerDataDuringMatch currentBowlerDataDuringMatch;
 
     private void Start()
     {
@@ -57,18 +61,18 @@ public class BattleController : MonoBehaviour
             if (currentBatsmanIndex >= batsmen.Count) break;
             if (this == null) break;
 
-            battleView.UpdateUIDuringBattle(batsmanView, batsmanDataDuringMatch,bowlerDataDuringMatch);
+            battleView.UpdateUIDuringBattle(batsmanView, currentBatsmanDataDuringMatch,currentBowlerDataDuringMatch);
             await Task.Delay((int)(ballDelay * 1000));
 
 
             ServiceLocator.Instance.SoundService.PlaySound(ballBowledSound);
             await Task.Delay(1000);
 
-            PlayBall(ball, batsmanView, batsmanDataDuringMatch);
+            PlayBall(ball, batsmanView, currentBatsmanDataDuringMatch);
            
-            battleView.UpdateUIDuringBattle(batsmanView, batsmanDataDuringMatch,bowlerDataDuringMatch);
+            battleView.UpdateUIDuringBattle(batsmanView, currentBatsmanDataDuringMatch,currentBowlerDataDuringMatch);
 
-            if (batsmanDataDuringMatch.Defense <= 0)
+            if (currentBatsmanDataDuringMatch.Defense <= 0)
             {
                 await playWicketSound();
 
@@ -77,9 +81,9 @@ public class BattleController : MonoBehaviour
 
              
                 battleView.UpdateScore(totalRuns, wickets);
-                UpdateUIAfterWicket(batsmanView, batsmanDataDuringMatch);
+                UpdateUIAfterWicket(batsmanView, currentBatsmanDataDuringMatch);
 
-                batsmanDataDuringMatch.runTimeAbility?.EventUnSubscribe();
+                currentBatsmanDataDuringMatch.playerAbilityDuringMatch?.EventUnSubscribe();
 
                 await Task.Delay((int)(ballDelay * 1000));
 
@@ -87,14 +91,14 @@ public class BattleController : MonoBehaviour
                 {
                     batsmanView.SetCurrentPlayerIndicator(false);
 
-                    BringNewPlayer(currentBatsmanIndex, out batsmanView, out batsmanData, out batsmanDataDuringMatch);
-                    battleView.UpdateUIDuringBattle(batsmanView, batsmanDataDuringMatch, bowlerDataDuringMatch);
+                    BringNewPlayer(currentBatsmanIndex, out batsmanView, out batsmanData, out currentBatsmanDataDuringMatch);
+                    battleView.UpdateUIDuringBattle(batsmanView, currentBatsmanDataDuringMatch, currentBowlerDataDuringMatch);
                 }
             }
             else
             {
                 await playBallHitSound();
-                battleView.UpdateUIDuringBattle(batsmanView, batsmanDataDuringMatch, bowlerDataDuringMatch);
+                battleView.UpdateUIDuringBattle(batsmanView, currentBatsmanDataDuringMatch, currentBowlerDataDuringMatch);
             }
         }
 
@@ -112,30 +116,29 @@ public class BattleController : MonoBehaviour
         if (currentBatsmanIndex >= batsmen.Count) return;
 
         SetPlayersData();
-        battleView.UpdateUIDuringBattle(batsmanView, batsmanDataDuringMatch, bowlerDataDuringMatch );
+        battleView.UpdateUIDuringBattle(batsmanView, currentBatsmanDataDuringMatch, currentBowlerDataDuringMatch );
         await Task.Delay((int)(ballDelay * 1000));
         ServiceLocator.Instance.SoundService.PlaySound(ballBowledSound);
         await Task.Delay((int)(ballDelay * 1000));
 
-        PlayBall(currentBall, batsmanView, batsmanDataDuringMatch);
+        PlayBall(currentBall, batsmanView, currentBatsmanDataDuringMatch);
 
-        if (batsmanDataDuringMatch.Defense <= 0)
+        if (currentBatsmanDataDuringMatch.Defense <= 0)
         {
             await handleWicketFall();
         }
         else
         {
             await playBallHitSound();
-            battleView.UpdateUIDuringBattle(batsmanView, batsmanDataDuringMatch, bowlerDataDuringMatch);
+            battleView.UpdateUIDuringBattle(batsmanView, currentBatsmanDataDuringMatch, currentBowlerDataDuringMatch);
         }
-
+        processPlayerAbilities(currentBatsmanDataDuringMatch,currentBowlerDataDuringMatch,totalRuns,wickets,runsOnCurrentBall);
+        
         currentBall++;
-
         if (currentBall > 6 || currentBatsmanIndex >= batsmen.Count)
         {
             Debug.Log($"Match is finished. Total Runs: {totalRuns}, Wickets: {wickets}");
         }
-
         battleView.SetPlayInteractable(true);
     }
 
@@ -146,11 +149,10 @@ public class BattleController : MonoBehaviour
         wickets++;
         currentBatsmanIndex++;
 
-
         battleView.UpdateScore(totalRuns, wickets);
-        UpdateUIAfterWicket(batsmanView, batsmanDataDuringMatch);
+        UpdateUIAfterWicket(batsmanView, currentBatsmanDataDuringMatch);
 
-        batsmanDataDuringMatch.runTimeAbility?.EventUnSubscribe();
+        currentBatsmanDataDuringMatch.playerAbilityDuringMatch?.EventUnSubscribe();
 
         await Task.Delay((int)(ballDelay * 1000));
 
@@ -158,14 +160,15 @@ public class BattleController : MonoBehaviour
         {
             batsmanView.SetCurrentPlayerIndicator(false);
 
-            BringNewPlayer(currentBatsmanIndex, out batsmanView, out batsmanData, out batsmanDataDuringMatch);
-            battleView.UpdateUIDuringBattle(batsmanView, batsmanDataDuringMatch, bowlerDataDuringMatch);
+            BringNewPlayer(currentBatsmanIndex, out batsmanView, out batsmanData, out currentBatsmanDataDuringMatch);
+            battleView.UpdateUIDuringBattle(batsmanView, currentBatsmanDataDuringMatch, currentBowlerDataDuringMatch);
         }
+  
     }
 
     private void SetPlayersData()
     {
-        if (currentBall == 1 && batsmanDataDuringMatch == null)
+        if (currentBall == 1 && currentBatsmanDataDuringMatch == null)
         {
             ResetMatch();
 
@@ -173,11 +176,17 @@ public class BattleController : MonoBehaviour
 
             batsmanView = batsmen[currentBatsmanIndex];
             batsmanData = batsmanView.GetData();
-            batsmanDataDuringMatch = new PlayerDataDuringMatch(batsmanData);
-            batsmanDataDuringMatch.runTimeAbility?.Init(battleView, batsmanView);
 
-            bowlerDataDuringMatch = new PlayerDataDuringMatch(bowlerData);
-            bowlerDataDuringMatch.runTimeAbility?.Init(battleView,null);
+            for (int i = 0; i < batsmen.Count; i++)
+            {
+                allBatsmanDataDuringMatch.Add(new PlayerDataDuringMatch(batsmen[i].GetData()));
+            }
+           
+            currentBatsmanDataDuringMatch = allBatsmanDataDuringMatch[currentBatsmanIndex];
+            currentBatsmanDataDuringMatch.playerAbilityDuringMatch?.Init(battleView, batsmanView);
+
+            currentBowlerDataDuringMatch = new PlayerDataDuringMatch(bowlerData);
+            currentBowlerDataDuringMatch.playerAbilityDuringMatch?.Init(battleView,null);
         }
     }
 
@@ -195,12 +204,12 @@ public class BattleController : MonoBehaviour
         ServiceLocator.Instance.SoundService.PlaySound(crowdCheeringSound);
     }
 
-    private void BringNewPlayer(int currentBatsmanIndex, out PlayerLineupView batsmanView, out PlayerData batsmanData, out PlayerDataDuringMatch runtimeData)
+    private void BringNewPlayer(int currentBatsmanIndex, out PlayerLineupView batsmanView, out PlayerData batsmanData, out PlayerDataDuringMatch currentBatsmanDataDuringMatch)
     {
         batsmanView = batsmen[currentBatsmanIndex];
         batsmanData = batsmanView.GetData();
-        runtimeData = new PlayerDataDuringMatch(batsmanData);
-        runtimeData.runTimeAbility?.Init(battleView,batsmanView);
+        currentBatsmanDataDuringMatch = allBatsmanDataDuringMatch[currentBatsmanIndex];
+        currentBatsmanDataDuringMatch.playerAbilityDuringMatch?.Init(battleView,batsmanView);
         batsmanView.SetCurrentPlayerIndicator(true);
     }
 
@@ -215,30 +224,30 @@ public class BattleController : MonoBehaviour
         battleView.LoadBatsman(batsmen[0].GetData(),batsmen[0]);
     
     }
-    private  void PlayBall(int ball,PlayerLineupView view, PlayerDataDuringMatch data)
+    private  void PlayBall(int ball,PlayerLineupView batsmanView, PlayerDataDuringMatch batsmanDataDuringMatch)
     {
         battleView.UpdateBallText(ball);
-        Debug.Log($"{data.playerName} faces the bowler.");
-        data.Defense = reduceDefence(data.Defense);
+        Debug.Log($"{batsmanDataDuringMatch.playerName} faces the bowler.");
+        batsmanDataDuringMatch.Defense = reduceDefence(batsmanDataDuringMatch.Defense);
        
-        battleView.DefenceReducedTextEffect(bowlerDataDuringMatch.BowlingPower.ToString());
-        view.UpdateDefense(data.Defense);
+        battleView.DefenceReducedTextEffect(currentBowlerDataDuringMatch.BowlingPower.ToString());
+        batsmanView.UpdateDefense(batsmanDataDuringMatch.Defense);
 
-        int runsOnThisBall = data.BattingPower;
-        if (data.Defense > 0)
+        runsOnCurrentBall = 0;
+        if (batsmanDataDuringMatch.Defense > 0)
         {
-            totalRuns += runsOnThisBall;
-            data.SetIndivisualRunsScored(runsOnThisBall);
-          
-            view.UpdateIndivisualRuns(data.playerRunsDuringMatch);
+            runsOnCurrentBall = batsmanDataDuringMatch.BattingPower;
+            totalRuns += runsOnCurrentBall;
+            batsmanDataDuringMatch.AddRunsToIndivisual(runsOnCurrentBall);
+            batsmanView.UpdateIndivisualRuns(batsmanDataDuringMatch.playerRunsDuringMatch);
         }
-        Debug.Log($"{data.playerName} scores {runsOnThisBall} runs.");
+        Debug.Log($"{batsmanDataDuringMatch.playerName} scores {runsOnCurrentBall} runs.");
         battleView.UpdateScore(totalRuns, wickets);
     }
 
     private int reduceDefence(int defense)
     {
-        return Mathf.Max(0, defense - bowlerDataDuringMatch.BowlingPower);
+        return Mathf.Max(0, defense - currentBowlerDataDuringMatch.BowlingPower);
     }
 
     private void UpdateUIAfterWicket(PlayerLineupView view, PlayerDataDuringMatch batsmanWhoGotOut)
@@ -247,15 +256,15 @@ public class BattleController : MonoBehaviour
         battleView.HandleBatsmanOut(view);
     }
 
-    private void OnRunsScored(PlayerDataDuringMatch batsmanData,PlayerDataDuringMatch bowlerData, int runs)
+    private void processPlayerAbilities(PlayerDataDuringMatch batsmanDataDuringMatch , PlayerDataDuringMatch bowlerDataDuringMatch,int totalrun , int totalWickets, int runsOnCurrentBall)
     {
-        float runsScoredDelay = 2f;
-        eventService.RaiseRunsScored(batsmanData,bowlerData, runs, runsScoredDelay);
-    }
 
-    private void OnWicketFallen(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData)
-    {
-        eventService.RaiseWicketFallen(batsmanData,bowlerData);
+        for (int i = currentBatsmanIndex; i < allBatsmanDataDuringMatch.Count; i++)
+        {
+            allBatsmanDataDuringMatch[i].playerAbilityDuringMatch?.ProcessAbility(batsmanDataDuringMatch, bowlerDataDuringMatch, runsOnCurrentBall);
+        }
+
+        bowlerDataDuringMatch.playerAbilityDuringMatch?.ProcessAbility(batsmanDataDuringMatch, bowlerDataDuringMatch, runsOnCurrentBall);
     }
 }
 

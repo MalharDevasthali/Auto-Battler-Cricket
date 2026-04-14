@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using UnityEngine;
+using static Unity.Collections.Unicode;
 
 [CreateAssetMenu(menuName = "Abilities/Vedant Ability")]
 public class VedantAbility : PlayerAbility
@@ -30,33 +31,37 @@ public class VedantAbility : PlayerAbility
         Debug.Log("Vedant Ability Got Unsubscribed");
     }
 
-    private async void OnRunsScored(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runs)
+    public override void ProcessAbility(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall)
     {
-        Debug.Log("Vedant Runs: " + runs);
-        if (lastProcessRuns < 4 && runs >= 4)
+        Debug.Log("Processing Vedant Ability - Runs: " + runsOnCurrentBall);
+        if (lastProcessRuns < 4 && runsOnCurrentBall >= 4)
         {
-            await Task.Delay(2000);
-            Debug.Log("Vedant Defence Ability Got Triggered,Runs: "+runs);
+          
+            Debug.Log("Vedant Defence Ability Got Triggered,Runs: " + runsOnCurrentBall);
             batsmanData.Defense += defenceBoostAfterAbility;
             batsmanData.UpdatePlayerDataDuringMatch(batsmanData.Defense, batsmanData.BattingPower, batsmanData.BowlingPower);
             battleView.DefenseGainedTextEffect(defenceBoostAfterAbility.ToString());
 
             playerLineupView.UpdateDefense(batsmanData.Defense);
-            battleView.UpdateUIDuringBattle(playerLineupView, batsmanData,bowlerData);
+            battleView.UpdateUIDuringBattle(playerLineupView, batsmanData, bowlerData);
         }
 
-        if (lastProcessRuns < 6 && runs >= 6)
+        if (lastProcessRuns < 6 && runsOnCurrentBall >= 6)
         {
-            await Task.Delay(2000);
-            Debug.Log("Vedant Batting Power Ability Got Triggered,Runs: " + runs);
+            Debug.Log("Vedant Batting Power Ability Got Triggered,Runs: " + runsOnCurrentBall);
             batsmanData.BattingPower += battingPowerBoostAfterAbility;
             batsmanData.UpdatePlayerDataDuringMatch(batsmanData.Defense, batsmanData.BattingPower, batsmanData.BowlingPower);
             battleView.BattingPowerGainedTextEffect(battingPowerBoostAfterAbility.ToString());
 
             playerLineupView.UpdateBattingPower(batsmanData.BattingPower);
-            battleView.UpdateUIDuringBattle(playerLineupView, batsmanData,bowlerData);
+            battleView.UpdateUIDuringBattle(playerLineupView, batsmanData, bowlerData);
         }
-        lastProcessRuns = runs;
+        lastProcessRuns = runsOnCurrentBall;
+    }
+
+    private async void OnRunsScored(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runs,float abilityDelay)
+    {
+       
         await Task.Delay(0);
     }
 }
