@@ -17,20 +17,20 @@ public class GundeAbility : PlayerAbility
         this.playerLineupView = playerLineupView;
 
         eventService.OnComesToBat += OnComesToBat;
-        Debug.Log("Vedant Ability Got Subscribed");
+        Debug.Log("Gunde Ability Got Subscribed");
     }
     public override void EventUnSubscribe()
     {
         eventService.OnComesToBat -= OnComesToBat;
-        Debug.Log("Vedant Ability Got Unsubscribed");
+        Debug.Log("Gunde Ability Got Unsubscribed");
     }
 
-    private void OnComesToBat(PlayerDataDuringMatch bowlerData)
+    private void OnComesToBat(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData)
     {
         bowlerData.BowlingPower = bowlerData.BowlingPower - 1;
 
         bowlerData.UpdatePlayerDataDuringMatch(bowlerData.Defense, bowlerData.BattingPower, bowlerData.BowlingPower);
         battleView.BowlingPowerReducedTextEffect(1.ToString());
-        battleView.UpdateCurrentBowler(bowlerData);
+        battleView.UpdateUIDuringBattle(playerLineupView, batsmanData, bowlerData);
     }
 }

@@ -78,8 +78,16 @@ public class BattleView : MonoBehaviour
         battingPowerText.SetText(data.BattingPower.ToString());
         defenceText.SetText(data.Defense.ToString());
     }
+    public void UpdateUIDuringBattle(PlayerLineupView batsmanView, PlayerDataDuringMatch batsmanDataDuringMatch , PlayerDataDuringMatch bowlerDataDuringMatch)
+    {
+        batsmanDataDuringMatch.UpdatePlayerDataDuringMatch(batsmanDataDuringMatch.Defense, batsmanDataDuringMatch.BattingPower, batsmanDataDuringMatch.BowlingPower);
+        updateCurrentBatsman(batsmanDataDuringMatch);
+        updateCurrentBowler(bowlerDataDuringMatch);
+        batsmanView.UpdateDefense(batsmanDataDuringMatch.Defense);
+        batsmanView.SetCurrentPlayerIndicator(true);
+    }
 
-    public void UpdateCurrentBatsman(PlayerDataDuringMatch data)
+    private void updateCurrentBatsman(PlayerDataDuringMatch data)
     {
         if (data == null) return;
 
@@ -90,23 +98,17 @@ public class BattleView : MonoBehaviour
         defenceText.SetText(data.Defense.ToString());
     }
 
-    public void UpdateCurrentBowler(PlayerDataDuringMatch data)
+    private void updateCurrentBowler(PlayerDataDuringMatch data)
     {
         if (data == null) return;
 
         bowlerImage.sprite = data.playerSprite;
         bowlerNameText.SetText(data.playerName);
         bowlerAbilityText.SetText(data.SpecialAbility);
-        bowlingPowerText.SetText(data.BattingPower.ToString());
+        bowlingPowerText.SetText(data.BowlingPower.ToString());
     }
 
-    public void UpdateUIDuringBattle(PlayerLineupView batsmanView, PlayerDataDuringMatch runtimeData)
-    {
-        runtimeData.UpdatePlayerDataDuringMatch(runtimeData.Defense, runtimeData.BattingPower, runtimeData.BowlingPower);
-        UpdateCurrentBatsman(runtimeData);
-        batsmanView.UpdateDefense(runtimeData.Defense);
-        batsmanView.SetCurrentPlayerIndicator(true);
-    }
+ 
 
     public void HandleBatsmanOut(PlayerLineupView view)
     {
@@ -147,8 +149,6 @@ public class BattleView : MonoBehaviour
     {
         PlayFloatingTextEffect(bowlingPowerTextEffects, value, true, textEffectGainColor);
     }
-
-
 
     private void PlayFloatingTextEffect(TMPro.TMP_Text textComp, string value, bool isPositive, Color color)
     {
