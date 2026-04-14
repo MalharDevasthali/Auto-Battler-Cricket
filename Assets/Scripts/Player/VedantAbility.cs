@@ -34,11 +34,12 @@ public class VedantAbility : PlayerAbility
         {
             SixRunsOrMore(batsmanData, bowlerData, runsOnCurrentBall);
         }
-        lastProcessRuns = runsOnCurrentBall;
+        lastProcessRuns = batsmanData.playerRunsDuringMatch;
     }
 
-    private void  FourRunsOrMore(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall)
+    private async void  FourRunsOrMore(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall)
     {
+        await Task.Delay(2000);
         Debug.Log("Vedant Defence Ability Got Triggered,Runs: " + batsmanData.playerRunsDuringMatch);
         batsmanData.Defense += defenceBoostAfterAbility;
         batsmanData.UpdatePlayerDataDuringMatch(batsmanData.Defense, batsmanData.BattingPower, batsmanData.BowlingPower);
@@ -49,8 +50,9 @@ public class VedantAbility : PlayerAbility
 
     }
 
-    private void SixRunsOrMore(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall)
+    private async void SixRunsOrMore(PlayerDataDuringMatch batsmanData, PlayerDataDuringMatch bowlerData, int runsOnCurrentBall)
     {
+        await Task.Delay(2000);
         Debug.Log("Vedant Batting Power Ability Got Triggered,Runs: " + batsmanData.playerRunsDuringMatch);
         batsmanData.BattingPower += battingPowerBoostAfterAbility;
         batsmanData.UpdatePlayerDataDuringMatch(batsmanData.Defense, batsmanData.BattingPower, batsmanData.BowlingPower);

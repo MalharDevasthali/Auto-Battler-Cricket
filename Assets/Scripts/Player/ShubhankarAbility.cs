@@ -27,7 +27,7 @@ public class ShubhankarAbility : PlayerAbility
 
         if (wicketFallen == true)
         {
-            OnWicketFallen(batsmanData, bowlerData);
+           // OnWicketFallen(batsmanData, bowlerData);
         }
     }
 

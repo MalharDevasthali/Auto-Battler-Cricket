@@ -22,7 +22,7 @@ public class GundeAbility : PlayerAbility
         Debug.Log("Processing Gunde Ability - Runs: " + runsOnCurrentBall);
         if (batsmanData.playerName == "Fat Ass Gunde")
         {
-            OnComesToBat(batsmanData, bowlerData);
+           // OnComesToBat(batsmanData, bowlerData);
         }
     }
 
