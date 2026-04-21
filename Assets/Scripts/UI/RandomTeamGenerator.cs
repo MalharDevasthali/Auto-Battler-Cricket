@@ -36,8 +36,9 @@ public class RandomTeamGenerator : MonoBehaviour
     private void SelectRandomTeam()
     {
         ClearTeamSlots();
+        ServiceLocator.Instance.GameService.ClearSelectedTeam();
 
-         randomlyGeneratedTeamSlots = TeamPlayerSlots
+        randomlyGeneratedTeamSlots = TeamPlayerSlots
             .Where(teamPlayerSlot => teamPlayerSlot != null)
             .Take(RandomTeamSize)
             .ToList();
@@ -85,9 +86,16 @@ public class RandomTeamGenerator : MonoBehaviour
     private void OnStartBattleButtonClick()
     {
         ServiceLocator.Instance.SoundService.PlaySound(buttonClickSound);
-        if (randomlyGeneratedTeamSlots.Count == RandomTeamSize)
+        if (HasGeneratedTeam())
             SceneManager.LoadScene(1);
             
+    }
+
+    private bool HasGeneratedTeam()
+    {
+        return randomlyGeneratedTeamSlots != null
+            && randomlyGeneratedTeamSlots.Count == RandomTeamSize
+            && randomlyGeneratedTeamSlots.All(teamSlot => teamSlot != null && teamSlot.data != null);
     }
 
 }

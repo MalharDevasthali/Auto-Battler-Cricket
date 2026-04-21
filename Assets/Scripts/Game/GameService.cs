@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public  class GameService : MonoBehaviour
@@ -11,22 +11,11 @@ public  class GameService : MonoBehaviour
     }
 
     private Innings currentInnings;
-    private const int MaxBatsmanCount = 6;
-    private static List<PlayerData> selectedTeam = new List<PlayerData>(MaxBatsmanCount);
+    private static List<PlayerData> selectedTeam = new List<PlayerData>();
 
     private void Start()
     {
         currentInnings = Innings.Batting;
-
-        InitilizeTeamList();
-    }
-
-    private void InitilizeTeamList()
-    {
-        for (int i = 0; i < MaxBatsmanCount; i++)
-        {
-            selectedTeam.Add(null);
-        }
     }
 
     public Innings GetCurrentInnings()
@@ -39,17 +28,44 @@ public  class GameService : MonoBehaviour
     }
     public void AddPlayerData(PlayerData playerData,int playingOrder)
     {
+        EnsureTeamSlotExists(playingOrder);
         selectedTeam[playingOrder] = playerData;
     }
 
     public void RemovePlayerData(PlayerData playerData,int playingOrder )
     {
+        if (playingOrder < 0 || playingOrder >= selectedTeam.Count) return;
+
         selectedTeam[playingOrder] = null;
+        TrimEmptySlotsFromEnd();
+    }
+
+    public void ClearSelectedTeam()
+    {
+        selectedTeam.Clear();
     }
 
     public List<PlayerData> GetSelectedTeam()
     {
-        return selectedTeam;
+        return selectedTeam.Where(playerData => playerData != null).ToList();
+    }
+
+    private void EnsureTeamSlotExists(int playingOrder)
+    {
+        while (selectedTeam.Count <= playingOrder)
+        {
+            selectedTeam.Add(null);
+        }
+    }
+
+    private void TrimEmptySlotsFromEnd()
+    {
+        for (int i = selectedTeam.Count - 1; i >= 0; i--)
+        {
+            if (selectedTeam[i] != null) break;
+
+            selectedTeam.RemoveAt(i);
+        }
     }
 
 }
