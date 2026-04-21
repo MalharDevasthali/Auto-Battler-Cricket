@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,8 +8,6 @@ using UnityEngine.UI;
 public class RandomTeamGenerator : MonoBehaviour
 {
     private const int RandomTeamSize = 3;
-    private int selectedPlayerCount = 0;
-   
 
     [Header("UI")]
     [SerializeField] private List<TeamCardView> TeamPlayerSlots = new List<TeamCardView>();
@@ -20,6 +17,9 @@ public class RandomTeamGenerator : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] private AudioClip buttonClickSound;
 
+
+    private List<TeamCardView> randomlyGeneratedTeamSlots;
+    private List<PlayerData> unlockedPlayers;
 
     private void Awake()
     {
@@ -37,18 +37,18 @@ public class RandomTeamGenerator : MonoBehaviour
     {
         ClearTeamSlots();
 
-        List<TeamCardView> availableTeamSlots = TeamPlayerSlots
+         randomlyGeneratedTeamSlots = TeamPlayerSlots
             .Where(teamPlayerSlot => teamPlayerSlot != null)
             .Take(RandomTeamSize)
             .ToList();
 
-        if (availableTeamSlots.Count < RandomTeamSize)
+        if (randomlyGeneratedTeamSlots.Count < RandomTeamSize)
         {
             Debug.LogError("Not enough team slots to generate a random team.");
             return;
         }
 
-        List<PlayerData> unlockedPlayers = AllPlayers
+        unlockedPlayers = AllPlayers
             .Where(playerCard => playerCard != null && playerCard.data != null)
             .Select(playerCard => playerCard.data)
             .Distinct()
@@ -66,7 +66,7 @@ public class RandomTeamGenerator : MonoBehaviour
             PlayerData randomPlayer = unlockedPlayers[randomIndex];
             unlockedPlayers.RemoveAt(randomIndex);
 
-            availableTeamSlots[i].AddToTeam(randomPlayer, i);
+            randomlyGeneratedTeamSlots[i].AddToTeam(randomPlayer, i);
         }
     }
 
@@ -79,15 +79,13 @@ public class RandomTeamGenerator : MonoBehaviour
                 teamPlayerSlot.RemoveFromTeam();
             }
         }
-
-        selectedPlayerCount = 0;
     }
 
 
     private void OnStartBattleButtonClick()
     {
         ServiceLocator.Instance.SoundService.PlaySound(buttonClickSound);
-        if (selectedPlayerCount == RandomTeamSize)
+        if (randomlyGeneratedTeamSlots.Count == RandomTeamSize)
             SceneManager.LoadScene(1);
             
     }

@@ -7869,9 +7869,8 @@ MonoBehaviour:
   - {fileID: 1836591274}
   - {fileID: 1221263758}
   - {fileID: 1402178562}
-  SelectedPlayersCounterText: {fileID: 0}
   startBattleButton: {fileID: 588429644}
-  buttonClickSound: {fileID: 8300000, guid: efb42bbf274baa14cb38feb1e90e816a, type: 3}
+  buttonClickSound: {fileID: 8300000, guid: 0f8beb7b6e676664a8288034021717b8, type: 3}
 --- !u!114 &4565449303341945564
 MonoBehaviour:
   m_ObjectHideFlags: 0
