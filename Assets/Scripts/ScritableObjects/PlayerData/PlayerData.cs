@@ -6,6 +6,14 @@ public enum PlayerRole
     Batsman,
     Bowler
 }
+
+public enum PlayerRarity
+{
+    Common,
+    Rare,
+    Epic,
+    Legendary
+}
 [Serializable]
 
 [CreateAssetMenu(fileName = "New Player", menuName = "ScriptableObject/Player Data")]
@@ -15,6 +23,8 @@ public class PlayerData : ScriptableObject
     [HideInInspector]public int playerID;
     public string playerName;
     public PlayerRole role;
+    public PlayerRarity rarity;
+
 
     [Header("Stats")]
     public int BattingPower;
@@ -22,9 +32,6 @@ public class PlayerData : ScriptableObject
     public int Defense;
     public string SpecialAbility;
     public PlayerAbility playerAbility;
-
-    [Header("Meta")]
-    public int rarity;
 
     [Header("Visuals")]
     public Sprite playerSprite;
