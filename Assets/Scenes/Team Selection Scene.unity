@@ -275,11 +275,11 @@ PrefabInstance:
     - target: {fileID: 4650972304147545846, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: teamSelectionService
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4650972304147545846, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: teamSelectionController
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4682311260571465921, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -526,11 +526,11 @@ PrefabInstance:
     - target: {fileID: 4164539444531946773, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: teamSelectionService
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4164539444531946773, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: teamSelectionController
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 6992670805602991468, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1074,11 +1074,11 @@ PrefabInstance:
     - target: {fileID: 4650972304147545846, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: teamSelectionService
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4650972304147545846, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: teamSelectionController
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4682311260571465921, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1571,11 +1571,11 @@ PrefabInstance:
     - target: {fileID: 4650972304147545846, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: teamSelectionService
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4650972304147545846, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: teamSelectionController
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4682311260571465921, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1689,11 +1689,11 @@ PrefabInstance:
     - target: {fileID: 4650972304147545846, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: teamSelectionService
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4650972304147545846, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: teamSelectionController
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4682311260571465921, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2667,11 +2667,11 @@ PrefabInstance:
     - target: {fileID: 4650972304147545846, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: teamSelectionService
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4650972304147545846, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: teamSelectionController
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4682311260571465921, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3070,11 +3070,11 @@ PrefabInstance:
     - target: {fileID: 4164539444531946773, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: teamSelectionService
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4164539444531946773, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: teamSelectionController
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 6992670805602991468, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3649,11 +3649,11 @@ PrefabInstance:
     - target: {fileID: 4164539444531946773, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: teamSelectionService
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4164539444531946773, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: teamSelectionController
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 6992670805602991468, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4004,11 +4004,11 @@ PrefabInstance:
     - target: {fileID: 4650972304147545846, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: teamSelectionService
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4650972304147545846, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: teamSelectionController
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4682311260571465921, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5349,11 +5349,11 @@ PrefabInstance:
     - target: {fileID: 4650972304147545846, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: teamSelectionService
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4650972304147545846, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: teamSelectionController
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4682311260571465921, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5925,11 +5925,11 @@ PrefabInstance:
     - target: {fileID: 4650972304147545846, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: teamSelectionService
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4650972304147545846, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: teamSelectionController
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4682311260571465921, guid: bf098464922a4ac4d8a42a3875caa89c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6050,11 +6050,11 @@ PrefabInstance:
     - target: {fileID: 4164539444531946773, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: teamSelectionService
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4164539444531946773, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: teamSelectionController
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 6992670805602991468, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6211,11 +6211,11 @@ PrefabInstance:
     - target: {fileID: 4164539444531946773, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: teamSelectionService
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4164539444531946773, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: teamSelectionController
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 6992670805602991468, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7394,9 +7394,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4156144032852940864}
-  - component: {fileID: 4802278131114412368}
+  - component: {fileID: 4156144032852940865}
   m_Layer: 0
-  m_Name: Team Selection Controller
+  m_Name: Random Team Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7563,11 +7563,11 @@ PrefabInstance:
     - target: {fileID: 4164539444531946773, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: teamSelectionService
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 4164539444531946773, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: teamSelectionController
       value: 
-      objectReference: {fileID: 4802278131114412368}
+      objectReference: {fileID: 0}
     - target: {fileID: 6526766389504898000, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -7841,6 +7841,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4156144032852940865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543301482169588462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1abe7bf1c5a94174780173c669ea52e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RandomTeamGenerator
+  TeamPlayerSlots:
+  - {fileID: 1704088226}
+  - {fileID: 1886817453}
+  - {fileID: 1862229227}
+  - {fileID: 291853494}
+  - {fileID: 2124292384}
+  - {fileID: 958068325}
+  AllPlayers:
+  - {fileID: 722963452}
+  - {fileID: 1775391346}
+  - {fileID: 1594131965}
+  - {fileID: 1123645473}
+  - {fileID: 1415048872}
+  - {fileID: 1836591274}
+  - {fileID: 1221263758}
+  - {fileID: 1402178562}
+  SelectedPlayersCounterText: {fileID: 0}
+  startBattleButton: {fileID: 588429644}
+  buttonClickSound: {fileID: 8300000, guid: efb42bbf274baa14cb38feb1e90e816a, type: 3}
 --- !u!114 &4565449303341945564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7882,37 +7913,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6582806543250976844}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4802278131114412368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 543301482169588462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17075a269294bc74cb5a9948c3b8a694, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TeamSelectionService
-  TeamPlayerSlots:
-  - {fileID: 1704088226}
-  - {fileID: 1886817453}
-  - {fileID: 1862229227}
-  - {fileID: 291853494}
-  - {fileID: 2124292384}
-  - {fileID: 958068325}
-  AllPlayers:
-  - {fileID: 722963452}
-  - {fileID: 1775391346}
-  - {fileID: 1594131965}
-  - {fileID: 1123645473}
-  - {fileID: 1415048872}
-  - {fileID: 1836591274}
-  - {fileID: 1221263758}
-  - {fileID: 1402178562}
-  SelectedPlayersCounterText: {fileID: 568400552}
-  startBattleButton: {fileID: 588429644}
-  buttonClickSound: {fileID: 8300000, guid: 0f8beb7b6e676664a8288034021717b8, type: 3}
 --- !u!114 &5025311200268046116
 MonoBehaviour:
   m_ObjectHideFlags: 0

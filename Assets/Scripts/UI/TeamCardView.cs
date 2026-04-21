@@ -5,13 +5,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
     public PlayerData data;
     public int slotIndex;
 
     [Header("UI Elements")]
-    [SerializeField] private RandomTeamGenerator teamSelectionController;
+    [SerializeField] private RandomTeamGenerator randomTeamGenerator;
     [SerializeField] private Sprite emptySlotSprite;
     [SerializeField] private TextMeshProUGUI battingPowerText;
     [SerializeField] private TextMeshProUGUI bowlingPowerText;
@@ -39,7 +39,6 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
     void Awake()
     {
         button = GetComponent<Button>();
-        button.onClick.AddListener(OnClickCard);
 
         canvasGroup = GetComponent<CanvasGroup>();
 
@@ -88,11 +87,7 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
         }
     }
 
-    private void OnClickCard()
-    {
-        ServiceLocator.Instance.SoundService.PlaySound(buttonClickSound);
-        teamSelectionController.RemovePlayer(data);
-    }
+ 
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -134,48 +129,4 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
         dragRect.SetAsLastSibling();
     }
 
-    public void OnDrag(PointerEventData eventData)
-    {
-        if (dragRect == null) return;
-
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            canvas.transform as RectTransform,
-            eventData.position,
-            eventData.pressEventCamera,
-            out Vector2 pos
-        );
-
-        dragRect.anchoredPosition = pos;
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        ServiceLocator.Instance.SoundService.PlaySound(cardSwipeSound);
-        if (eventData.pointerEnter != null)
-        {
-            TeamCardView targetCard = eventData.pointerEnter.GetComponentInParent<TeamCardView>();
-
-            if (targetCard != null && targetCard != this)
-            {
-                // Move  if target is empty
-                if (targetCard.data == null && this.data != null)
-                {
-                    PlayerData tempPlayerData = this.data;
-                    teamSelectionController.RemovePlayer(data);
-                    teamSelectionController.AddPlayer(tempPlayerData, targetCard.slotIndex);
-            
-                }
-                //Swap if both have data
-                if (targetCard.data != null && this.data != null)
-                {
-                    teamSelectionController.SwapPlayers(this.slotIndex, targetCard.slotIndex);       
-                }
-            }
-        }
-
-        if (dragObject != null)
-        {
-            Destroy(dragObject);
-        }
-    }
 }

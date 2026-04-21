@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public PlayerData data;
 
@@ -88,61 +88,5 @@ public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         uiService.HidePlayerStats();
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        ServiceLocator.Instance.SoundService.PlaySound(buttonClickSound);
-        
-        dragObject = new GameObject("DragImage", typeof(RectTransform), typeof(Image));
-        dragObject.transform.SetParent(canvas.transform, false);
-
-    
-        Image img = dragObject.GetComponent<Image>();
-        img.sprite = playerImage.sprite;
-        img.raycastTarget = false; // IMPORTANT
-
-
-        dragRect = dragObject.GetComponent<RectTransform>();
-        dragRect.sizeDelta = playerImage.rectTransform.sizeDelta;
-
-
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            canvas.transform as RectTransform,
-            eventData.position,
-            eventData.pressEventCamera,
-            out Vector2 pos
-        );
-
-        dragRect.anchoredPosition = pos;
-        dragRect.SetAsLastSibling();
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        if (dragRect == null) return;
-
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            canvas.transform as RectTransform,
-            eventData.position,
-            eventData.pressEventCamera,
-            out Vector2 pos
-        );
-
-        dragRect.anchoredPosition = pos;
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        if (eventData.pointerEnter != null)
-        {
-            TeamCardView teamCard = eventData.pointerEnter.GetComponent<TeamCardView>();
-
-            if (teamCard != null)
-            {
-                teamSelectionController.AddPlayer(this.data,teamCard.slotIndex);
-            }
-        }
-
-        ServiceLocator.Instance.SoundService.PlaySound(buttonClickSound);
-        Destroy(dragObject);
-    }
+  
 }
