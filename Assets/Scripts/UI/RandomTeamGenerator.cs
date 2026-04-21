@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.WSA;
 
-public class TeamSelectionController : MonoBehaviour
+public class RandomTeamGenerator : MonoBehaviour
 {
     private int selectedPlayerCount = 0;
    

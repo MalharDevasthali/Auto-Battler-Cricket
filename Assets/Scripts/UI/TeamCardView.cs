@@ -11,7 +11,7 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
     public int slotIndex;
 
     [Header("UI Elements")]
-    [SerializeField] private TeamSelectionController teamSelectionController;
+    [SerializeField] private RandomTeamGenerator teamSelectionController;
     [SerializeField] private Sprite emptySlotSprite;
     [SerializeField] private TextMeshProUGUI battingPowerText;
     [SerializeField] private TextMeshProUGUI bowlingPowerText;

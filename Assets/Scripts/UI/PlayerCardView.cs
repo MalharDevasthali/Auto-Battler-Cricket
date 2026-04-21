@@ -8,7 +8,7 @@ public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public PlayerData data;
 
     [Header("UI Elements")]
-    [SerializeField] private TeamSelectionController teamSelectionController;
+    [SerializeField] private RandomTeamGenerator teamSelectionController;
     [SerializeField] private Image selectedImage;
     [SerializeField] private Image playerImage;
     [SerializeField] private TextMeshProUGUI battingPowerText;
