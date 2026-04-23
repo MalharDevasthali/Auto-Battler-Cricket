@@ -12,7 +12,6 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
 
     [Header("UI Elements")]
     [SerializeField] private RandomTeamGenerator randomTeamGenerator;
-    [SerializeField] private Sprite emptySlotSprite;
     [SerializeField] private TextMeshProUGUI battingPowerText;
     [SerializeField] private TextMeshProUGUI bowlingPowerText;
     [SerializeField] private TextMeshProUGUI defenceText;
@@ -61,7 +60,6 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
     }
     public void RemoveFromTeam()
     {
-        GetComponent<Image>().sprite = emptySlotSprite;
         BattingPowerUI.gameObject.SetActive(false);
         BowlingPowerUI.gameObject.SetActive(false);
         DefenceUI.gameObject.SetActive(false);

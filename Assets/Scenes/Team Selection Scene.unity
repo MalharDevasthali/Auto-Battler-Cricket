@@ -7592,10 +7592,6 @@ PrefabInstance:
       propertyPath: teamSelectionController
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 6526766389504898000, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -351800017216831238, guid: b10fabb513487344e9e7eb91b2cff47a, type: 3}
     - target: {fileID: 6992670805602991468, guid: 4b0fdcc728c477540a550c8b6ce29e6d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

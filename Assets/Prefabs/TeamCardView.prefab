@@ -1045,7 +1045,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -351800017216831238, guid: b10fabb513487344e9e7eb91b2cff47a, type: 3}
+  m_Sprite: {fileID: -26329759613171845, guid: 755884083ff30d74a994f3ecce3c5875, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1112,9 +1112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TeamCardView
   data: {fileID: 0}
-  slotIndex: 0
-  teamSelectionController: {fileID: 0}
-  emptySlotSprite: {fileID: -818093038039050909, guid: cde73b53b999e1e4c85ec80e8bbf5ab7, type: 3}
+  randomTeamGenerator: {fileID: 0}
   battingPowerText: {fileID: 4388714813158705398}
   bowlingPowerText: {fileID: 4877823452505218614}
   defenceText: {fileID: 3360597116186167018}
