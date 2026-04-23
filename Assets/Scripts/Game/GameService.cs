@@ -12,6 +12,7 @@ public  class GameService : MonoBehaviour
 
     private Innings currentInnings;
     private static List<PlayerData> selectedTeam = new List<PlayerData>();
+    private static int unlockedTeamSlots = 3;
 
     private void Start()
     {
@@ -48,6 +49,10 @@ public  class GameService : MonoBehaviour
     public List<PlayerData> GetSelectedTeam()
     {
         return selectedTeam.Where(playerData => playerData != null).ToList();
+    }
+    public int GetUnlockedSlots()
+    {
+        return unlockedTeamSlots;
     }
 
     private void EnsureTeamSlotExists(int playingOrder)

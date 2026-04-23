@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class RandomTeamGenerator : MonoBehaviour
 {
-    private const int RandomTeamSize = 3;
+    private int teamSize;
 
     [Header("UI")]
     [SerializeField] private List<TeamCardView> TeamPlayerSlots = new List<TeamCardView>();
@@ -37,13 +37,14 @@ public class RandomTeamGenerator : MonoBehaviour
     {
         ClearTeamSlots();
         ServiceLocator.Instance.GameService.ClearSelectedTeam();
+        teamSize = ServiceLocator.Instance.GameService.GetUnlockedSlots();
 
         randomlyGeneratedTeamSlots = TeamPlayerSlots
             .Where(teamPlayerSlot => teamPlayerSlot != null)
-            .Take(RandomTeamSize)
+            .Take(teamSize)
             .ToList();
 
-        if (randomlyGeneratedTeamSlots.Count < RandomTeamSize)
+        if (randomlyGeneratedTeamSlots.Count < teamSize)
         {
             Debug.LogError("Not enough team slots to generate a random team.");
             return;
@@ -55,13 +56,13 @@ public class RandomTeamGenerator : MonoBehaviour
             .Distinct()
             .ToList();
 
-        if (unlockedPlayers.Count < RandomTeamSize)
+        if (unlockedPlayers.Count < teamSize)
         {
             Debug.LogError("Not enough unlocked players to generate a random team.");
             return;
         }
 
-        for (int i = 0; i < RandomTeamSize; i++)
+        for (int i = 0; i < teamSize; i++)
         {
             int randomIndex = Random.Range(0, unlockedPlayers.Count);
             PlayerData randomPlayer = unlockedPlayers[randomIndex];
@@ -94,7 +95,7 @@ public class RandomTeamGenerator : MonoBehaviour
     private bool HasGeneratedTeam()
     {
         return randomlyGeneratedTeamSlots != null
-            && randomlyGeneratedTeamSlots.Count == RandomTeamSize
+            && randomlyGeneratedTeamSlots.Count == teamSize
             && randomlyGeneratedTeamSlots.All(teamSlot => teamSlot != null && teamSlot.data != null);
     }
 
