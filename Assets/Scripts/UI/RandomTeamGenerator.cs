@@ -98,4 +98,16 @@ public class RandomTeamGenerator : MonoBehaviour
             && randomlyGeneratedTeamSlots.All(teamSlot => teamSlot != null && teamSlot.data != null);
     }
 
+    public void SwapPlayers(int fromIndex, int toIndex)
+    {
+        var fromData = TeamPlayerSlots[fromIndex].data;
+        var toData = TeamPlayerSlots[toIndex].data;
+        TeamPlayerSlots[fromIndex].RemoveFromTeam();
+        TeamPlayerSlots[toIndex].RemoveFromTeam();
+        if (fromData != null)
+            TeamPlayerSlots[toIndex].AddToTeam(fromData, toIndex);
+        if (toData != null)
+            TeamPlayerSlots[fromIndex].AddToTeam(toData, fromIndex);
+    }
+
 }

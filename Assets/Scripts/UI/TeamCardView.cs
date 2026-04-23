@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
+public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler , IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public PlayerData data;
-    public int slotIndex;
+    private int slotIndex;
 
     [Header("UI Elements")]
     [SerializeField] private RandomTeamGenerator randomTeamGenerator;
@@ -27,7 +27,6 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
 
     private Button button;
     private UIService uiService;
-    private int playingOrder;
 
     private GameObject dragObject;
     private RectTransform dragRect;
@@ -39,7 +38,7 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
     void Awake()
     {
         button = GetComponent<Button>();
-
+     
         canvasGroup = GetComponent<CanvasGroup>();
 
         if (canvasGroup == null)
@@ -51,11 +50,12 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
     {
         uiService = ServiceLocator.Instance.UIService;
     }
-    public void AddToTeam(PlayerData data, int playingOrder)
+
+    public void AddToTeam(PlayerData data, int slotIndex)
     {
         this.data = data;
-        this.playingOrder = playingOrder;
-        ServiceLocator.Instance.GameService.AddPlayerData(this.data, playingOrder);
+        this.slotIndex = slotIndex;
+        ServiceLocator.Instance.GameService.AddPlayerData(this.data, slotIndex);
         GetComponent<Image>().sprite = data.playerSprite;
         LoadUIForCard(data);
     }
@@ -65,7 +65,7 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
         BattingPowerUI.gameObject.SetActive(false);
         BowlingPowerUI.gameObject.SetActive(false);
         DefenceUI.gameObject.SetActive(false);
-        ServiceLocator.Instance.GameService.RemovePlayerData(this.data,playingOrder);
+        ServiceLocator.Instance.GameService.RemovePlayerData(this.data,slotIndex);
         data = null;
     }
 
@@ -128,5 +128,52 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
         dragRect.anchoredPosition = pos;
         dragRect.SetAsLastSibling();
     }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (dragRect == null) return;
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvas.transform as RectTransform,
+            eventData.position,
+            eventData.pressEventCamera,
+            out Vector2 pos
+        );
+
+        dragRect.anchoredPosition = pos;
+    }
+
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        ServiceLocator.Instance.SoundService.PlaySound(cardSwipeSound);
+        if (eventData.pointerEnter != null)
+        {
+            TeamCardView targetCard = eventData.pointerEnter.GetComponentInParent<TeamCardView>();
+
+            if (targetCard != null && targetCard != this)
+            {
+                // Move  if target is empty
+                if (targetCard.data == null && this.data != null)
+                {
+                    PlayerData tempPlayerData = this.data;
+                    //  randomTeamGenerator.RemovePlayer(data);
+                    //  randomTeamGenerator.AddPlayer(tempPlayerData, targetCard.slotIndex);
+
+                }
+                //Swap if both have data
+                if (targetCard.data != null && this.data != null)
+                {
+                    randomTeamGenerator.SwapPlayers(this.slotIndex, targetCard.slotIndex);
+                }
+            }
+        }
+
+        if (dragObject != null)
+        {
+            Destroy(dragObject);
+        }
+    }
+
 
 }
