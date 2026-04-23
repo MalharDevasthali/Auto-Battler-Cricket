@@ -35,7 +35,6 @@ public class RandomTeamGenerator : MonoBehaviour
 
     private void SelectRandomTeam()
     {
-        ClearTeamSlots();
         ServiceLocator.Instance.GameService.ClearSelectedTeam();
         teamSize = ServiceLocator.Instance.GameService.GetUnlockedSlots();
 
@@ -72,18 +71,6 @@ public class RandomTeamGenerator : MonoBehaviour
         }
     }
 
-    private void ClearTeamSlots()
-    {
-        foreach (TeamCardView teamPlayerSlot in TeamPlayerSlots)
-        {
-            if (teamPlayerSlot != null && teamPlayerSlot.data != null)
-            {
-                teamPlayerSlot.RemoveFromTeam();
-            }
-        }
-    }
-
-
     private void OnStartBattleButtonClick()
     {
         ServiceLocator.Instance.SoundService.PlaySound(buttonClickSound);
@@ -103,8 +90,10 @@ public class RandomTeamGenerator : MonoBehaviour
     {
         var fromData = TeamPlayerSlots[fromIndex].data;
         var toData = TeamPlayerSlots[toIndex].data;
+        
         TeamPlayerSlots[fromIndex].RemoveFromTeam();
         TeamPlayerSlots[toIndex].RemoveFromTeam();
+       
         if (fromData != null)
             TeamPlayerSlots[toIndex].AddToTeam(fromData, toIndex);
         if (toData != null)
