@@ -71,8 +71,8 @@ public class PlayerCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private bool CheckPlayerType()
     {
-        return data.role == PlayerRole.Batsman && ServiceLocator.Instance.GameService.GetCurrentInnings() == GameService.Innings.Batting
-                    || data.role == PlayerRole.Bowler && ServiceLocator.Instance.GameService.GetCurrentInnings() == GameService.Innings.Bowling;
+        return data.role == PlayerRole.Batsman && ServiceLocator.Instance.GameService.GetCurrentInnings() == Innings.Batting
+                    || data.role == PlayerRole.Bowler && ServiceLocator.Instance.GameService.GetCurrentInnings() == Innings.Bowling;
     }
 
 

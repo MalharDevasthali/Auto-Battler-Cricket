@@ -4,72 +4,64 @@ using UnityEngine;
 
 public  class GameService : MonoBehaviour
 {
-    public enum Innings
-    {
-        Batting,
-        Bowling
-    }
 
-    private Innings currentInnings;
-    private static List<PlayerData> selectedTeam = new List<PlayerData>();
-    private static int unlockedTeamSlots = 3;
-
+    [SerializeField] private GameData gameData;
     private void Start()
     {
-        currentInnings = Innings.Batting;
+        gameData.currentInnings = Innings.Batting;
     }
 
     public Innings GetCurrentInnings()
     { 
-        return currentInnings; 
+        return gameData.currentInnings; 
     }
     public void SetCurrentInnings(Innings currentInnings)
     {
-        this.currentInnings = currentInnings;
+        gameData.currentInnings = currentInnings;
     }
     public void AddPlayerData(PlayerData playerData,int playingOrder)
     {
         EnsureTeamSlotExists(playingOrder);
-        selectedTeam[playingOrder] = playerData;
+        gameData.selectedTeam[playingOrder] = playerData;
     }
 
     public void RemovePlayerData(PlayerData playerData,int playingOrder )
     {
-        if (playingOrder < 0 || playingOrder >= selectedTeam.Count) return;
+        if (playingOrder < 0 || playingOrder >= gameData.selectedTeam.Count) return;
 
-        selectedTeam[playingOrder] = null;
+        gameData.selectedTeam[playingOrder] = null;
         TrimEmptySlotsFromEnd();
     }
 
     public void ClearSelectedTeam()
     {
-        selectedTeam.Clear();
+        gameData.selectedTeam.Clear();
     }
 
     public List<PlayerData> GetSelectedTeam()
     {
-        return selectedTeam.Where(playerData => playerData != null).ToList();
+        return gameData.selectedTeam.Where(playerData => playerData != null).ToList();
     }
     public int GetUnlockedSlots()
     {
-        return unlockedTeamSlots;
+        return gameData.unlockedTeamSlots;
     }
 
     private void EnsureTeamSlotExists(int playingOrder)
     {
-        while (selectedTeam.Count <= playingOrder)
+        while (gameData.selectedTeam.Count <= playingOrder)
         {
-            selectedTeam.Add(null);
+            gameData.selectedTeam.Add(null);
         }
     }
 
     private void TrimEmptySlotsFromEnd()
     {
-        for (int i = selectedTeam.Count - 1; i >= 0; i--)
+        for (int i = gameData.selectedTeam.Count - 1; i >= 0; i--)
         {
-            if (selectedTeam[i] != null) break;
+            if (gameData.selectedTeam[i] != null) break;
 
-            selectedTeam.RemoveAt(i);
+            gameData.selectedTeam.RemoveAt(i);
         }
     }
 

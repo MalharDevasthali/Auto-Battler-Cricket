@@ -27,6 +27,8 @@ public class PlayerData : ScriptableObject
 
 
     [Header("Stats")]
+    public int PlayerLevel;
+    public int XP;
     public int BattingPower;
     public int BowlingPower;
     public int Defense;
