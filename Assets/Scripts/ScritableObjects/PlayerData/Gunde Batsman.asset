@@ -15,10 +15,10 @@ MonoBehaviour:
   playerID: 2
   playerName: Fat Ass Gunde
   role: 0
+  rarity: 0
   BattingPower: 4
   BowlingPower: 0
   Defense: 1
   SpecialAbility: -1<sprite=1>from bowler, when comes to bat
   playerAbility: {fileID: 11400000, guid: 3e81947bc42d439469dd95ef6550cea2, type: 2}
-  rarity: 1
   playerSprite: {fileID: 8653306093886267360, guid: eb156f2c5807bde4e8a09061bb844561, type: 3}

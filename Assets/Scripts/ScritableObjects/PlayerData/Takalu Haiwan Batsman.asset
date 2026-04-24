@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edacec406b9978a48beec9e8ca367b6a, type: 3}
   m_Name: Takalu Haiwan Batsman
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
+  playerID: 0
   playerName: Takalu Haiwan
   role: 0
+  rarity: 2
   BattingPower: 3
   BowlingPower: 0
   Defense: 5
   SpecialAbility: +1<sprite=2>for every 4 runs scored
-  rarity: 2
+  playerAbility: {fileID: 0}
   playerSprite: {fileID: -8894914691074996779, guid: 3652f11bdf8fb5446a2a93f2dd62e90b, type: 3}

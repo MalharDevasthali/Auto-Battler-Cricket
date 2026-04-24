@@ -15,10 +15,10 @@ MonoBehaviour:
   playerID: 4
   playerName: Short Sahil
   role: 0
+  rarity: 0
   BattingPower: 2
   BowlingPower: 0
   Defense: 2
   SpecialAbility: Gets chance to bat again with 1/1 stats.
   playerAbility: {fileID: 0}
-  rarity: 1
   playerSprite: {fileID: -6176050302332693065, guid: 714dca7a76caa25479e42313107e4a87, type: 3}

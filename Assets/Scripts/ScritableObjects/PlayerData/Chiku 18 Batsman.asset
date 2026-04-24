@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edacec406b9978a48beec9e8ca367b6a, type: 3}
   m_Name: Chiku 18 Batsman
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
+  playerID: 0
   playerName: Chiku 18
   role: 0
+  rarity: 3
   BattingPower: 4
   BowlingPower: 0
   Defense: 8
   SpecialAbility: 
-  rarity: 4
+  playerAbility: {fileID: 0}
   playerSprite: {fileID: 7663844910499824348, guid: 66ea6d8c2fa4e214d9c689d7efbb40be, type: 3}
