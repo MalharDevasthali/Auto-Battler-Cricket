@@ -321,7 +321,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 254810823}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &91180031
@@ -337,6 +338,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TossManager
   tossButton: {fileID: 1387381106}
+  coinObject: {fileID: 254810820}
+  HeadsCoinSprite: {fileID: 635981913330571232, guid: b4f2ce33714a7144cbeb01cc16f72323, type: 3}
+  TailsCoinSprite: {fileID: 553085408178529573, guid: 1a36dc96509633d43ad09a8bb393aefb, type: 3}
+  TeamGeneratorCanvasGroup: {fileID: 170622746}
+  fadeDuration: 0.5
 --- !u!1001 &123971542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -859,7 +865,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254810820}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6f63ff11c42191344822adf1720b602a, type: 2}
   m_CullingMode: 0
@@ -940,12 +946,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254810820}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 91180030}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &291853494 stripped
 MonoBehaviour:
@@ -8756,4 +8762,3 @@ SceneRoots:
   - {fileID: 4156144032852940864}
   - {fileID: 1054022269942655291}
   - {fileID: 91180030}
-  - {fileID: 254810823}
