@@ -19,28 +19,32 @@ public  class GameService : MonoBehaviour
     {
         gameData.currentInnings = currentInnings;
     }
-    public void AddPlayerData(PlayerData playerData,int playingOrder)
+    public void AddBatsman(PlayerData batsmanData,int playingOrder)
     {
         EnsureTeamSlotExists(playingOrder);
-        gameData.selectedTeam[playingOrder] = playerData;
+        gameData.batsmenData[playingOrder] = batsmanData;
+    }
+    public void AddBowler(PlayerData bowlerData)
+    {
+        gameData.bowlerData = bowlerData;
     }
 
-    public void RemovePlayerData(PlayerData playerData,int playingOrder )
+    public void RemoveBatsman(PlayerData batsmanData,int playingOrder )
     {
-        if (playingOrder < 0 || playingOrder >= gameData.selectedTeam.Count) return;
+        if (playingOrder < 0 || playingOrder >= gameData.batsmenData.Count) return;
 
-        gameData.selectedTeam[playingOrder] = null;
+        gameData.batsmenData[playingOrder] = null;
         TrimEmptySlotsFromEnd();
     }
 
     public void ClearSelectedTeam()
     {
-        gameData.selectedTeam.Clear();
+        gameData.batsmenData.Clear();
     }
 
     public List<PlayerData> GetSelectedTeam()
     {
-        return gameData.selectedTeam.Where(playerData => playerData != null).ToList();
+        return gameData.batsmenData.Where(playerData => playerData != null).ToList();
     }
     public int GetUnlockedSlots()
     {
@@ -49,19 +53,19 @@ public  class GameService : MonoBehaviour
 
     private void EnsureTeamSlotExists(int playingOrder)
     {
-        while (gameData.selectedTeam.Count <= playingOrder)
+        while (gameData.batsmenData.Count <= playingOrder)
         {
-            gameData.selectedTeam.Add(null);
+            gameData.batsmenData.Add(null);
         }
     }
 
     private void TrimEmptySlotsFromEnd()
     {
-        for (int i = gameData.selectedTeam.Count - 1; i >= 0; i--)
+        for (int i = gameData.batsmenData.Count - 1; i >= 0; i--)
         {
-            if (gameData.selectedTeam[i] != null) break;
+            if (gameData.batsmenData[i] != null) break;
 
-            gameData.selectedTeam.RemoveAt(i);
+            gameData.batsmenData.RemoveAt(i);
         }
     }
 

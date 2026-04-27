@@ -13,7 +13,8 @@ public enum Innings
 public class GameData : ScriptableObject
 {
     public Innings currentInnings;
-    public List<PlayerData> selectedTeam = new List<PlayerData>();
+    public List<PlayerData> batsmenData = new List<PlayerData>();
+    public PlayerData bowlerData;
     public int unlockedTeamSlots = 3;
 
 }

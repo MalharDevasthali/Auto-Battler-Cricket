@@ -7,68 +7,99 @@ using UnityEngine.UI;
 
 public class RandomTeamGenerator : MonoBehaviour
 {
-    private int teamSize;
+    private int batsmanSlotsSize;
 
     [Header("UI")]
-    [SerializeField] private List<TeamCardView> TeamPlayerSlots = new List<TeamCardView>();
+    [SerializeField] private List<TeamCardView> batsmanPlayerSlots = new List<TeamCardView>();
+    [SerializeField] private TeamCardView bowlerPlayerSlot;
     [SerializeField] private List<PlayerCardView> AllPlayers = new List<PlayerCardView>();
     [SerializeField] private Button startBattleButton;
+    [SerializeField] private Button tossButton;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip buttonClickSound;
 
 
     private List<TeamCardView> randomlyGeneratedTeamSlots;
-    private List<PlayerData> unlockedPlayers;
+    private List<PlayerData> unlockedBatsmans;
+    private List<PlayerData> unlockedBowlers;
 
     private void Awake()
     {
         if (startBattleButton != null)
             startBattleButton.onClick.AddListener(OnStartBattleButtonClick);
+        if (tossButton != null)
+            tossButton.onClick.AddListener(OnTossButtonClick);
     }
 
     private IEnumerator Start()
     {
         yield return null;
-        SelectRandomTeam();
+        generateRandomBatsmen();
+        generateRandomBowler();
     }
 
-    private void SelectRandomTeam()
+    private void generateRandomBatsmen()
     {
         ServiceLocator.Instance.GameService.ClearSelectedTeam();
-        teamSize = ServiceLocator.Instance.GameService.GetUnlockedSlots();
+        batsmanSlotsSize = ServiceLocator.Instance.GameService.GetUnlockedSlots();
 
-        randomlyGeneratedTeamSlots = TeamPlayerSlots
+        randomlyGeneratedTeamSlots = batsmanPlayerSlots
             .Where(teamPlayerSlot => teamPlayerSlot != null)
-            .Take(teamSize)
+            .Take(batsmanSlotsSize)
             .ToList();
 
-        if (randomlyGeneratedTeamSlots.Count < teamSize)
+        if (randomlyGeneratedTeamSlots.Count < batsmanSlotsSize)
         {
             Debug.LogError("Not enough team slots to generate a random team.");
             return;
         }
 
-        unlockedPlayers = AllPlayers
-            .Where(playerCard => playerCard != null && playerCard.data != null)
+        unlockedBatsmans = AllPlayers
+            .Where(playerCard => playerCard != null && playerCard.data != null && playerCard.data.role == PlayerRole.Batsman)
             .Select(playerCard => playerCard.data)
             .Distinct()
             .ToList();
 
-        if (unlockedPlayers.Count < teamSize)
+        if (unlockedBatsmans.Count < batsmanSlotsSize)
         {
             Debug.LogError("Not enough unlocked players to generate a random team.");
             return;
         }
 
-        for (int i = 0; i < teamSize; i++)
+        for (int i = 0; i < batsmanSlotsSize; i++)
         {
-            int randomIndex = Random.Range(0, unlockedPlayers.Count);
-            PlayerData randomPlayer = unlockedPlayers[randomIndex];
-            unlockedPlayers.RemoveAt(randomIndex);
+            int randomIndex = Random.Range(0, unlockedBatsmans.Count);
+            PlayerData randomBatsman = unlockedBatsmans[randomIndex];
+            unlockedBatsmans.RemoveAt(randomIndex);
 
-            randomlyGeneratedTeamSlots[i].AddToTeam(randomPlayer, i);
+            randomlyGeneratedTeamSlots[i].AddToBattingLineup(randomBatsman, i);
         }
+    }
+
+    private void generateRandomBowler()
+    {
+        if (bowlerPlayerSlot == null)
+        {
+            Debug.LogError("Bowler team slot is missing.");
+            return;
+        }
+
+        unlockedBowlers = AllPlayers
+            .Where(playerCard => playerCard != null && playerCard.data != null && playerCard.data.role == PlayerRole.Bowler)
+            .Select(playerCard => playerCard.data)
+            .Distinct()
+            .ToList();
+
+        if (unlockedBowlers.Count == 0)
+        {
+            Debug.LogError("No unlocked bowlers available to generate a random bowler.");
+            return;
+        }
+
+        int randomIndex = Random.Range(0, unlockedBowlers.Count);
+        PlayerData randomBowler = unlockedBowlers[randomIndex];
+        bowlerPlayerSlot.AddToBowlingLineup(randomBowler);
     }
 
     private void OnStartBattleButtonClick()
@@ -78,26 +109,30 @@ public class RandomTeamGenerator : MonoBehaviour
             SceneManager.LoadScene(1);
             
     }
+    private void OnTossButtonClick()
+    {
+        Debug.Log("Toss");
+    }
 
     private bool HasGeneratedTeam()
     {
         return randomlyGeneratedTeamSlots != null
-            && randomlyGeneratedTeamSlots.Count == teamSize
+            && randomlyGeneratedTeamSlots.Count == batsmanSlotsSize
             && randomlyGeneratedTeamSlots.All(teamSlot => teamSlot != null && teamSlot.data != null);
     }
 
     public void SwapPlayers(int fromIndex, int toIndex)
     {
-        var fromData = TeamPlayerSlots[fromIndex].data;
-        var toData = TeamPlayerSlots[toIndex].data;
+        var fromData = batsmanPlayerSlots[fromIndex].data;
+        var toData = batsmanPlayerSlots[toIndex].data;
         
-        TeamPlayerSlots[fromIndex].RemoveFromTeam();
-        TeamPlayerSlots[toIndex].RemoveFromTeam();
+        batsmanPlayerSlots[fromIndex].RemoveFromBattingLineup();
+        batsmanPlayerSlots[toIndex].RemoveFromBattingLineup();
        
         if (fromData != null)
-            TeamPlayerSlots[toIndex].AddToTeam(fromData, toIndex);
+            batsmanPlayerSlots[toIndex].AddToBattingLineup(fromData, toIndex);
         if (toData != null)
-            TeamPlayerSlots[fromIndex].AddToTeam(toData, fromIndex);
+            batsmanPlayerSlots[fromIndex].AddToBattingLineup(toData, fromIndex);
     }
 
 }

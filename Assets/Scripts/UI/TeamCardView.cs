@@ -50,20 +50,28 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
         uiService = ServiceLocator.Instance.UIService;
     }
 
-    public void AddToTeam(PlayerData data, int slotIndex)
+    public void AddToBattingLineup(PlayerData data, int slotIndex)
     {
         this.data = data;
         this.slotIndex = slotIndex;
-        ServiceLocator.Instance.GameService.AddPlayerData(this.data, slotIndex);
+        ServiceLocator.Instance.GameService.AddBatsman(this.data, slotIndex);
         GetComponent<Image>().sprite = data.playerSprite;
         LoadUIForCard(data);
     }
-    public void RemoveFromTeam()
+    public void AddToBowlingLineup(PlayerData data)
+    {
+        this.data = data;
+        ServiceLocator.Instance.GameService.AddBowler(this.data);
+        GetComponent<Image>().sprite = data.playerSprite;
+        LoadUIForCard(data);
+    }
+
+    public void RemoveFromBattingLineup()
     {
         BattingPowerUI.gameObject.SetActive(false);
         BowlingPowerUI.gameObject.SetActive(false);
         DefenceUI.gameObject.SetActive(false);
-        ServiceLocator.Instance.GameService.RemovePlayerData(this.data,slotIndex);
+        ServiceLocator.Instance.GameService.RemoveBatsman(this.data,slotIndex);
         data = null;
     }
 
