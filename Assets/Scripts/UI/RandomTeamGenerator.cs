@@ -14,7 +14,7 @@ public class RandomTeamGenerator : MonoBehaviour
     [SerializeField] private TeamCardView bowlerPlayerSlot;
     [SerializeField] private List<PlayerCardView> AllPlayers = new List<PlayerCardView>();
     [SerializeField] private Button startBattleButton;
-    [SerializeField] private Button tossButton;
+  
 
     [Header("Sounds")]
     [SerializeField] private AudioClip buttonClickSound;
@@ -28,8 +28,7 @@ public class RandomTeamGenerator : MonoBehaviour
     {
         if (startBattleButton != null)
             startBattleButton.onClick.AddListener(OnStartBattleButtonClick);
-        if (tossButton != null)
-            tossButton.onClick.AddListener(OnTossButtonClick);
+      
     }
 
     private IEnumerator Start()
@@ -109,12 +108,7 @@ public class RandomTeamGenerator : MonoBehaviour
             SceneManager.LoadScene(1);
             
     }
-    private void OnTossButtonClick()
-    {
-        Debug.Log("Toss");
-    }
-
-    private bool HasGeneratedTeam()
+   private bool HasGeneratedTeam()
     {
         return randomlyGeneratedTeamSlots != null
             && randomlyGeneratedTeamSlots.Count == batsmanSlotsSize

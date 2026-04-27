@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f7050ca9d794cde4480a2b9609f28c28
+guid: 1a36dc96509633d43ad09a8bb393aefb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4655227450131469235
-    second: ChatGPT Image Mar 19, 2026, 12_28_04 PM_0
+      213: 553085408178529573
+    second: ChatGPT Image Apr 27, 2026, 08_48_19 PM 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChatGPT Image Mar 19, 2026, 12_28_04 PM_0
+      name: Coin-Tails
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1024
-        height: 1478
+        x: 142
+        y: 185
+        width: 633
+        height: 627
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4c244e6c4f456fb0800000000000000
-      internalID: -4655227450131469235
+      spriteID: 525eee49f34fca700800000000000000
+      internalID: 553085408178529573
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9fe958ba594ac7e43915a2109045dc8c
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ChatGPT Image Mar 19, 2026, 12_28_04 PM_0: -4655227450131469235
+      Coin-Tails: 553085408178529573
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
