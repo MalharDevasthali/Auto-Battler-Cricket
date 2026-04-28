@@ -14,7 +14,7 @@ public class RandomTeamGenerator : MonoBehaviour
     [SerializeField] private TeamCardView bowlerPlayerSlot;
     [SerializeField] private List<PlayerCardView> AllPlayers = new List<PlayerCardView>();
     [SerializeField] private Button startBattleButton;
-  
+
 
     [Header("Sounds")]
     [SerializeField] private AudioClip buttonClickSound;
@@ -28,8 +28,10 @@ public class RandomTeamGenerator : MonoBehaviour
     {
         if (startBattleButton != null)
             startBattleButton.onClick.AddListener(OnStartBattleButtonClick);
-      
+
     }
+
+  
 
     private IEnumerator Start()
     {

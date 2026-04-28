@@ -46,7 +46,6 @@ public class TossManager : MonoBehaviour
         if (tossButton != null)
             tossButton.interactable = false;
 
-      
         yield return FadeCanvasGroup(0f);
         
         float animationLength = 0f;
