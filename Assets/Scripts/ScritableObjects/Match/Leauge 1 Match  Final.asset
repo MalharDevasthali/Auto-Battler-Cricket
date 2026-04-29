@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf02db8a89a24a43b5e77d5cfaa878d, type: 3}
+  m_Name: Leauge 1 Match  Final
+  m_EditorClassIdentifier: Assembly-CSharp::MatchData
+  stage: 0
+  batsmen:
+  - {fileID: 11400000, guid: 6950db482b08fde40ab4fb78bfe737d0, type: 2}
+  - {fileID: 11400000, guid: f5fd559db484ca043888a26ff5cf1ba1, type: 2}
+  - {fileID: 11400000, guid: f3964440038b07b4c83aa1c5d79e58d9, type: 2}
+  bowler: {fileID: 11400000, guid: ac072e5b2b358814193d0ac8c0a61618, type: 2}

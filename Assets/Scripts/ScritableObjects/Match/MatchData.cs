@@ -15,7 +15,6 @@ public enum MatchStage
 public class MatchData : ScriptableObject
 {
     [Header("Meta")]
-    public int matchNumber;
     public MatchStage stage;
 
     [Header("Opponent Team")]
