@@ -14,7 +14,6 @@ public enum PlayerRarity
     Epic,
     Legendary
 }
-[Serializable]
 
 [CreateAssetMenu(fileName = "New Player", menuName = "ScriptableObject/Player Data")]
 public class PlayerData : ScriptableObject
