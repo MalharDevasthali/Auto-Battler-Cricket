@@ -28,7 +28,6 @@ public class RandomTeamGenerator : MonoBehaviour
     {
         if (startBattleButton != null)
             startBattleButton.onClick.AddListener(OnStartBattleButtonClick);
-
     }
 
   
