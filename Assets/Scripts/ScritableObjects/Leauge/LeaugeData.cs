@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Leauge", menuName = "ScriptableObject/Leauge Data")]
 public class LeaugeData : ScriptableObject
 {
+    public string LeaugeName;
     public List<MatchData> groupMatches;
     public MatchData semiFinal;
     public MatchData final;
