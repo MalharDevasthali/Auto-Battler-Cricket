@@ -46,6 +46,11 @@ public  class GameService : MonoBehaviour
     {
         return gameData.batsmenData.Where(playerData => playerData != null).ToList();
     }
+    public PlayerData GetBowler()
+    {
+        return gameData.bowlerData;
+    }
+
     public int GetUnlockedSlots()
     {
         return gameData.unlockedTeamSlots;

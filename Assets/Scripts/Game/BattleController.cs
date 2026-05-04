@@ -46,6 +46,15 @@ public class BattleController : MonoBehaviour
         battleView.LoadBowler(bowlerData);
         battleView.LoadBatsman(batsmen[0].GetData(), batsmen[0]);
     }
+
+    private void InitializeMatch()
+    {
+        if(ServiceLocator.Instance.GameService.GetCurrentInnings() == Innings.Batting)
+        {
+            
+        }
+
+    }
     public async void StartMatch()
     {
        

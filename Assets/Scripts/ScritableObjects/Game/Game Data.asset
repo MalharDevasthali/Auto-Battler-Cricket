@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: Game Data
   m_EditorClassIdentifier: Assembly-CSharp::GameData
   currentInnings: 0
-  selectedTeam: []
+  batsmenData:
+  - {fileID: 11400000, guid: 5aa5b4d6c83e6164291b88448bac7912, type: 2}
+  - {fileID: 11400000, guid: 1bcaa0b4e6ae59142bfd2db866596f72, type: 2}
+  - {fileID: 11400000, guid: dd2c89799b8288749b9453c49f3f4b54, type: 2}
+  bowlerData: {fileID: 11400000, guid: ac072e5b2b358814193d0ac8c0a61618, type: 2}
   unlockedTeamSlots: 3

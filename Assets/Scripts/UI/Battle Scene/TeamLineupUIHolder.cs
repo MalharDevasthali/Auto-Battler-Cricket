@@ -33,11 +33,10 @@ public class TeamLineupUIHolder : MonoBehaviour
 
     private void InitilizeTeamLineUp()
     {
-        List<PlayerData> selectedTeamData = ServiceLocator.Instance.GameService.GetSelectedTeam();
-        if (selectedTeamData == null) return;
+        List<PlayerData> randomBatsmen = ServiceLocator.Instance.GameService.GetSelectedTeam();
+        PlayerData randomBowler = ServiceLocator.Instance.GameService.GetBowler();
 
-        Debug.Log("Selected Team Data List Count:" + selectedTeamData.Count);
-        CreateLineup(selectedTeamData);
+        CreateLineup(randomBatsmen);
     }
 
     private void EnsureInitialized()
@@ -50,7 +49,6 @@ public class TeamLineupUIHolder : MonoBehaviour
 
     private void CreateLineup(List<PlayerData> teamData)
     {
-        if (teamData == null) return;
 
         List<PlayerData> playersToShow = teamData
             .Where(playerData => playerData != null)
@@ -58,23 +56,7 @@ public class TeamLineupUIHolder : MonoBehaviour
 
         PlayerLineupView template = GetLineupTemplate();
         Transform parent = GetLineupParent(template);
-
-        if (template == null)
-        {
-            Debug.LogError("PlayerLineupView prefab or template is missing.");
-            return;
-        }
-
-        if (parent == null)
-        {
-            Debug.LogError("Team players parent is missing.");
-            return;
-        }
-
-        List<PlayerLineupView> existingLineupViews = parent
-            .GetComponentsInChildren<PlayerLineupView>(true)
-            .ToList();
-
+       
         playerLineUpList.Clear();
 
         for (int i = 0; i < playersToShow.Count; i++)
@@ -86,29 +68,12 @@ public class TeamLineupUIHolder : MonoBehaviour
             playerLineupView.SetCurrentPlayerIndicator(false);
             playerLineUpList.Add(playerLineupView);
         }
-
-        foreach (PlayerLineupView existingLineupView in existingLineupViews)
-        {
-            if (existingLineupView != null)
-                Destroy(existingLineupView.gameObject);
-        }
-
         Debug.Log("PlayerLineup List Count:" + playerLineUpList.Count);
     }
 
     private PlayerLineupView GetLineupTemplate()
     {
-        if (playerLineupPrefab != null)
-            return playerLineupPrefab;
-
-        PlayerLineupView existingLineupView = playerLineUpList.FirstOrDefault(lineupView => lineupView != null);
-        if (existingLineupView != null)
-            return existingLineupView;
-
-        if (teamPlayersParent != null)
-            return teamPlayersParent.GetComponentInChildren<PlayerLineupView>(true);
-
-        return GetComponentInChildren<PlayerLineupView>(true);
+         return playerLineupPrefab;
     }
 
     private Transform GetLineupParent(PlayerLineupView template)
