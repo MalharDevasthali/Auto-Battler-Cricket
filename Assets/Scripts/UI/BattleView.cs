@@ -17,6 +17,7 @@ public class BattleView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bowlerNameText;
     [SerializeField] private TextMeshProUGUI bowlerAbilityText;
     [SerializeField] private TextMeshProUGUI bowlingPowerText;
+    [SerializeField] private TextMeshProUGUI whoIsBowlingText;
 
     [Header("Batsman UI")]
     [SerializeField] private Image batsmanImage;
@@ -24,6 +25,7 @@ public class BattleView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI batsmanAbilityText;
     [SerializeField] private TextMeshProUGUI battingPowerText;
     [SerializeField] private TextMeshProUGUI defenceText;
+    [SerializeField] private TextMeshProUGUI whoIsBattingText;
 
     [Header("UI Text Effects")]
     [SerializeField] private TextMeshProUGUI defenceTextEffects;

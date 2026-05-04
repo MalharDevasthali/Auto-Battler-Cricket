@@ -1389,11 +1389,13 @@ MonoBehaviour:
   bowlerNameText: {fileID: 3284430896548256128}
   bowlerAbilityText: {fileID: 7084899290903555726}
   bowlingPowerText: {fileID: 6926316951904970356}
+  whoIsBowlingText: {fileID: 2304282037711926495}
   batsmanImage: {fileID: 1083879515}
   batsmanNameText: {fileID: 137023407}
   batsmanAbilityText: {fileID: 2111716020}
   battingPowerText: {fileID: 442789704}
   defenceText: {fileID: 1180411072}
+  whoIsBattingText: {fileID: 1124573911}
   defenceTextEffects: {fileID: 1889508581}
   battingPowerTextEffects: {fileID: 1261461102}
   bowlingPowerTextEffects: {fileID: 1201335639}
@@ -2958,7 +2960,7 @@ GameObject:
   - component: {fileID: 1124573912}
   - component: {fileID: 1124573911}
   m_Layer: 5
-  m_Name: Batsman Details Text
+  m_Name: Who is batting Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3003,7 +3005,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Batsman Details
+  m_text: You
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -3030,8 +3032,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4857,6 +4859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleController
   bowlerData: {fileID: 11400000, guid: 1c8dae28285fda24dbc6cddff149fdc4, type: 2}
+  leagueData: []
   lineupHolder: {fileID: 537023752}
   battleView: {fileID: 584193035}
   abilityQueueSystem: {fileID: 1569792131}
@@ -6332,7 +6335,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bowler Details
+  m_text: CPU
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -6359,8 +6362,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7938,7 +7941,7 @@ GameObject:
   - component: {fileID: 7625690064746055236}
   - component: {fileID: 2304282037711926495}
   m_Layer: 5
-  m_Name: Bowler Details
+  m_Name: Who is bowling Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

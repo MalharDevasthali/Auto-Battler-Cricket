@@ -6,6 +6,7 @@ public class BattleController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private PlayerData bowlerData; // assign in inspector
+    [SerializeField] private LeaugeData[] leagueData;
     [SerializeField] private TeamLineupUIHolder lineupHolder; // assign in inspector
     [SerializeField] private BattleView battleView;
     [SerializeField] private AbilityQueueSystem abilityQueueSystem;
