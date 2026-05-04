@@ -93,8 +93,6 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
         }
     }
 
- 
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         if(data ==null) return;

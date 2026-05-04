@@ -14,6 +14,8 @@ public class RandomTeamGenerator : MonoBehaviour
     [SerializeField] private TeamCardView bowlerPlayerSlot;
     [SerializeField] private List<PlayerCardView> AllPlayers = new List<PlayerCardView>();
     [SerializeField] private Button startBattleButton;
+    [SerializeField] private RectTransform BattingLineupUIHolder;
+    [SerializeField] private RectTransform BowlingLineupUIHolder;
 
 
     [Header("Sounds")]
@@ -128,6 +130,20 @@ public class RandomTeamGenerator : MonoBehaviour
             batsmanPlayerSlots[toIndex].AddToBattingLineup(fromData, toIndex);
         if (toData != null)
             batsmanPlayerSlots[fromIndex].AddToBattingLineup(toData, fromIndex);
+    }
+
+    public void EnableRandomGeneratedPlayerAsPerInnings()
+    {
+        if(ServiceLocator.Instance.GameService.GetCurrentInnings() == Innings.Batting)
+        {
+            BattingLineupUIHolder.gameObject.SetActive(true);
+            BowlingLineupUIHolder.gameObject.SetActive(false);
+        }
+        else
+        {
+            BowlingLineupUIHolder.gameObject.SetActive(true);
+            BattingLineupUIHolder.gameObject.SetActive(false);
+        }
     }
 
 }

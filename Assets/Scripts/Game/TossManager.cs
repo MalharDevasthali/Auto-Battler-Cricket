@@ -16,7 +16,8 @@ public class TossManager : MonoBehaviour
     [SerializeField] private CanvasGroup TeamGeneratorCanvasGroup;
     [SerializeField] private CanvasGroup tossCanvasGroup;
     [SerializeField] private float fadeDuration = 0.5f;
-    
+
+    [SerializeField] private RandomTeamGenerator randomTeamGenerator;
     private const string CoinTossAnimationStateName = "CoinTossAnimation";
 
     private Animator coinAnimator;
@@ -118,9 +119,11 @@ public class TossManager : MonoBehaviour
             yield return new WaitForSeconds(2f);
             yield return FadeTossCanvasOutAndTeamGeneratorIn();
             isTossWon = false;
+            randomTeamGenerator.EnableRandomGeneratedPlayerAsPerInnings();
         }
 
         tossCoroutine = null;
+        tossButton.gameObject.SetActive(false);
     }
 
     private IEnumerator FadeCanvasGroup(CanvasGroup canvasGroup, float targetAlpha)
@@ -176,15 +179,14 @@ public class TossManager : MonoBehaviour
         SetFeedbackText($"You won the toss and chose {selectedChoiceText}.");
         isTossWon = false;
         StartCoroutine(CompleteTossFlowAfterDelay());
+
+        randomTeamGenerator.EnableRandomGeneratedPlayerAsPerInnings();
     }
 
     private IEnumerator CompleteTossFlowAfterDelay()
     {
         yield return new WaitForSeconds(2f);
         yield return FadeTossCanvasOutAndTeamGeneratorIn();
-
-        if (tossButton != null)
-            tossButton.interactable = true;
     }
 
     private IEnumerator FadeTossCanvasOutAndTeamGeneratorIn()
