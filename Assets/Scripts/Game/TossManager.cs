@@ -112,7 +112,7 @@ public class TossManager : MonoBehaviour
             Innings playerInnings = computerChoosesBatting ? Innings.Bowling : Innings.Batting;
             string computerChoiceText = computerChoosesBatting ? "batting" : "bowling";
 
-            SetCurrentInnings(playerInnings);
+            ServiceLocator.Instance.GameService.SetCurrentInnings(playerInnings);
             SetFeedbackText($"Toss Result: {resultText}\nYou lost the toss. Computer chose {computerChoiceText}.");
 
             yield return new WaitForSeconds(2f);
@@ -171,7 +171,7 @@ public class TossManager : MonoBehaviour
         if (!isTossWon)
             return;
 
-        SetCurrentInnings(selectedInnings);
+        ServiceLocator.Instance.GameService.SetCurrentInnings(selectedInnings);
         SetChoiceButtonsActive(false);
         SetFeedbackText($"You won the toss and chose {selectedChoiceText}.");
         isTossWon = false;
@@ -191,18 +191,6 @@ public class TossManager : MonoBehaviour
     {
         yield return FadeCanvasGroup(tossCanvasGroup, 0f);
         yield return FadeCanvasGroup(TeamGeneratorCanvasGroup, 1f);
-    }
-
-    private void SetCurrentInnings(Innings innings)
-    {
-        if (ServiceLocator.Instance == null || ServiceLocator.Instance.GameService == null)
-        {
-            Debug.LogError("Unable to set innings. GameService is missing from ServiceLocator.");
-            return;
-        }
-
-        ServiceLocator.Instance.GameService.SetCurrentInnings(innings);
-        Debug.Log($"Current Innings: {innings}");
     }
 
     private void SetChoiceButtonsActive(bool isActive)
