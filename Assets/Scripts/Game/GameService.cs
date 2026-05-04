@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,6 +7,7 @@ public  class GameService : MonoBehaviour
 {
 
     [SerializeField] private GameData gameData;
+    [SerializeField] private LeaugeData leaugeData;
     private void Start()
     {
         gameData.currentInnings = Innings.Batting;
@@ -42,13 +44,18 @@ public  class GameService : MonoBehaviour
         gameData.batsmenData.Clear();
     }
 
-    public List<PlayerData> GetSelectedTeam()
+    public List<PlayerData> GetPlayerBatmanTeam()
     {
         return gameData.batsmenData.Where(playerData => playerData != null).ToList();
     }
-    public PlayerData GetBowler()
+    public PlayerData GetPlayerBowler()
     {
         return gameData.bowlerData;
+    }
+
+    public PlayerData GetCPUBowler()
+    {
+        return leaugeData.groupMatches[0].bowler;
     }
 
     public int GetUnlockedSlots()

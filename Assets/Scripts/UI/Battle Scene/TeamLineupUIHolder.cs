@@ -33,8 +33,8 @@ public class TeamLineupUIHolder : MonoBehaviour
 
     private void InitilizeTeamLineUp()
     {
-        List<PlayerData> randomBatsmen = ServiceLocator.Instance.GameService.GetSelectedTeam();
-        PlayerData randomBowler = ServiceLocator.Instance.GameService.GetBowler();
+        List<PlayerData> randomBatsmen = ServiceLocator.Instance.GameService.GetPlayerBatmanTeam();
+        PlayerData randomBowler = ServiceLocator.Instance.GameService.GetPlayerBowler();
 
         CreateLineup(randomBatsmen);
     }
