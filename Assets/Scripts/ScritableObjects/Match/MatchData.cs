@@ -18,7 +18,7 @@ public class MatchData : ScriptableObject
     public MatchStage stage;
 
     [Header("Opponent Team")]
-    public List<PlayerData> batsmen;  
+    public List<PlayerData> batsmanTeam;  
     public PlayerData bowler;
 
 }

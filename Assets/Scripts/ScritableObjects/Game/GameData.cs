@@ -16,6 +16,7 @@ public class GameData : ScriptableObject
     public List<PlayerData> batsmenData = new List<PlayerData>();
     public PlayerData bowlerData;
     public int unlockedTeamSlots = 3;
+    public int currentMatchNumber = 1;
 
 }
 

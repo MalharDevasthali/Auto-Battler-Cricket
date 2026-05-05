@@ -8,11 +8,7 @@ public  class GameService : MonoBehaviour
 
     [SerializeField] private GameData gameData;
     [SerializeField] private LeaugeData leaugeData;
-    private void Start()
-    {
-        gameData.currentInnings = Innings.Batting;
-    }
-
+  
     public Innings GetCurrentInnings()
     { 
         return gameData.currentInnings; 
@@ -53,9 +49,13 @@ public  class GameService : MonoBehaviour
         return gameData.bowlerData;
     }
 
+    public List<PlayerData> GetCPUBatsmanTeam()
+    {
+        return leaugeData.groupMatches[gameData.currentMatchNumber - 1].batsmanTeam;
+    }
     public PlayerData GetCPUBowler()
     {
-        return leaugeData.groupMatches[0].bowler;
+        return leaugeData.groupMatches[gameData.currentMatchNumber - 1].bowler;
     }
 
     public int GetUnlockedSlots()

@@ -25,18 +25,12 @@ public class TeamLineupUIHolder : MonoBehaviour
         EnsureInitialized();
     }
 
-    public void PopulatePlayers()
-    {
-        CreateLineup(placeHolderTeam);
-        isInitialized = true;
-    }
-
     private void InitilizeTeamLineUp()
     {
-        List<PlayerData> randomBatsmen = ServiceLocator.Instance.GameService.GetPlayerBatmanTeam();
+        List<PlayerData> randombatsmanTeam = ServiceLocator.Instance.GameService.GetPlayerBatmanTeam();
         PlayerData randomBowler = ServiceLocator.Instance.GameService.GetPlayerBowler();
 
-        CreateLineup(randomBatsmen);
+        CreateLineup(randombatsmanTeam);
     }
 
     private void EnsureInitialized()

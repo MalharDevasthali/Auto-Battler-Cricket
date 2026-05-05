@@ -50,16 +50,16 @@ public class BattleController : MonoBehaviour
     private void InitializeMatch()
     {
         playerBatsmanTeam = lineupHolder.GetPlayerLineupList();
+        playerBowlerData = ServiceLocator.Instance.GameService.GetPlayerBowler();
+
+        //cpuBatsmanTeam = ServiceLocator.Instance.GameService.GetCPUBatsmanTeam();
         CPUBowlerData = ServiceLocator.Instance.GameService.GetCPUBowler();
        
         battleView.UpdateScore(totalRuns, wickets);
         battleView.LoadBatsman(playerBatsmanTeam[0].GetData(), playerBatsmanTeam[0]);
         battleView.LoadBowler(CPUBowlerData);
+        battleView.UpdateInningsUI();
        
-        if (ServiceLocator.Instance.GameService.GetCurrentInnings() == Innings.Batting)
-        {
-            
-        }
 
     }
     public async void StartMatch()

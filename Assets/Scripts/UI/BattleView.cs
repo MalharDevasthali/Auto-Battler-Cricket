@@ -80,6 +80,21 @@ public class BattleView : MonoBehaviour
         battingPowerText.SetText(data.BattingPower.ToString());
         defenceText.SetText(data.Defense.ToString());
     }
+
+    public void UpdateInningsUI()
+    {
+        if (ServiceLocator.Instance.GameService.GetCurrentInnings() == Innings.Batting)
+        {
+            whoIsBattingText.text = "You";
+            whoIsBowlingText.text = "CPU";
+        }
+        else
+        {
+            whoIsBattingText.text = "CPU";
+            whoIsBowlingText.text = "You";
+        }
+    }
+
     public void UpdateUIDuringBattle(PlayerLineupView batsmanView, PlayerDataDuringMatch batsmanDataDuringMatch , PlayerDataDuringMatch bowlerDataDuringMatch)
     {
         batsmanDataDuringMatch.UpdatePlayerDataDuringMatch(batsmanDataDuringMatch.Defense, batsmanDataDuringMatch.BattingPower, batsmanDataDuringMatch.BowlingPower);
