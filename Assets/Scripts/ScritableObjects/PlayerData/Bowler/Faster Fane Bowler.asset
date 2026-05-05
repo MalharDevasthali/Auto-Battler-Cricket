@@ -22,5 +22,5 @@ MonoBehaviour:
   BowlingPower: 2
   Defense: 0
   SpecialAbility: Bowls with +1<sprite=1> for every alternate ball
-  playerAbility: {fileID: 0}
+  playerAbility: {fileID: 11400000, guid: 4f89df3ade8a7d443a0cd3a04e308627, type: 2}
   playerSprite: {fileID: -4655227450131469235, guid: f7050ca9d794cde4480a2b9609f28c28, type: 3}

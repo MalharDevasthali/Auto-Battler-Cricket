@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Leauge 1 Match 1
   m_EditorClassIdentifier: Assembly-CSharp::MatchData
   stage: 0
-  batsmen:
-  - {fileID: 11400000, guid: f5fd559db484ca043888a26ff5cf1ba1, type: 2}
-  - {fileID: 11400000, guid: dd2c89799b8288749b9453c49f3f4b54, type: 2}
-  - {fileID: 11400000, guid: f3964440038b07b4c83aa1c5d79e58d9, type: 2}
-  bowler: {fileID: 11400000, guid: 1c8dae28285fda24dbc6cddff149fdc4, type: 2}
+  batsmanTeam:
+  - {fileID: 11400000, guid: 1bcaa0b4e6ae59142bfd2db866596f72, type: 2}
+  - {fileID: 11400000, guid: 9f3efbacb596f1047a2163465f8c6241, type: 2}
+  - {fileID: 11400000, guid: 6950db482b08fde40ab4fb78bfe737d0, type: 2}
+  bowler: {fileID: 11400000, guid: ac072e5b2b358814193d0ac8c0a61618, type: 2}

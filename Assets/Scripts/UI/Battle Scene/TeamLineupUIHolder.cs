@@ -14,31 +14,25 @@ public class TeamLineupUIHolder : MonoBehaviour
 
     private bool isInitialized;
 
-    public List<PlayerLineupView> GetPlayerLineupList()
+    public List<PlayerLineupView> GetPlayerLineupList( Innings currentInnings)
     {
-        EnsureInitialized();
+        InitilizeTeamLineUp(currentInnings);
         return playerLineUpList;
     }
 
-    private void Start()
+    private void InitilizeTeamLineUp(Innings currentInnings)
     {
-        EnsureInitialized();
-    }
-
-    private void InitilizeTeamLineUp()
-    {
-        List<PlayerData> randombatsmanTeam = ServiceLocator.Instance.GameService.GetPlayerBatmanTeam();
-        PlayerData randomBowler = ServiceLocator.Instance.GameService.GetPlayerBowler();
+        List<PlayerData> randombatsmanTeam;
+        if (currentInnings == Innings.Batting)
+        {
+            randombatsmanTeam = ServiceLocator.Instance.GameService.GetPlayerBatmanTeam();
+        }
+        else
+        {
+            randombatsmanTeam = ServiceLocator.Instance.GameService.GetCPUBatsmanTeam();
+        }
 
         CreateLineup(randombatsmanTeam);
-    }
-
-    private void EnsureInitialized()
-    {
-        if (isInitialized) return;
-
-        InitilizeTeamLineUp();
-        isInitialized = true;
     }
 
     private void CreateLineup(List<PlayerData> teamData)
@@ -49,13 +43,12 @@ public class TeamLineupUIHolder : MonoBehaviour
             .ToList();
 
         PlayerLineupView template = GetLineupTemplate();
-        Transform parent = GetLineupParent(template);
-       
+        ClearChildren(teamPlayersParent);
         playerLineUpList.Clear();
 
         for (int i = 0; i < playersToShow.Count; i++)
         {
-            PlayerLineupView playerLineupView = Instantiate(template, parent);
+            PlayerLineupView playerLineupView = Instantiate(template, teamPlayersParent);
             playerLineupView.name = "PlayerLineup_" + (i + 1);
             playerLineupView.SetPlayerData(playersToShow[i]);
             playerLineupView.LoadUI();
@@ -64,29 +57,17 @@ public class TeamLineupUIHolder : MonoBehaviour
         }
         Debug.Log("PlayerLineup List Count:" + playerLineUpList.Count);
     }
+    private void ClearChildren(Transform parent)
+    {
+        for (int i = parent.childCount - 1; i >= 0; i--)
+        {
+            Destroy(parent.GetChild(i).gameObject);
+        }
+    }
 
     private PlayerLineupView GetLineupTemplate()
     {
          return playerLineupPrefab;
-    }
-
-    private Transform GetLineupParent(PlayerLineupView template)
-    {
-        if (teamPlayersParent != null)
-            return teamPlayersParent;
-
-        PlayerLineupView existingLineupView = playerLineUpList.FirstOrDefault(lineupView => lineupView != null);
-        if (existingLineupView != null && existingLineupView.transform.parent != null)
-            return existingLineupView.transform.parent;
-
-        PlayerLineupView childLineupView = GetComponentInChildren<PlayerLineupView>(true);
-        if (childLineupView != null && childLineupView.transform.parent != null)
-            return childLineupView.transform.parent;
-
-        if (template != null && template.transform.parent != null)
-            return template.transform.parent;
-
-        return transform;
     }
 
     public void ResetTeamLineUp()
