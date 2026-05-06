@@ -25,13 +25,13 @@ public class BattleController : MonoBehaviour
     private PlayerData bowlingTeamData;
 
     private int totalRuns = 0;
-    private int target;
+    private int target = 0;
     private int wickets = 0;
 
 
-    private int currentBatsmanIndex = 0;
-    private int currentBall = 1;
-    private int runsOnCurrentBall = 0;
+    private int currentBatsmanIndex;
+    private int currentBall;
+    private int runsOnCurrentBall;
     private int currentInnings = 1;
     private bool wicketFalledOnCurrentBall = false;
 
@@ -52,6 +52,12 @@ public class BattleController : MonoBehaviour
         totalRuns = 0;
         wickets = 0;
         currentBall = 1;
+        currentBatsmanIndex = 0;
+
+        currentBatsmanDataDuringMatch = null;
+        allBatsmanDataDuringMatch.Clear();
+        currentBowlerDataDuringMatch = null;
+        
         
         Innings innings = ServiceLocator.Instance.GameService.GetCurrentInnings();
         battingTeamLineUp = lineupHolder.GetPlayerLineupList(innings);
@@ -197,7 +203,9 @@ public class BattleController : MonoBehaviour
         Innings nextInnings = currentInning == Innings.Batting ? Innings.Bowling : Innings.Batting;
         ServiceLocator.Instance.GameService.SetCurrentInnings(nextInnings);
         target = totalRuns;
+        battleView.UpdateTarget(target);
         InitializeMatch();
+
 
         battleView.SetInningsButtonVisibility(false);
     }

@@ -9,6 +9,7 @@ public class BattleView : MonoBehaviour
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI ballText;
+    [SerializeField] private TextMeshProUGUI targetText;
     [SerializeField] private Button startMatchButton;
     [SerializeField] private Button playButton;
     [SerializeField] private Button nextInningsButton;
@@ -58,6 +59,11 @@ public class BattleView : MonoBehaviour
     {
         if (scoreText != null)
             scoreText.SetText($"Score: {totalRuns}/{wickets}");
+    }
+
+    public void UpdateTarget(int target)
+    {
+        targetText.text = "Target: " + target;
     }
 
     public void UpdateBallText(int ball)
