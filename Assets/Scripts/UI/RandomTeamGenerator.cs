@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,6 +17,8 @@ public class RandomTeamGenerator : MonoBehaviour
     [SerializeField] private Button startBattleButton;
     [SerializeField] private RectTransform BattingLineupUIHolder;
     [SerializeField] private RectTransform BowlingLineupUIHolder;
+    [SerializeField] private TextMeshProUGUI leaugeMatchInfoText;
+    [SerializeField] private TextMeshProUGUI InningsInfoText;
 
 
     [Header("Sounds")]
@@ -36,9 +39,19 @@ public class RandomTeamGenerator : MonoBehaviour
 
     private IEnumerator Start()
     {
+        loadLeagueInfo();
         yield return null;
         generateRandomBatsmen();
         generateRandomBowler();
+       
+    }
+    private void loadLeagueInfo()
+    {
+        leaugeMatchInfoText.text = "Leauge - " + ServiceLocator.Instance.GameService.GetLeaugeData().LeaugeNumber +" - "+ ServiceLocator.Instance.GameService.GetLeaugeData().LeaugeName;
+    }
+    public void LoadInningsInfo()
+    {
+        InningsInfoText.text = "You are "+ServiceLocator.Instance.GameService.GetCurrentInnings().ToString();
     }
 
     private void generateRandomBatsmen()

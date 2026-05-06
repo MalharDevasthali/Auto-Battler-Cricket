@@ -17,6 +17,7 @@ public class GameData : ScriptableObject
     public PlayerData bowlerData;
     public int unlockedTeamSlots = 3;
     public int currentMatchNumber = 1;
+    public LeaugeData currentLeauge;
 
 }
 

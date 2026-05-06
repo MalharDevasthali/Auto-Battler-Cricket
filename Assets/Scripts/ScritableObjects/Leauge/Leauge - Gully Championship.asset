@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7d3901b1bdc8cf46af3371869d3d357, type: 3}
   m_Name: Leauge - Gully Championship
   m_EditorClassIdentifier: Assembly-CSharp::LeaugeData
+  LeaugeNumber: 1
   LeaugeName: Gully Championship
   groupMatches:
   - {fileID: 11400000, guid: fa9b2e9175a01bc4caae082c37d355b0, type: 2}

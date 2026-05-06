@@ -19,3 +19,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dd2c89799b8288749b9453c49f3f4b54, type: 2}
   bowlerData: {fileID: 11400000, guid: ac072e5b2b358814193d0ac8c0a61618, type: 2}
   unlockedTeamSlots: 3
+  currentMatchNumber: 1
+  currentLeauge: {fileID: 11400000, guid: 19a32a116d0915d42a4597ae6f301024, type: 2}

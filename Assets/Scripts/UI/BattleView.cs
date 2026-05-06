@@ -13,6 +13,7 @@ public class BattleView : MonoBehaviour
     [SerializeField] private Button startMatchButton;
     [SerializeField] private Button playButton;
     [SerializeField] private Button nextInningsButton;
+    [SerializeField] private Button nextMatchButton;
 
     [Header("Bowler UI")]
     [SerializeField] private Image bowlerImage;

@@ -89,6 +89,7 @@ public class TeamCardView : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
         else
         {
             BattingPowerUI.gameObject.SetActive(false);
+            DefenceUI.gameObject.SetActive(false) ;
             BowlingPowerUI.gameObject.SetActive(true);
         }
     }

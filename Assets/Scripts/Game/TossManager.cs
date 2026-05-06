@@ -121,7 +121,7 @@ public class TossManager : MonoBehaviour
             isTossWon = false;
             randomTeamGenerator.EnableRandomGeneratedPlayerAsPerInnings();
         }
-
+        randomTeamGenerator.LoadInningsInfo();
         tossCoroutine = null;
         tossButton.gameObject.SetActive(false);
     }
