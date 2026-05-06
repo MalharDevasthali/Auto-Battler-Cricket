@@ -11,6 +11,7 @@ public class BattleView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ballText;
     [SerializeField] private Button startMatchButton;
     [SerializeField] private Button playButton;
+    [SerializeField] private Button nextInningsButton;
 
     [Header("Bowler UI")]
     [SerializeField] private Image bowlerImage;
@@ -45,6 +46,12 @@ public class BattleView : MonoBehaviour
     {
         if (playButton != null)
             playButton.enabled = isEnabled;
+    }
+
+    public void SetInningsButtonVisibility(bool isEnabled)
+    {
+        nextInningsButton.gameObject.SetActive(isEnabled);
+        nextInningsButton.enabled = isEnabled;
     }
 
     public void UpdateScore(int totalRuns, int wickets)

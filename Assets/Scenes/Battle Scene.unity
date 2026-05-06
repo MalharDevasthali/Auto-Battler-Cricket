@@ -1385,6 +1385,7 @@ MonoBehaviour:
   ballText: {fileID: 1465667583}
   startMatchButton: {fileID: 1139552630}
   playButton: {fileID: 661903284}
+  nextInningsButton: {fileID: 1437104338}
   bowlerImage: {fileID: 9087518348741213927}
   bowlerNameText: {fileID: 3284430896548256128}
   bowlerAbilityText: {fileID: 7084899290903555726}
@@ -4146,12 +4147,12 @@ GameObject:
   - component: {fileID: 1437104339}
   - component: {fileID: 1437104338}
   m_Layer: 5
-  m_Name: Placeholder - Pupulate Team
+  m_Name: Next Innings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1437104337
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4216,9 +4217,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 537023752}
-        m_TargetAssemblyTypeName: TeamLineupUIHolder, Assembly-CSharp
-        m_MethodName: PopulatePlayers
+      - m_Target: {fileID: 1625139855}
+        m_TargetAssemblyTypeName: BattleController, Assembly-CSharp
+        m_MethodName: NextInningsButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4462,7 +4463,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Populate Team!
+  m_text: Next Innings!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4471,8 +4472,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4495,7 +4496,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
