@@ -166,23 +166,55 @@ public class BattleController : MonoBehaviour
 
         if (currentBall > 6 || currentBatsmanIndex >= battingTeamLineUp.Count)
         {
+            battleView.SetPlayInteractable(false);
+            
             if (currentInnings == 1)
             {
                 processInningsEnd();
             }
             else if (currentInnings == 2)
             {
-                MatchWinCheck();
+                MatchFinishedCheck();
             }
         }
-        battleView.SetPlayInteractable(true);
+        else
+        {
+            battleView.SetPlayInteractable(true);
+        }
+   
     }
 
     private void MatchWinCheck()
     {
         if (checkRunChasedSuccessfully())
         {
+            battleView.SetPlayInteractable(false);
             if (ServiceLocator.Instance.GameService.GetCurrentInnings() == Innings.Batting)
+            {
+                Debug.Log("You Have Won!");
+            }
+            else
+            {
+                Debug.Log("CPU Have Won!");
+            }
+        }
+    }
+    private void MatchFinishedCheck()
+    {
+        if (checkRunChasedSuccessfully())
+        {
+            if (ServiceLocator.Instance.GameService.GetCurrentInnings() == Innings.Batting)
+            {
+                Debug.Log("You Have Won!");
+            }
+            else
+            {
+                Debug.Log("CPU Have Won!");
+            }
+        }
+        else
+        {
+            if (ServiceLocator.Instance.GameService.GetCurrentInnings() == Innings.Bowling)
             {
                 Debug.Log("You Have Won!");
             }
@@ -206,6 +238,7 @@ public class BattleController : MonoBehaviour
 
 
         battleView.SetInningsButtonVisibility(false);
+        battleView.SetPlayInteractable(true);
     }
 
     public void NextMatchButton()

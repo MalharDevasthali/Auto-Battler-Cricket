@@ -119,7 +119,6 @@ public class TossManager : MonoBehaviour
             yield return new WaitForSeconds(2f);
             yield return FadeTossCanvasOutAndTeamGeneratorIn();
             isTossWon = false;
-            randomTeamGenerator.EnableRandomGeneratedPlayerAsPerInnings();
         }
         randomTeamGenerator.LoadInningsInfo();
         tossCoroutine = null;
@@ -180,7 +179,6 @@ public class TossManager : MonoBehaviour
         isTossWon = false;
         StartCoroutine(CompleteTossFlowAfterDelay());
 
-        randomTeamGenerator.EnableRandomGeneratedPlayerAsPerInnings();
     }
 
     private IEnumerator CompleteTossFlowAfterDelay()
