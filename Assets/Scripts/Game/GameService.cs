@@ -62,6 +62,10 @@ public  class GameService : MonoBehaviour
     {
         return currentLeauge;
     }
+    public GameData GetGameData()
+    {
+        return gameData;
+    }
 
     public int GetUnlockedSlots()
     {

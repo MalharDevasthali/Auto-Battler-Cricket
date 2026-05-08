@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEditor;
@@ -10,6 +11,7 @@ public class BattleController : MonoBehaviour
     [SerializeField] private TeamLineupUIHolder lineupHolder;
     [SerializeField] private BattleView battleView;
     [SerializeField] private AbilityQueueSystem abilityQueueSystem;
+    [SerializeField] private UICanvasManager uicanvasManager;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip hitSound;
@@ -141,7 +143,7 @@ public class BattleController : MonoBehaviour
                 }
                 else if (currentInnings == 2)
                 {
-                    MatchFinishedCheck();
+                    processMatchEnd();
                 }
             }
             else
@@ -196,7 +198,7 @@ public class BattleController : MonoBehaviour
             }
             else if (currentInnings == 2)
             {
-                MatchFinishedCheck();
+                processMatchEnd();
             }
         }
         else
@@ -221,7 +223,7 @@ public class BattleController : MonoBehaviour
             }
         }
     }
-    private void MatchFinishedCheck()
+    private void processMatchEnd()
     {
         if (checkRunChasedSuccessfully())
         {
@@ -257,10 +259,9 @@ public class BattleController : MonoBehaviour
         target = totalRuns;
         battleView.UpdateTarget(target);
         InitializeMatch();
-
-
         battleView.SetInningsButtonVisibility(false);
         battleView.SetPlayInteractable(true);
+
     }
 
     public void NextMatchButton()

@@ -35,8 +35,6 @@ public class RandomTeamGenerator : MonoBehaviour
             startBattleButton.onClick.AddListener(OnStartBattleButtonClick);
     }
 
-  
-
     private IEnumerator Start()
     {
         loadLeagueInfo();

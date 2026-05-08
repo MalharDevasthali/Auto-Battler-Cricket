@@ -6,15 +6,20 @@ using UnityEngine.UI;
 
 public class BattleView : MonoBehaviour
 {
+    [Header("Script References")]
+
+    [SerializeField] private UICanvasManager uICanvasManager;
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI ballText;
     [SerializeField] private TextMeshProUGUI targetText;
+    [SerializeField] private TextMeshProUGUI leaugeInfoText;
+
     [SerializeField] private Button startMatchButton;
     [SerializeField] private Button playButton;
     [SerializeField] private Button nextInningsButton;
     [SerializeField] private Button nextMatchButton;
-
+  
     [Header("Bowler UI")]
     [SerializeField] private Image bowlerImage;
     [SerializeField] private TextMeshProUGUI bowlerNameText;
@@ -38,10 +43,31 @@ public class BattleView : MonoBehaviour
     private Color textEffectGainColor = new Color(0.95f, 0.75f, 0.2f);
     private Color textEffectReduceColor = new Color(1f, 0.1f, 0.1f);
 
+    private void Awake()
+    {
+        if (nextInningsButton != null)
+            nextInningsButton.onClick.AddListener(OnNextInningsButtonClicked);
+    }
+
+    private void OnNextInningsButtonClicked()
+    {
+       
+       StartCoroutine( uICanvasManager.FadeOutFadeInBattleSceneCanvas());
+    }
+
+    private void Start()
+    {
+        SetLeaugeMatchData();
+    }
     public void SetStartMatchInteractable(bool isEnabled)
     {
         if (startMatchButton != null)
             startMatchButton.enabled = isEnabled;
+    }
+
+    public void SetLeaugeMatchData()
+    {
+        leaugeInfoText.text = "Leauge - " + ServiceLocator.Instance.GameService.GetLeaugeData().LeaugeNumber + " - Match - " + ServiceLocator.Instance.GameService.GetGameData().currentMatchNumber;
     }
 
     public void SetPlayInteractable(bool isEnabled)
