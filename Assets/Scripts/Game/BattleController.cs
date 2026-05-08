@@ -7,7 +7,6 @@ public class BattleController : MonoBehaviour
 {
     [Header("References")]
     
-    [SerializeField] private LeaugeData[] leagueData;
     [SerializeField] private TeamLineupUIHolder lineupHolder;
     [SerializeField] private BattleView battleView;
     [SerializeField] private AbilityQueueSystem abilityQueueSystem;
@@ -72,9 +71,9 @@ public class BattleController : MonoBehaviour
 
         SetBatsmanBowlerUI();
     }
-   /* public async void StartMatch()
+    public async void StartMatch()
     {
-       
+
         battleView.SetStartMatchInteractable(false);
 
         SetPlayersData();
@@ -86,7 +85,7 @@ public class BattleController : MonoBehaviour
             if (this == null) break;
             wicketFalledOnCurrentBall = false;
 
-            battleView.UpdateUIDuringBattle(currentBatsmanView, currentBatsmanDataDuringMatch,currentBowlerDataDuringMatch);
+            battleView.UpdateUIDuringBattle(currentBatsmanView, currentBatsmanDataDuringMatch, currentBowlerDataDuringMatch);
             await Task.Delay((int)(ballDelay * 1000));
 
 
@@ -94,8 +93,8 @@ public class BattleController : MonoBehaviour
             await Task.Delay(1000);
 
             PlayBall(ball, currentBatsmanView, currentBatsmanDataDuringMatch);
-           
-            battleView.UpdateUIDuringBattle(currentBatsmanView, currentBatsmanDataDuringMatch,currentBowlerDataDuringMatch);
+
+            battleView.UpdateUIDuringBattle(currentBatsmanView, currentBatsmanDataDuringMatch, currentBowlerDataDuringMatch);
 
             if (currentBatsmanDataDuringMatch.Defense <= 0)
             {
@@ -111,11 +110,11 @@ public class BattleController : MonoBehaviour
 
                 await Task.Delay((int)(ballDelay * 1000));
 
-                if (currentBatsmanIndex < battingTeamLineUp.Count && currentBall < 6)
+                if (currentBatsmanIndex < battingTeamLineUp.Count && ball < 6)
                 {
                     currentBatsmanView.SetCurrentPlayerIndicator(false);
 
-                    BringNewPlayer(currentBatsmanIndex, out currentBatsmanView, out batsmanData, out currentBatsmanDataDuringMatch);
+                    BringNewPlayer(currentBatsmanIndex, out currentBatsmanView, out currentBatsmanDataDuringMatch);
                     battleView.UpdateUIDuringBattle(currentBatsmanView, currentBatsmanDataDuringMatch, currentBowlerDataDuringMatch);
                 }
             }
@@ -126,12 +125,35 @@ public class BattleController : MonoBehaviour
             }
 
             await processPlayerAbilities(currentBatsmanDataDuringMatch, currentBowlerDataDuringMatch, totalRuns, wickets, runsOnCurrentBall, ball);
+
+            if (currentInnings == 2)
+            {
+                MatchWinCheck();
+            }
+
+            if (ball >= 6 || currentBatsmanIndex >= battingTeamLineUp.Count)
+            {
+                battleView.SetPlayInteractable(false);
+
+                if (currentInnings == 1)
+                {
+                    processInningsEnd();
+                }
+                else if (currentInnings == 2)
+                {
+                    MatchFinishedCheck();
+                }
+            }
+            else
+            {
+                battleView.SetPlayInteractable(true);
+            }
         }
 
         Debug.Log($"Over finished. Total Runs: {totalRuns}, Wickets: {wickets}");
-        
+
         battleView.SetStartMatchInteractable(true);
-    }*/
+    }
 
     public async void PlayNextBall()
     {
