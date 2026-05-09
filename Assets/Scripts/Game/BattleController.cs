@@ -42,7 +42,11 @@ public class BattleController : MonoBehaviour
     private List<PlayerDataDuringMatch> allBatsmanDataDuringMatch = new List<PlayerDataDuringMatch>(6);
     private PlayerDataDuringMatch currentBowlerDataDuringMatch;
 
+    private void Awake()
+    {
+        battleView.Initialize(this);
 
+    }
     private void Start()
     {
         InitializeMatch();
@@ -249,7 +253,7 @@ public class BattleController : MonoBehaviour
         }
     }
 
-    public void NextInningsButton()
+    public void LoadNextInnings()
     {
         Debug.Log($"Inning is finished. Total Runs: {totalRuns}, Wickets: {wickets}");
         currentInnings = 2;
@@ -259,14 +263,6 @@ public class BattleController : MonoBehaviour
         target = totalRuns;
         battleView.UpdateTarget(target);
         InitializeMatch();
-        battleView.SetInningsButtonVisibility(false);
-        battleView.SetPlayInteractable(true);
-
-    }
-
-    public void NextMatchButton()
-    {
-
     }
 
     private void processInningsEnd()

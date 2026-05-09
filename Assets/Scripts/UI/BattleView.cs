@@ -1,14 +1,17 @@
 using DG.Tweening;
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class BattleView : MonoBehaviour
 {
     [Header("Script References")]
-
     [SerializeField] private UICanvasManager uICanvasManager;
+    private BattleController battleController;
+
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI ballText;
@@ -43,17 +46,50 @@ public class BattleView : MonoBehaviour
     private Color textEffectGainColor = new Color(0.95f, 0.75f, 0.2f);
     private Color textEffectReduceColor = new Color(1f, 0.1f, 0.1f);
 
+    private Coroutine fadeInOutCoroutine = null; 
+
     private void Awake()
     {
         if (nextInningsButton != null)
             nextInningsButton.onClick.AddListener(OnNextInningsButtonClicked);
+
+        if (nextMatchButton != null)
+            nextMatchButton.onClick.AddListener(OnNextMatchButtonClicked);
     }
 
+    public void Initialize(BattleController battleController)
+    {
+        this.battleController = battleController;
+    }
     private void OnNextInningsButtonClicked()
     {
-       
-       StartCoroutine( uICanvasManager.FadeOutFadeInBattleSceneCanvas());
+        StartCoroutine(OnNextInningsButtonClickedRoutine());
     }
+
+    private IEnumerator OnNextInningsButtonClickedRoutine()
+    {
+        if (fadeInOutCoroutine == null)
+        {
+            fadeInOutCoroutine = StartCoroutine(
+                uICanvasManager.FadeOutFadeInBattleSceneCanvas()
+            );
+        }
+
+        yield return fadeInOutCoroutine;
+        fadeInOutCoroutine = null;
+
+        battleController.LoadNextInnings();
+
+        SetInningsButtonVisibility(false);
+        SetPlayInteractable(true);
+    }
+
+    private void OnNextMatchButtonClicked()
+    {
+        StartCoroutine(uICanvasManager.FadeOutFadeInBattleSceneCanvas());
+    }
+
+
 
     private void Start()
     {
