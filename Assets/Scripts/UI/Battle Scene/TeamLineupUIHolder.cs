@@ -14,13 +14,13 @@ public class TeamLineupUIHolder : MonoBehaviour
 
     private bool isInitialized;
 
-    public List<PlayerLineupView> GetPlayerLineupList( Innings currentInnings)
+    public List<PlayerLineupView> GetPlayerLineupList( Innings currentInnings , int matchNumber)
     {
-        InitilizeTeamLineUp(currentInnings);
+        InitilizeTeamLineUp(currentInnings,matchNumber);
         return playerLineUpList;
     }
 
-    private void InitilizeTeamLineUp(Innings currentInnings)
+    private void InitilizeTeamLineUp(Innings currentInnings,int matchNumber)
     {
         List<PlayerData> randombatsmanTeam;
         if (currentInnings == Innings.Batting)
@@ -29,7 +29,7 @@ public class TeamLineupUIHolder : MonoBehaviour
         }
         else
         {
-            randombatsmanTeam = ServiceLocator.Instance.GameService.GetCPUBatsmanTeam();
+            randombatsmanTeam = ServiceLocator.Instance.GameService.GetCPUBatsmanTeam(matchNumber);
         }
 
         CreateLineup(randombatsmanTeam);

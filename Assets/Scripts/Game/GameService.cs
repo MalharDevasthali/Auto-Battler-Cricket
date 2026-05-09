@@ -49,13 +49,13 @@ public  class GameService : MonoBehaviour
         return gameData.bowlerData;
     }
 
-    public List<PlayerData> GetCPUBatsmanTeam()
+    public List<PlayerData> GetCPUBatsmanTeam(int matchNumber)
     {
-        return currentLeauge.groupMatches[gameData.currentMatchNumber - 1].batsmanTeam;
+        return currentLeauge.groupMatches[matchNumber].batsmanTeam;
     }
-    public PlayerData GetCPUBowler()
+    public PlayerData GetCPUBowler(int matchNumber)
     {
-        return currentLeauge.groupMatches[gameData.currentMatchNumber - 1].bowler;
+        return currentLeauge.groupMatches[matchNumber].bowler;
     }
 
     public LeaugeData GetLeaugeData()

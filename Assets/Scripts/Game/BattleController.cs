@@ -34,6 +34,7 @@ public class BattleController : MonoBehaviour
     private int currentBall;
     private int runsOnCurrentBall;
     private int currentInnings = 1;
+    private int currentMatchNumber = 1;
     private bool wicketFalledOnCurrentBall = false;
 
     private PlayerLineupView currentBatsmanView;
@@ -65,10 +66,10 @@ public class BattleController : MonoBehaviour
         
         
         Innings innings = ServiceLocator.Instance.GameService.GetCurrentInnings();
-        battingTeamLineUp = lineupHolder.GetPlayerLineupList(innings);
+        battingTeamLineUp = lineupHolder.GetPlayerLineupList(innings,currentMatchNumber);
         if (innings == Innings.Batting)
         {
-            bowlingTeamData = ServiceLocator.Instance.GameService.GetCPUBowler();
+            bowlingTeamData = ServiceLocator.Instance.GameService.GetCPUBowler(currentMatchNumber);
         }
         else
         {
