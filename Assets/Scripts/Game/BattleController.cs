@@ -136,7 +136,10 @@ public class BattleController : MonoBehaviour
 
             if (currentInnings == 2)
             {
-                MatchWinCheck();
+                if (MatchWinCheck())
+                    break;
+                else
+                    continue;
             }
 
             if (ball >= 6 || currentBatsmanIndex >= battingTeamLineUp.Count)
@@ -214,7 +217,7 @@ public class BattleController : MonoBehaviour
    
     }
 
-    private void MatchWinCheck()
+    private bool MatchWinCheck()
     {
         if (checkRunChasedSuccessfully())
         {
@@ -227,7 +230,10 @@ public class BattleController : MonoBehaviour
             {
                 Debug.Log("CPU Have Won!");
             }
+            return true;
         }
+        return false;
+
     }
     private void processMatchEnd()
     {
