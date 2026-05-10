@@ -66,10 +66,10 @@ public class BattleController : MonoBehaviour
         
         
         Innings innings = ServiceLocator.Instance.GameService.GetCurrentInnings();
-        battingTeamLineUp = lineupHolder.GetPlayerLineupList(innings,currentMatchNumber);
+        battingTeamLineUp = lineupHolder.GetPlayerLineupList(innings,currentMatchNumber-1);
         if (innings == Innings.Batting)
         {
-            bowlingTeamData = ServiceLocator.Instance.GameService.GetCPUBowler(currentMatchNumber);
+            bowlingTeamData = ServiceLocator.Instance.GameService.GetCPUBowler(currentMatchNumber-1);
         }
         else
         {
