@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edacec406b9978a48beec9e8ca367b6a, type: 3}
-  m_Name: Hitman Batsman
+  m_Name: Boom Boom Bowler
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   playerID: 0
-  playerName: Hitman
+  playerName: Boom Boom Bowler
   playerSate: 0
-  role: 0
+  role: 1
   rarity: 3
   PlayerLevel: 0
-  BattingPower: 4
-  BowlingPower: 0
-  Defense: 8
+  BattingPower: 0
+  BowlingPower: 3
+  Defense: 0
   specialAbilityLevel1: 
   specialAbilityLevel2: 
   specialAbilityLevel3: 
-  playerAbility: {fileID: 11400000, guid: edba1c8602bec3d469b35b273b3bd707, type: 2}
-  playerSprite: {fileID: -7147751235429508644, guid: 0f6ea2b2523cda84ab4caad8f25a6f65, type: 3}
+  playerAbility: {fileID: 11400000, guid: 4f89df3ade8a7d443a0cd3a04e308627, type: 2}
+  playerSprite: {fileID: -4655227450131469235, guid: f7050ca9d794cde4480a2b9609f28c28, type: 3}

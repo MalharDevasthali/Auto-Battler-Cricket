@@ -12,6 +12,8 @@ public enum Innings
 [CreateAssetMenu(fileName = "Game Data", menuName = "ScriptableObject/Game Data")]
 public class GameData : ScriptableObject
 {
+    public List<PlayerData> allAvaiablePlayers = new List<PlayerData>();
+
     public Innings currentInnings;
     public List<PlayerData> batsmenData = new List<PlayerData>();
     public PlayerData bowlerData;

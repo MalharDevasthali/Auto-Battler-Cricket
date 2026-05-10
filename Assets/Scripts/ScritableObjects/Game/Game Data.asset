@@ -12,6 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b9684fe4d7de2d44821464094387319, type: 3}
   m_Name: Game Data
   m_EditorClassIdentifier: Assembly-CSharp::GameData
+  allAvaiablePlayers:
+  - {fileID: 11400000, guid: 5008148c05cb1bb46bfdb7625ab6c8ec, type: 2}
+  - {fileID: 11400000, guid: 5aa5b4d6c83e6164291b88448bac7912, type: 2}
+  - {fileID: 11400000, guid: 16a94cc3da9835c42848910b55043edc, type: 2}
+  - {fileID: 11400000, guid: 1bcaa0b4e6ae59142bfd2db866596f72, type: 2}
+  - {fileID: 11400000, guid: 3f85aaf12f7baf74ca236e2b36838811, type: 2}
+  - {fileID: 11400000, guid: 99fdc01cbe385ef41947b83d2ac8f0f8, type: 2}
+  - {fileID: 11400000, guid: f3964440038b07b4c83aa1c5d79e58d9, type: 2}
+  - {fileID: 11400000, guid: 93b17ec48864e6249896ba4d8c6a1dec, type: 2}
+  - {fileID: 11400000, guid: cfbcfe1c8329de640811dbc3f6f6b0fd, type: 2}
+  - {fileID: 11400000, guid: dd2c89799b8288749b9453c49f3f4b54, type: 2}
+  - {fileID: 11400000, guid: 3f161b5ee07a9314bad204bd6594622c, type: 2}
+  - {fileID: 11400000, guid: f5fd559db484ca043888a26ff5cf1ba1, type: 2}
+  - {fileID: 11400000, guid: 9f3efbacb596f1047a2163465f8c6241, type: 2}
+  - {fileID: 11400000, guid: f784e38593639ba4f82cd78f1592b081, type: 2}
+  - {fileID: 11400000, guid: 6950db482b08fde40ab4fb78bfe737d0, type: 2}
+  - {fileID: 11400000, guid: 84da46fb082e1af488c4b64e8ce82fe6, type: 2}
+  - {fileID: 11400000, guid: 703d5c966aad1e24eac6ebb43e27765d, type: 2}
+  - {fileID: 11400000, guid: ac072e5b2b358814193d0ac8c0a61618, type: 2}
+  - {fileID: 11400000, guid: dd1f7873f388e144ebd703b20b685dc9, type: 2}
+  - {fileID: 11400000, guid: 1e8a2d602f70a92428baff2bd58c82fc, type: 2}
+  - {fileID: 11400000, guid: 1c8dae28285fda24dbc6cddff149fdc4, type: 2}
+  - {fileID: 11400000, guid: 79c0790a8f4306b439c74a521f2ed9d7, type: 2}
   currentInnings: 0
   batsmenData:
   - {fileID: 11400000, guid: 5aa5b4d6c83e6164291b88448bac7912, type: 2}
@@ -19,5 +42,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dd2c89799b8288749b9453c49f3f4b54, type: 2}
   bowlerData: {fileID: 11400000, guid: ac072e5b2b358814193d0ac8c0a61618, type: 2}
   unlockedTeamSlots: 3
-  currentMatchNumber: 1
   currentLeauge: {fileID: 11400000, guid: 19a32a116d0915d42a4597ae6f301024, type: 2}
+  Lives: 3
