@@ -12,6 +12,7 @@ public class BattleController : MonoBehaviour
     [SerializeField] private BattleView battleView;
     [SerializeField] private AbilityQueueSystem abilityQueueSystem;
     [SerializeField] private UICanvasManager uicanvasManager;
+    [SerializeField] private MatchEndManager matchManager;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip hitSound;
@@ -46,7 +47,7 @@ public class BattleController : MonoBehaviour
     private void Awake()
     {
         battleView.Initialize(this);
-
+        matchManager.Initialize(this);
     }
     private void Start()
     {

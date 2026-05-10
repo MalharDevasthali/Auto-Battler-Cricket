@@ -32,7 +32,7 @@ public class UIService : MonoBehaviour
     {
         playerImage.sprite = data.playerSprite;
         playerNameText.text = data.playerName;
-        playerAbilityText.text = data.SpecialAbility;
+        playerAbilityText.text = data.specialAbilityLevel1;
         battingPowerText.text = data.BattingPower.ToString();
         bowlingPowerText.text = data.BowlingPower.ToString();
         defenceText.text = data.Defense.ToString();

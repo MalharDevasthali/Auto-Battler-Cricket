@@ -141,7 +141,7 @@ public class BattleView : MonoBehaviour
 
         bowlerImage.sprite = bowler.playerSprite;
         bowlerNameText.SetText(bowler.playerName);
-        bowlerAbilityText.SetText(bowler.SpecialAbility);
+        bowlerAbilityText.SetText(bowler.specialAbilityLevel1);
         bowlingPowerText.SetText(bowler.BowlingPower.ToString());
     }
 
@@ -152,7 +152,7 @@ public class BattleView : MonoBehaviour
         batsmanView.SetCurrentPlayerIndicator(true);
         batsmanImage.sprite = data.playerSprite;
         batsmanNameText.SetText(data.playerName);
-        batsmanAbilityText.SetText(data.SpecialAbility);
+        batsmanAbilityText.SetText(data.specialAbilityLevel1);
         battingPowerText.SetText(data.BattingPower.ToString());
         defenceText.SetText(data.Defense.ToString());
     }

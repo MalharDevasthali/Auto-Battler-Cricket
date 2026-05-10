@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   playerID: 0
   playerName: Takalu Haiwan
+  playerSate: 1
   role: 0
   rarity: 2
   PlayerLevel: 0
-  XP: 0
   BattingPower: 3
   BowlingPower: 0
   Defense: 5
-  SpecialAbility: +1<sprite=2>for every 4 runs scored
+  specialAbilityLevel1: 
   playerAbility: {fileID: 11400000, guid: edba1c8602bec3d469b35b273b3bd707, type: 2}
   playerSprite: {fileID: -8894914691074996779, guid: 3652f11bdf8fb5446a2a93f2dd62e90b, type: 3}

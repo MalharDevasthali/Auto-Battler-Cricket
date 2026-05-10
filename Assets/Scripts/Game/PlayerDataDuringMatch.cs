@@ -31,7 +31,7 @@ public class PlayerDataDuringMatch
         playerID = playerData.playerID;
         playerName = playerData.playerName;
         playerSprite = playerData.playerSprite;
-        SpecialAbility = playerData.SpecialAbility;
+        SpecialAbility = playerData.specialAbilityLevel1;
         role = playerData.role;
         playerAbilityDuringMatch = playerData.playerAbility;
 

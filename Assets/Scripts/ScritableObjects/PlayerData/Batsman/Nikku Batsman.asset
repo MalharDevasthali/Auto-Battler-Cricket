@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   playerID: 0
   playerName: Destroyer Nikku
+  playerSate: 1
   role: 0
   rarity: 2
   PlayerLevel: 0
-  XP: 0
   BattingPower: 2
   BowlingPower: 0
   Defense: 5
-  SpecialAbility: +2<sprite=0>to self for every ball faced
+  specialAbilityLevel1: 
   playerAbility: {fileID: 11400000, guid: edba1c8602bec3d469b35b273b3bd707, type: 2}
   playerSprite: {fileID: -4623635416466225990, guid: 462bb1dfcfbc49d45acffcb12424d633, type: 3}

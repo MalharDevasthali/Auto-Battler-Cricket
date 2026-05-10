@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   playerID: 0
   playerName: Chiku 18
+  playerSate: 1
   role: 0
   rarity: 3
   PlayerLevel: 0
-  XP: 0
   BattingPower: 4
   BowlingPower: 0
   Defense: 8
-  SpecialAbility: 
+  specialAbilityLevel1: 
   playerAbility: {fileID: 11400000, guid: edba1c8602bec3d469b35b273b3bd707, type: 2}
   playerSprite: {fileID: 7663844910499824348, guid: 66ea6d8c2fa4e214d9c689d7efbb40be, type: 3}

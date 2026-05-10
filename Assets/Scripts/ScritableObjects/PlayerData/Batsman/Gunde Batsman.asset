@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   playerID: 2
   playerName: Fat Ass Gunde
+  playerSate: 1
   role: 0
   rarity: 0
+  PlayerLevel: 0
   BattingPower: 4
   BowlingPower: 0
   Defense: 1
-  SpecialAbility: -1<sprite=1>from bowler, when comes to bat
+  specialAbilityLevel1: 
   playerAbility: {fileID: 11400000, guid: 3e81947bc42d439469dd95ef6550cea2, type: 2}
   playerSprite: {fileID: 8653306093886267360, guid: eb156f2c5807bde4e8a09061bb844561, type: 3}

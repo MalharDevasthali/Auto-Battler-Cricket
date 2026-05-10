@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class UICanvasManager : MonoBehaviour
 {
-    [SerializeField] private float canvasFadeDuration = 0.5f;
+    [SerializeField] private float canvasFadeDuration;
 
     [SerializeField] private CanvasGroup battleSceneCanvasGroup;
     [SerializeField] private CanvasGroup matchFinishedCanvasGroup;
