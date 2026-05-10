@@ -399,5 +399,10 @@ public class BattleController : MonoBehaviour
             await abilityQueueSystem.WaitForAllAbilitiesAsync();
         
     }
+
+    public int GetCurrentMatchNumber()
+    {
+        return currentMatchNumber;
+    }
 }
 

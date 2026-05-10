@@ -103,7 +103,7 @@ public class BattleView : MonoBehaviour
 
     public void SetLeaugeMatchData()
     {
-        leaugeInfoText.text = "Leauge - " + ServiceLocator.Instance.GameService.GetLeaugeData().LeaugeNumber + " - Match - " + ServiceLocator.Instance.GameService.GetGameData().currentMatchNumber;
+        leaugeInfoText.text = "Leauge - " + ServiceLocator.Instance.GameService.GetLeaugeData().LeaugeNumber + " - Match - " + battleController.GetCurrentMatchNumber();
     }
 
     public void SetPlayInteractable(bool isEnabled)
