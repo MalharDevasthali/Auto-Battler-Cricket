@@ -136,15 +136,14 @@ public class BattleController : MonoBehaviour
 
             if (currentInnings == 2)
             {
-                if (MatchWinCheck())
+                if (currentInnings == 2 && MatchWinCheck())
+                {
                     break;
-                else
-                    continue;
+                }
             }
 
             if (ball >= 6 || currentBatsmanIndex >= battingTeamLineUp.Count)
             {
-                battleView.SetPlayInteractable(false);
 
                 if (currentInnings == 1)
                 {
@@ -155,14 +154,8 @@ public class BattleController : MonoBehaviour
                     processMatchEnd();
                 }
             }
-            else
-            {
-                battleView.SetPlayInteractable(true);
-            }
+  
         }
-
-        Debug.Log($"Over finished. Total Runs: {totalRuns}, Wickets: {wickets}");
-
         battleView.SetStartMatchInteractable(true);
     }
 
